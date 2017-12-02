@@ -5,32 +5,83 @@ import 'firebase/firestore'
 
 import type { Food, Sleep, Symptom } from './types';
 
-/*
-TODO: Maybe split into multiple stores?
+type Record = {
+  +id?: string,
+};
 
-Stores: {
-  food,
-  sleep,
-  symptoms,
+type Observer<T> = (records: Array<T>) => void;
+
+class Store<T: Record> {
+  _category: string;
+  _entriesRef: any; // TODO Add better Firebase Flow types
+  _observers: Array<Observer<T>> = [];
+  _recordArray: Array<T> = [];
+  _recordMap: {[id: string]: T} = {};
+
+  constructor(entriesRef: any, category: string) {
+    this._category = category;
+    this._entriesRef = entriesRef;
+    this._entriesRef
+      .where("$category", "==", category)
+      .orderBy("date", "desc")
+      .limit(100)
+      .onSnapshot(this._onSnapshot);
+  }
+
+  deleteRecord = (id: string): Promise<void> => {
+    return this._entriesRef.doc(id).delete();
+  };
+
+  getRecord = (id: string): ?T => {
+    return this._recordMap.hasOwnProperty(id)
+      ? this._recordMap[id]
+      : null;
+  };
+
+  registerObserver(observer: Observer<T>) {
+    this._observers.push(observer);
+  }
+
+  saveRecord = (record: Record): Promise<void> => {
+    const {id, ...rest} = record;
+
+    const data = {
+      ...rest,
+      $category: this._category,
+    };
+
+    return id
+      ? this._entriesRef.doc(id).set(data)
+      : this._entriesRef.add(data);
+  };
+
+  _onSnapshot = (snapshot: any) => { // TODO Add better Firebase Flow types
+    this._recordMap = {};
+    this._recordArray = [];
+
+    snapshot.forEach(data => {
+      const id = data.id;
+      const record = {
+        ...data.data(),
+        id,
+      };
+
+      this._recordArray.push(record);
+      this._recordMap[id] = record;
+    });
+
+    this._observers.forEach(
+      observer => observer(this._recordArray)
+    );
+  };
 }
-
-Store: {
-  deleteRecord(id)      Remove from map and array.
-  getRecord(id)         Read from map.
-  loadRecords()         Should store for easy iteration and quick lookup.
-  registerObserver(fn)  Call after each load/delete/save.
-  saveRecord(data)      Should insert (or remove and re-insert) in the list based on date + time.
-}
-*/
-
-type Updater = (partialState: Object) => void;
 
 export default class DataStore {
-  // TODO Add better Firebase Flow types
-  _entries: any;
-  _db: any;
+  foods: Store<Food>;
+  sleep: Store<Sleep>;
+  symptoms: Store<Symptom>;
 
-  constructor(updater: Updater) {
+  constructor() {
     // TODO add Firebase auth
 
     firebase.initializeApp({
@@ -39,52 +90,11 @@ export default class DataStore {
       projectId: 'food-tracker-c6279'
     });
 
-    this._db = firebase.firestore();
-    this._entries = this._db.collection("entries");
-    this._entries
-      .where("$category", "==", "food")
-      .orderBy("date", "desc")
-      .limit(100)
-      .onSnapshot(createHandler(foods => updater({foods})));
-    this._entries
-      .where("$category", "==", "sleep")
-      .orderBy("date", "desc")
-      .limit(100)
-      .onSnapshot(createHandler(sleep => updater({sleep})));
-    this._entries
-      .where("$category", "==", "symptom")
-      .orderBy("date", "desc")
-      .limit(100)
-      .onSnapshot(createHandler(symptoms => updater({symptoms})));
+    const db = firebase.firestore();
+    const entriesRef = db.collection("entries");
+
+    this.foods = new Store(entriesRef, 'food');
+    this.sleep = new Store(entriesRef, 'sleep');
+    this.symptoms = new Store(entriesRef, 'symptom');
   }
-
-  _saveEntry = (category: string, {id, ...rest}: Object) => {
-    const data = {
-      ...rest,
-      $category: category,
-    };
-
-    return id
-      ? this._entries.doc(id).set(data)
-      : this._entries.add(data);
-  };
-
-  delete = (id: string) => this._entries.doc(id).delete();
-
-  saveFood = (food: Food) => this._saveEntry('food', food);
-  saveSleep = (sleep: Sleep) => this._saveEntry('sleep', sleep);
-  saveSymptom = (symptom: Symptom) => this._saveEntry('symptom', symptom);
 }
-
-const createHandler = reducer => snapshot => {
-  const entries = [];
-
-  snapshot.forEach(data => {
-    entries.push({
-      ...data.data(),
-      id: data.id
-    });
-  });
-
-  reducer(entries);
-};

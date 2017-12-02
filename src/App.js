@@ -43,7 +43,16 @@ class App extends Component<Props, State> {
   constructor() {
     super();
 
-    this._dataStore = new DataStore(this._onDataStoreChanged);
+    this._dataStore = new DataStore();
+    this._dataStore.foods.registerObserver(
+      foods => this.setState({foods})
+    );
+    this._dataStore.sleep.registerObserver(
+      sleep => this.setState({sleep})
+    );
+    this._dataStore.symptoms.registerObserver(
+      symptoms => this.setState({symptoms})
+    );
   }
 
   render() {
@@ -77,7 +86,7 @@ class App extends Component<Props, State> {
               exact
               path={ROUTES.foods.new}
               render={() => (
-                <NewFoodRoute saveFn={this._dataStore.saveFood} />
+                <NewFoodRoute saveFn={this._dataStore.foods.saveRecord} />
               )}
             />
             <Route
@@ -85,10 +94,10 @@ class App extends Component<Props, State> {
               path={ROUTES.foods.edit}
               render={({ match }) => (
                 <EditFoodRoute
-                  deleteFn={this._dataStore.delete}
+                  deleteFn={this._dataStore.foods.deleteRecord}
                   foods={foods}
                   id={match.params.id}
-                  saveFn={this._dataStore.saveFood}
+                  saveFn={this._dataStore.foods.saveRecord}
                 />
               )}
             />
@@ -104,7 +113,7 @@ class App extends Component<Props, State> {
               exact
               path={ROUTES.sleep.new}
               render={() => (
-                <NewSleepRoute saveFn={this._dataStore.saveSleep} />
+                <NewSleepRoute saveFn={this._dataStore.sleep.saveRecord} />
               )}
             />
             <Route
@@ -112,9 +121,9 @@ class App extends Component<Props, State> {
               path={ROUTES.sleep.edit}
               render={({ match }) => (
                 <EditSleepRoute
-                  deleteFn={this._dataStore.delete}
+                  deleteFn={this._dataStore.sleep.deleteRecord}
                   id={match.params.id}
-                  saveFn={this._dataStore.saveSleep}
+                  saveFn={this._dataStore.sleep.saveRecord}
                   sleep={sleep}
                 />
               )}
@@ -131,7 +140,7 @@ class App extends Component<Props, State> {
               exact
               path={ROUTES.symptoms.new}
               render={() => (
-                <NewSymptomRoute saveFn={this._dataStore.saveSymptom} />
+                <NewSymptomRoute saveFn={this._dataStore.symptoms.saveRecord} />
               )}
             />
             <Route
@@ -139,9 +148,9 @@ class App extends Component<Props, State> {
               path={ROUTES.symptoms.edit}
               render={({ match }) => (
                 <EditSymptomRoute
-                  deleteFn={this._dataStore.delete}
+                  deleteFn={this._dataStore.symptoms.deleteRecord}
                   id={match.params.id}
-                  saveFn={this._dataStore.saveSymptom}
+                  saveFn={this._dataStore.symptoms.saveRecord}
                   symptoms={symptoms}
                 />
               )}
