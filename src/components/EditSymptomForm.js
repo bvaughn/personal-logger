@@ -3,7 +3,8 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ROUTES } from '../constants';
-import { BadFaceIcon, BestFaceIcon, DateIcon, EnergyIcon, GoodFaceIcon, NeutralFaceIcon, StomachIcon, TimeIcon, WorstFaceIcon } from '../components/FlatIcon';
+import { DateIcon, EnergyIcon, StomachIcon, TimeIcon } from '../components/FlatIcon';
+import RatingIcon from '../components/RatingIcon';
 import { getDate, getDateString, getTimeString } from '../utils';
 
 import type { Symptom } from '../types';
@@ -97,35 +98,30 @@ export default class NewSymptom extends Component<Props, State> {
             <RatingRadioOption
               isSaving={isSaving}
               onChange={this._onRatingChange}
-              Icon={WorstFaceIcon}
               rating={symptom.rating}
               value={0}
             />
             <RatingRadioOption
               isSaving={isSaving}
               onChange={this._onRatingChange}
-              Icon={BadFaceIcon}
               rating={symptom.rating}
               value={1}
             />
             <RatingRadioOption
               isSaving={isSaving}
               onChange={this._onRatingChange}
-              Icon={NeutralFaceIcon}
               rating={symptom.rating}
               value={2}
             />
             <RatingRadioOption
               isSaving={isSaving}
               onChange={this._onRatingChange}
-              Icon={GoodFaceIcon}
               rating={symptom.rating}
               value={3}
             />
             <RatingRadioOption
               isSaving={isSaving}
               onChange={this._onRatingChange}
-              Icon={BestFaceIcon}
               rating={symptom.rating}
               value={4}
             />
@@ -242,10 +238,11 @@ export default class NewSymptom extends Component<Props, State> {
   };
 }
 
-const RatingRadioOption = ({ isSaving, Icon, onChange, rating, value }) => (
+const RatingRadioOption = ({ isSaving, onChange, rating, value }) => (
   <label className="new-form-rating-radio-label">
-    <Icon
+    <RatingIcon
       className={`new-form-rating-svg ${rating === value ? 'new-form-rating-svg-active' : ''}`}
+      rating={value}
     />
     <input
       checked={rating === value}

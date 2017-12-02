@@ -3,7 +3,8 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ROUTES } from '../constants';
-import { BadFaceIcon, BestFaceIcon, DateIcon, GoodFaceIcon, NeutralFaceIcon, WorstFaceIcon } from '../components/FlatIcon';
+import { DateIcon } from '../components/FlatIcon';
+import RatingIcon from '../components/RatingIcon';
 import { getDate, getDateString } from '../utils';
 
 import type { Sleep } from '../types';
@@ -57,35 +58,30 @@ export default class EditSleepForm extends Component<Props, State> {
             <RatingRadioOption
               isSaving={isSaving}
               onChange={this._onRatingChange}
-              Icon={WorstFaceIcon}
               rating={sleep.rating}
               value={0}
             />
             <RatingRadioOption
               isSaving={isSaving}
               onChange={this._onRatingChange}
-              Icon={BadFaceIcon}
               rating={sleep.rating}
               value={1}
             />
             <RatingRadioOption
               isSaving={isSaving}
               onChange={this._onRatingChange}
-              Icon={NeutralFaceIcon}
               rating={sleep.rating}
               value={2}
             />
             <RatingRadioOption
               isSaving={isSaving}
               onChange={this._onRatingChange}
-              Icon={GoodFaceIcon}
               rating={sleep.rating}
               value={3}
             />
             <RatingRadioOption
               isSaving={isSaving}
               onChange={this._onRatingChange}
-              Icon={BestFaceIcon}
               rating={sleep.rating}
               value={4}
             />
@@ -230,8 +226,9 @@ export default class EditSleepForm extends Component<Props, State> {
 
 const RatingRadioOption = ({ isSaving, Icon, onChange, rating, value }) => (
   <label className="new-form-rating-radio-label">
-    <Icon
+    <RatingIcon
       className={`new-form-rating-svg ${rating === value ? 'new-form-rating-svg-active' : ''}`}
+      rating={value}
     />
     <input
       checked={rating === value}

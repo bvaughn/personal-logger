@@ -3,7 +3,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { LOCALE_DATE_OPTIONS, LOCALE_TIME_OPTIONS, ROUTES } from '../constants';
-import { BadFaceIcon, BestFaceIcon, EnergyIcon, GoodFaceIcon, NeutralFaceIcon, StomachIcon, WorstFaceIcon } from '../components/FlatIcon';
+import { EnergyIcon, StomachIcon } from '../components/FlatIcon';
+import RatingIcon from '../components/RatingIcon';
 
 import type { Symptom } from '../types';
 
@@ -26,7 +27,10 @@ export default class ListSymptoms extends Component<Props> {
       >
         <div className="list-entry-title">
           <TypeIcon type={symptom.type} />
-          <RatingIcon rating={symptom.rating} />
+          <RatingIcon
+            className="list-entry-rating-icon"
+            rating={symptom.rating}
+          />
         </div>
         <div className="list-entry-time">
           {symptom.date.toLocaleTimeString("en-US", LOCALE_TIME_OPTIONS)}
@@ -36,21 +40,6 @@ export default class ListSymptoms extends Component<Props> {
         </small>
       </Link>
     ));
-  }
-}
-
-const RatingIcon = ({ rating }) => {
-  switch (rating) {
-    case 0:
-      return <WorstFaceIcon className="list-entry-rating-icon" />;
-    case 1:
-      return <BadFaceIcon className="list-entry-rating-icon" />;
-    case 2:
-      return <NeutralFaceIcon className="list-entry-rating-icon" />;
-    case 3:
-      return <GoodFaceIcon className="list-entry-rating-icon" />;
-    case 4:
-      return <BestFaceIcon className="list-entry-rating-icon" />
   }
 }
 
