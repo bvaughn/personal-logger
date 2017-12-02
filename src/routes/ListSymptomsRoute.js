@@ -49,5 +49,7 @@ const TypeIcon = ({ type }) => {
       return <EnergyIcon className="list-entry-rating-icon" />;
     case "stomach":
       return <StomachIcon className="list-entry-rating-icon" />
+    default:
+      throw Error(`Invalid type "${type}" specified`);
   }
 }

@@ -42,5 +42,7 @@ const TypeIcon = ({ type }) => {
       return <DrinkIcon className="list-entry-rating-icon" />;
     case "food":
       return <FoodIcon className="list-entry-rating-icon" />;
+    default:
+      throw Error(`Invalid type "${type}" specified`);
   }
 }
