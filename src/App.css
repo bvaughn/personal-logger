@@ -1,28 +1,227 @@
-.App {
-  text-align: center;
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.header {
+  background-color: #282c34;
+  color: #ffffff;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.nav {
+  display: flex;
+  justify-content: space-around;
 }
 
-.App-title {
-  font-size: 1.5em;
+.nav-list-item {
+  flex: 1 0 1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-around;
+  text-decoration: none;
+  white-space: nowrap;
+  border-right: 2px solid #fff;
+}
+.nav-list-item:last-of-type {
+  border-right: none;
 }
 
-.App-intro {
-  font-size: large;
+.nav-link {
+  padding: 0.5rem;
+  color: #fff;
+  filter: grayscale(100%);
+  transition: filter 500ms ease-in-out;
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.nav-link-active {
+  color: #1da1f2;
+  filter: grayscale(0%);
+}
+
+.nav-link-svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentColor;
+}
+.nav-link-svg-category {
+  width: 2rem;
+  height: 2rem;
+}
+
+.main {
+  padding: 1em;
+  height: 100%;
+}
+
+.new-form {
+}
+
+.new-form-section {
+  margin-bottom: 1rem;
+}
+
+.new-form-section-header {
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.new-form-section-header > * {
+  margin-right: 1rem;
+}
+.new-form-section-header > *:last-child {
+  margin-right: 0;
+}
+
+.new-form-section-header-types {
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.new-form-section-header-svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: 0 0 1.25rem;
+}
+
+.new-form-section-header-spacer {
+  flex: 1 0 auto;
+}
+
+.new-form-type-svg {
+  width: 3rem;
+  height: 3rem;
+  margin: 0.5rem 0;
+  filter: grayscale(75%);
+  transition: filter 500ms ease-in-out;
+}
+
+.new-form-type-svg-active {
+  filter: grayscale(0%);
+}
+
+.new-form-radio-label {
+  flex: 0 1 auto;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.new-form-input {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.new-form-textarea {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.new-form-add-ingredient-button {
+  background: #ddd;
+  color: #333;
+  -webkit-appearance: none;
+  border: none;
+  padding: 0.25rem 0.5rem;
+}
+
+.new-form-save-button {
+  width: 100%;
+  background-color: rgb(13, 155, 121);
+  color: #fff;
+  -webkit-appearance: none;
+  border: none;
+  padding: 0.5rem 1rem;
+}
+
+.new-form-delete-button {
+  width: 100%;
+  background-color: rgb(221, 50, 60);
+  color: #fff;
+  -webkit-appearance: none;
+  border: none;
+  padding: 0.5rem 1rem;
+}
+
+.new-form-cancel-button {
+  width: 100%;
+  background-color: #ddd;
+  color: #333;
+  -webkit-appearance: none;
+  border: none;
+  padding: 0.5rem 1rem;
+}
+
+.new-form-rating-radio-label {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.new-form-rating-svg {
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 0.5rem;
+  filter: grayscale(75%);
+  transition: filter 500ms ease-in-out;
+}
+
+.new-form-rating-svg-active {
+  filter: grayscale(0%);
+}
+
+.nowrap {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.entry-type-svg {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.25rem;
+  fill: #1da1f2;
+}
+
+.list-entry {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 2rem;
+  margin-bottom: 1rem;
+}
+.list-entry-title {
+  min-width: 0;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+}
+.list-entry-time {
+  flex: 0 0 80px;
+  text-transform: lowercase;
+}
+.list-entry-date {
+  flex: 0 0 70px;
+}
+.list-entry-rating-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.loading-spinner-svg {
+  width: 5rem;
+  height: 5rem;
 }
