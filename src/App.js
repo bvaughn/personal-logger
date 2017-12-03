@@ -18,7 +18,14 @@ import {
   NewSleepRoute,
   NewSymptomRoute
 } from './routes';
-import { CreateIcon, EatIcon, SleepIcon, SymptomIcon } from './components/FlatIcon';
+import LoadingSpinner from './components/LoadingSpinner';
+import {
+  CreateIcon,
+  EatIcon,
+  LogoutIcon,
+  SleepIcon,
+  SymptomIcon
+} from './components/FlatIcon';
 import { ROUTES } from './constants';
 import "./App.css";
 
@@ -26,6 +33,7 @@ import type { Food, Sleep, Symptom } from './types';
 
 type Props = {};
 type State = {
+  authenticated: boolean,
   foods: Array<Food>,
   sleep: Array<Sleep>,
   symptoms: Array<Symptom>,
@@ -35,6 +43,7 @@ class App extends Component<Props, State> {
   _dataStore: DataStore;
 
   state: State = {
+    authenticated: false,
     foods: [],
     sleep: [],
     symptoms: [],
@@ -44,19 +53,29 @@ class App extends Component<Props, State> {
     super();
 
     this._dataStore = new DataStore();
-    this._dataStore.foods.registerObserver(
-      foods => this.setState({foods})
-    );
-    this._dataStore.sleep.registerObserver(
-      sleep => this.setState({sleep})
-    );
-    this._dataStore.symptoms.registerObserver(
-      symptoms => this.setState({symptoms})
-    );
+    this._dataStore.authenticate().then(() => {
+      this.setState({
+        authenticated: true,
+      });
+
+      this._dataStore.foods.registerObserver(
+        foods => this.setState({foods})
+      );
+      this._dataStore.sleep.registerObserver(
+        sleep => this.setState({sleep})
+      );
+      this._dataStore.symptoms.registerObserver(
+        symptoms => this.setState({symptoms})
+      );
+    });
   }
 
   render() {
-    const {foods, sleep, symptoms} = this.state;
+    const {authenticated, foods, sleep, symptoms} = this.state;
+
+    if (!authenticated) {
+      return <LoadingSpinner />;
+    }
 
     return (
       <Router>
@@ -78,6 +97,13 @@ class App extends Component<Props, State> {
                 listPath={ROUTES.symptoms.list}
                 Icon={SymptomIcon}
               />
+              <div
+                className="nav-list-item nav-list-item-logout"
+                onClick={this._dataStore.signout}
+                tabIndex={0}
+              >
+                <LogoutIcon className="nav-list-item-logout-svg" />
+              </div>
             </nav>
           </header>
 
@@ -187,9 +213,7 @@ const NavListItem = ({ createPath, Icon, listPath }) => (
       className="nav-link"
       to={createPath}
     >
-      <CreateIcon
-        className="nav-link-svg"
-      />
+      <CreateIcon className="nav-link-svg" />
     </NavLink>
   </div>
 );

@@ -1,6 +1,7 @@
 // @flow
 
 import firebase from 'firebase/app'
+import 'firebase/auth';
 import 'firebase/firestore'
 
 import type { Food, Sleep, Symptom } from './types';
@@ -17,12 +18,16 @@ class Store<T: Record> {
   _observers: Array<Observer<T>> = [];
   _recordArray: Array<T> = [];
   _recordMap: {[id: string]: T} = {};
+  _uid: string;
 
-  constructor(entriesRef: any, category: string) {
+  constructor(entriesRef: any, category: string, uid: string) {
     this._category = category;
+    this._uid = uid;
+
     this._entriesRef = entriesRef;
     this._entriesRef
       .where("$category", "==", category)
+      .where("user", "==", uid)
       .orderBy("date", "desc")
       .limit(100)
       .onSnapshot(this._onSnapshot);
@@ -48,6 +53,7 @@ class Store<T: Record> {
     const data = {
       ...rest,
       $category: this._category,
+      user: this._uid,
     };
 
     return id
@@ -76,25 +82,47 @@ class Store<T: Record> {
   };
 }
 
+// TODO Add a store for exercise (running, lifting)
+
 export default class DataStore {
   foods: Store<Food>;
   sleep: Store<Sleep>;
   symptoms: Store<Symptom>;
 
   constructor() {
-    // TODO add Firebase auth
-
     firebase.initializeApp({
       apiKey: 'AIzaSyDm_dXL-x8vjJc2lzJpQxW6369Arv2sLp0',
       authDomain: 'food-tracker-c6279.firebaseapp.com',
       projectId: 'food-tracker-c6279'
     });
-
-    const db = firebase.firestore();
-    const entriesRef = db.collection("entries");
-
-    this.foods = new Store(entriesRef, 'food');
-    this.sleep = new Store(entriesRef, 'sleep');
-    this.symptoms = new Store(entriesRef, 'symptom');
   }
+
+  authenticate(): Promise<void> {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    
+    return new Promise(async (resolve, reject) => {
+      const auth = firebase.auth();
+      auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
+      auth.onAuthStateChanged(user => {
+        if (user) {
+          const db = firebase.firestore();
+          const entriesRef = db.collection("entries");
+
+          const {uid} = user;
+
+          this.foods = new Store(entriesRef, 'food', uid);
+          this.sleep = new Store(entriesRef, 'sleep', uid);
+          this.symptoms = new Store(entriesRef, 'symptom', uid);
+
+          resolve();
+        } else {
+          auth.signInWithRedirect(provider);
+        }
+      });
+    });
+  }
+
+  signout = () => {
+    firebase.auth().signOut();
+  };
 }

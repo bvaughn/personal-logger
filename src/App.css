@@ -27,6 +27,11 @@
   border-right: none;
 }
 
+.nav-list-item-logout {
+  flex: 0 0 3rem;
+  background-color: #dd323c;
+}
+
 .nav-link {
   padding: 0.5rem;
   color: #fff;
@@ -48,6 +53,10 @@
 .nav-link-svg-category {
   width: 2rem;
   height: 2rem;
+}
+.nav-list-item-logout-svg {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .main {
@@ -139,7 +148,7 @@
 
 .new-form-delete-button {
   width: 100%;
-  background-color: rgb(221, 50, 60);
+  background-color: #dd323c;
   color: #fff;
   -webkit-appearance: none;
   border: none;
