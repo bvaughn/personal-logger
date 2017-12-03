@@ -11,6 +11,8 @@ type Props = {
   foods: Array<Food>,
 };
 
+// TODO Add react-virtualized
+
 export default class ListFoods extends Component<Props> {
   render() {
     const { foods } = this.props;

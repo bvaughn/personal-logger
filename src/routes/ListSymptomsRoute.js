@@ -12,6 +12,8 @@ type Props = {
   symptoms: Array<Symptom>,
 };
 
+// TODO Add react-virtualized
+
 export default class ListSymptoms extends Component<Props> {
   render() {
     const {symptoms} = this.props;

@@ -11,6 +11,8 @@ type Props = {
   sleep: Array<Sleep>,
 };
 
+// TODO Add react-virtualized
+
 export default class ListSleep extends Component<Props> {
   render() {
     const { sleep } = this.props;
