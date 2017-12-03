@@ -4,22 +4,22 @@ import type { Food, Sleep, Symptom } from './types';
 
 export const ROUTES = {
   foods: {
-    edit: '/foods/:id',
+    edit: '/foods/edit/:id',
     list: '/foods',
     new: '/foods/new',
-    editLink: (food: Food) => food.id && `/foods/${food.id}`,
+    editLink: (food: Food) => food.id && `/foods/edit/${food.id}`,
   },
   sleep: {
-    edit: '/sleep/:id',
+    edit: '/sleep/edit/:id',
     list: '/sleep',
     new: '/sleep/new',
-    editLink: (sleep: Sleep) => sleep.id && `/sleep/${sleep.id}`,
+    editLink: (sleep: Sleep) => sleep.id && `/sleep/edit/${sleep.id}`,
   },
   symptoms: {
-    edit: '/symptoms/:id',
+    edit: '/symptoms/edit/:id',
     list: '/symptoms',
     new: '/symptoms/new',
-    editLink: (symptom: Symptom) => symptom.id && `/symptoms/${symptom.id}`,
+    editLink: (symptom: Symptom) => symptom.id && `/symptoms/edit/${symptom.id}`,
   },
 };
 

@@ -184,10 +184,9 @@ export default class NewFoodDrink extends Component<Props, State> {
   _onDelete = (event: Event) => {
     event.preventDefault();
 
-    const {deleteFn} = this.props;
-    if (deleteFn !== undefined) {
-      deleteFn();
-    }
+    this.setState({
+      isSaving: true
+    }, this.props.deleteFn);
   };
 
   _onIngredientChange = (index: number, value: string) => {

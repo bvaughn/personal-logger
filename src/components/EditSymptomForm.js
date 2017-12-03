@@ -178,10 +178,9 @@ export default class NewSymptom extends Component<Props, State> {
   _onDelete = (event: Event) => {
     event.preventDefault();
 
-    const {deleteFn} = this.props;
-    if (deleteFn !== undefined) {
-      deleteFn();
-    }
+    this.setState({
+      isSaving: true
+    }, this.props.deleteFn);
   };
 
   _onNotesChange = (event: SyntheticInputEvent<HTMLInputElement>) => {

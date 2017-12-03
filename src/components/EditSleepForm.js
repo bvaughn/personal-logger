@@ -170,10 +170,9 @@ export default class EditSleepForm extends Component<Props, State> {
   _onDelete = (event: Event) => {
     event.preventDefault();
 
-    const {deleteFn} = this.props;
-    if (deleteFn !== undefined) {
-      deleteFn();
-    }
+    this.setState({
+      isSaving: true
+    }, this.props.deleteFn);
   };
 
   _onDurationChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
