@@ -25,3 +25,10 @@ export type Symptom = {
   rating: number,
   type: string,
 };
+
+export type User = {
+  displayName: string,
+  email: string,
+  photoURL: string,
+  uid: string,
+};

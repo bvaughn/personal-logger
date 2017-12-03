@@ -20,7 +20,6 @@ import {
 } from './routes';
 import LoadingSpinner from './components/LoadingSpinner';
 import {
-  CreateIcon,
   EatIcon,
   LogoutIcon,
   SleepIcon,
@@ -29,11 +28,12 @@ import {
 import { ROUTES } from './constants';
 import "./App.css";
 
-import type { Food, Sleep, Symptom } from './types';
+import type { Food, Sleep, Symptom, User } from './types';
 
 type Props = {};
 type State = {
   authenticated: boolean,
+  avatarPhoto: ?string,
   foods: Array<Food>,
   sleep: Array<Sleep>,
   symptoms: Array<Symptom>,
@@ -44,6 +44,7 @@ class App extends Component<Props, State> {
 
   state: State = {
     authenticated: false,
+    avatarPhoto: null,
     foods: [],
     sleep: [],
     symptoms: [],
@@ -53,25 +54,27 @@ class App extends Component<Props, State> {
     super();
 
     this._dataStore = new DataStore();
-    this._dataStore.authenticate().then(() => {
-      this.setState({
-        authenticated: true,
-      });
+    this._dataStore.authenticate().then(
+      (user: User) => {
+        this.setState({
+          authenticated: true,
+          avatarPhoto: user && user.photoURL,
+        });
 
-      this._dataStore.foods.registerObserver(
-        foods => this.setState({foods})
-      );
-      this._dataStore.sleep.registerObserver(
-        sleep => this.setState({sleep})
-      );
-      this._dataStore.symptoms.registerObserver(
-        symptoms => this.setState({symptoms})
-      );
-    });
+        this._dataStore.foods.registerObserver(
+          foods => this.setState({foods})
+        );
+        this._dataStore.sleep.registerObserver(
+          sleep => this.setState({sleep})
+        );
+        this._dataStore.symptoms.registerObserver(
+          symptoms => this.setState({symptoms})
+        );
+      });
   }
 
   render() {
-    const {authenticated, foods, sleep, symptoms} = this.state;
+    const {authenticated, avatarPhoto, foods, sleep, symptoms} = this.state;
 
     if (!authenticated) {
       return <LoadingSpinner />;
@@ -81,29 +84,50 @@ class App extends Component<Props, State> {
       <Router>
         <div className="app">
           <header className="header">
-            <nav className="nav">
-              <NavListItem
-                createPath={ROUTES.sleep.new}
-                listPath={ROUTES.sleep.list}
-                Icon={SleepIcon}
-              />
-              <NavListItem
-                createPath={ROUTES.foods.new}
-                listPath={ROUTES.foods.list}
-                Icon={EatIcon}
-              />
-              <NavListItem
-                createPath={ROUTES.symptoms.new}
-                listPath={ROUTES.symptoms.list}
-                Icon={SymptomIcon}
-              />
+            <div className="header-title-row">
+              <div className="header-user-avatar">
+                <img
+                  alt="User avatar"
+                  className="header-user-avatar-img"
+                  src={avatarPhoto}
+                />
+              </div>
+
+              <div className="header-title">
+                Personal Log
+              </div>
+
               <div
-                className="nav-list-item nav-list-item-logout"
+                className="header-logout-button"
                 onClick={this._dataStore.signout}
                 tabIndex={0}
               >
-                <LogoutIcon className="nav-list-item-logout-svg" />
+                <LogoutIcon className="header-logout-button-svg" />
               </div>
+            </div>
+
+            <nav className="nav">
+              <NavLink
+                activeClassName="nav-link-active"
+                className="nav-link"
+                to={ROUTES.sleep.list}
+              >
+                <SleepIcon className="nav-link-svg" />
+              </NavLink>
+              <NavLink
+                activeClassName="nav-link-active"
+                className="nav-link"
+                to={ROUTES.foods.list}
+              >
+                <EatIcon className="nav-link-svg" />
+              </NavLink>
+              <NavLink
+                activeClassName="nav-link-active"
+                className="nav-link"
+                to={ROUTES.symptoms.list}
+              >
+                <SymptomIcon className="nav-link-svg" />
+              </NavLink>
             </nav>
           </header>
 
@@ -198,24 +222,5 @@ class App extends Component<Props, State> {
     this.setState(state);
   };
 }
-
-const NavListItem = ({ createPath, Icon, listPath }) => (
-  <div className="nav-list-item">
-    <NavLink
-      activeClassName="nav-link-active"
-      className="nav-link"
-      to={listPath}
-    >
-      <Icon className="nav-link-svg nav-link-svg-category" />
-    </NavLink>
-    <NavLink
-      activeClassName="nav-link-active"
-      className="nav-link"
-      to={createPath}
-    >
-      <CreateIcon className="nav-link-svg" />
-    </NavLink>
-  </div>
-);
 
 export default App;

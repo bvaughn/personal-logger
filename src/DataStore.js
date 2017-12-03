@@ -4,7 +4,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/firestore'
 
-import type { Food, Sleep, Symptom } from './types';
+import type { Food, Sleep, Symptom, User } from './types';
 
 type Record = {
   +id?: string,
@@ -88,6 +88,7 @@ export default class DataStore {
   foods: Store<Food>;
   sleep: Store<Sleep>;
   symptoms: Store<Symptom>;
+  user: ?User = null;
 
   constructor() {
     firebase.initializeApp({
@@ -97,7 +98,7 @@ export default class DataStore {
     });
   }
 
-  authenticate(): Promise<void> {
+  authenticate(): Promise<User> {
     const provider = new firebase.auth.GoogleAuthProvider();
     
     return new Promise(async (resolve, reject) => {
@@ -108,13 +109,15 @@ export default class DataStore {
           const db = firebase.firestore();
           const entriesRef = db.collection("entries");
 
+          this.user = user;
+
           const {uid} = user;
 
           this.foods = new Store(entriesRef, 'food', uid);
           this.sleep = new Store(entriesRef, 'sleep', uid);
           this.symptoms = new Store(entriesRef, 'symptom', uid);
 
-          resolve();
+          resolve(user);
         } else {
           auth.signInWithRedirect(provider);
         }
