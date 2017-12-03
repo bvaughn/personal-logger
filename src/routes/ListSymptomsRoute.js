@@ -16,8 +16,6 @@ export default class ListSymptoms extends Component<Props> {
   render() {
     const {symptoms} = this.props;
 
-    // TODO Edit and delete handlers
-
     return symptoms.map(symptom => (
       <Link
         className="list-entry"
