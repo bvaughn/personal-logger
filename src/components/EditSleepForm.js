@@ -42,12 +42,12 @@ export default class EditSleepForm extends Component<Props, State> {
           <div className="new-form-section-header">
             <DateIcon className="new-form-section-header-svg" />
             <input
+              className="new-form-date-time-input"
               disabled={isSaving}
               onChange={this._onDateChange}
               type="date"
               value={date}
             />
-            <div className="new-form-section-header-spacer" />
           </div>
         </section>
         <section className="new-form-section">

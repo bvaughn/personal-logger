@@ -6,7 +6,7 @@
 
 .header {
   margin-bottom: 1rem;
-  background-color: #282c34;
+  background-color: #263238;
   color: #ffffff;
   padding: 0.5rem;
 }
@@ -102,8 +102,7 @@
   height: 3rem;
   padding: .75rem;
   border-radius: 3rem;
-  background: #eee;
-  border: 1px solid #ddd;
+  background: #eceff1;
 }
 
 .new-form {
@@ -142,11 +141,15 @@
   flex: 1 0 auto;
 }
 
+.new-form-date-time-input {
+  flex: 1 1 auto;
+}
+
 .new-form-type-svg {
   width: 3rem;
   height: 3rem;
   margin: 0.5rem 0;
-  filter: grayscale(75%);
+  filter: grayscale(100%);
   transition: filter 500ms ease-in-out;
 }
 
@@ -168,7 +171,6 @@
 
 .new-form-textarea {
   width: 100%;
-  margin-bottom: 0.5rem;
 }
 
 .new-form-add-ingredient-button {
@@ -181,7 +183,7 @@
 
 .new-form-save-button {
   width: 100%;
-  background-color: #0d9b79;
+  background-color: #00c853;
   color: #fff;
   -webkit-appearance: none;
   border: none;
@@ -190,7 +192,7 @@
 
 .new-form-delete-button {
   width: 100%;
-  background-color: #dd323c;
+  background-color: #dd2c00;
   color: #fff;
   -webkit-appearance: none;
   border: none;
@@ -217,7 +219,7 @@
   width: 3rem;
   height: 3rem;
   margin-bottom: 0.5rem;
-  filter: grayscale(75%);
+  filter: grayscale(100%);
   transition: filter 500ms ease-in-out;
 }
 @media screen and (max-width: 360px) {
@@ -265,6 +267,7 @@
   flex: 0 0 70px;
 }
 .list-entry-rating-icon {
+  flex: 0 0 auto;
   width: 1.5rem;
   height: 1.5rem;
   margin-right: 0.5rem;

@@ -43,14 +43,18 @@ export default class NewFoodDrink extends Component<Props, State> {
           <div className="new-form-section-header">
             <DateIcon className="new-form-section-header-svg" />
             <input
+              className="new-form-date-time-input"
               disabled={isSaving}
               name="date"
               onChange={this._onDateChange}
               type="date"
               value={date}
             />
+          </div>
+          <div className="new-form-section-header">
             <TimeIcon className="new-form-section-header-svg" />
             <input
+              className="new-form-date-time-input"
               disabled={isSaving}
               name="time"
               onChange={this._onTimeChange}
