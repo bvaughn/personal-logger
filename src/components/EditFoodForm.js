@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ROUTES } from '../constants';
-import { DateIcon, DrinkIcon, FoodIcon, TimeIcon } from '../components/FlatIcon';
+import { DateIcon, DrinkIcon, FoodIcon, TimeIcon } from '../components/SvgIcons';
 import { getDate, getDateString, getTimeString } from '../utils';
 
 import type { Food } from '../types';

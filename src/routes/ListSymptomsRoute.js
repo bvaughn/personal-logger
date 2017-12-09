@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { LOCALE_DATE_OPTIONS, LOCALE_TIME_OPTIONS, ROUTES } from '../constants';
-import { CreateIcon, EnergyIcon, StomachIcon } from '../components/FlatIcon';
+import { CreateIcon, EnergyIcon, StomachIcon } from '../components/SvgIcons';
 import RatingIcon from '../components/RatingIcon';
 
 import type { Symptom } from '../types';

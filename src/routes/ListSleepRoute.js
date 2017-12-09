@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { LOCALE_DATE_OPTIONS, ROUTES } from '../constants';
-import { CreateIcon } from '../components/FlatIcon';
+import { CreateIcon } from '../components/SvgIcons';
 import RatingIcon from '../components/RatingIcon';
 
 import type { Sleep } from '../types';

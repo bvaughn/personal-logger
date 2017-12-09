@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ROUTES } from '../constants';
-import { DateIcon } from '../components/FlatIcon';
+import { DateIcon } from '../components/SvgIcons';
 import RatingIcon from '../components/RatingIcon';
 import { getDate, getDateString } from '../utils';
 

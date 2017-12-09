@@ -24,7 +24,7 @@ import {
   LogoutIcon,
   SleepIcon,
   SymptomIcon
-} from './components/FlatIcon';
+} from './components/SvgIcons';
 import { ROUTES } from './constants';
 import "./App.css";
 
