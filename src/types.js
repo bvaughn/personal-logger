@@ -18,6 +18,12 @@ export type Sleep = {
   rating: number,
 };
 
+export type RowRendererParams = {
+  index: number,
+  key: string,
+  style: Object,
+};
+
 export type Symptom = {
   date: Date,
   id?: string,
