@@ -106,19 +106,19 @@ export const FoodIcon = props => (
 
 export const LoadingIcon = props => (
   <svg {...props} viewBox="0 0 126 167">
-    <ellipse style={{fill: '#718792'}} cx="63" cy="146" rx="63" ry="21"/>
-    <rect    style={{fill: '#718792'}} y="137" width="126" height="9"/>
-    <ellipse style={{fill: '#718792'}} cx="63" cy="137" rx="63" ry="21"/>
-    <ellipse style={{fill: '#1c313a'}} cx="110" cy="137" rx="6" ry="3"/>
-    <rect    style={{fill: '#1c313a'}} x="104" y="22" width="12" height="115"/>
-    <ellipse style={{fill: '#1c313a'}} cx="16" cy="137" rx="6" ry="3"/>
-    <rect    style={{fill: '#1c313a'}} x="10" y="22" width="12" height="115"/>
-    <path    style={{fill: '#cfd8dc'}} d="M86,108q15,15,11,32c-23,9-45,9-68,0q-3-18,11-32h0L55,90h0q6-9,0-18h0L39,54Q22,35,32,14H94q9,20-6,39L73,71h0q-8,8-3,18h0l16,19Z"/>
-    <path    style={{fill: '##263238'}} d="M48,56,61,71v36s-24,12-25,14-3,12-3,15,13,7,30,7a84,84,0,0,0,30-6s1-11-3-15-25-15-25-15V71L78,56"/>
-    <ellipse style={{fill: '#718792'}} cx="63" cy="56" rx="15" ry="2"/>
-    <ellipse style={{fill: '#718792'}} cx="63" cy="20" rx="63" ry="9"/>
-    <rect    style={{fill: '#718792'}} y="8" width="126" height="12"/>
-    <ellipse style={{fill: '#718792'}} cx="63" cy="9" rx="63" ry="9"/>
+    <ellipse style={{fill: '#37474f'}} cx="63" cy="146" rx="63" ry="21"/>
+    <rect    style={{fill: '#37474f'}} y="137" width="126" height="9"/>
+    <ellipse style={{fill: '#62727b'}} cx="63" cy="137" rx="63" ry="21"/>
+    <ellipse style={{fill: '#102027'}} cx="110" cy="137" rx="6" ry="3"/>
+    <rect    style={{fill: '#102027'}} x="104" y="22" width="12" height="115"/>
+    <ellipse style={{fill: '#102027'}} cx="16" cy="137" rx="6" ry="3"/>
+    <rect    style={{fill: '#102027'}} x="10" y="22" width="12" height="115"/>
+    <path    style={{fill: '#90caf9'}} d="M86,108q15,15,11,32c-23,9-45,9-68,0q-3-18,11-32h0L55,90h0q6-9,0-18h0L39,54Q22,35,32,14H94q9,20-6,39L73,71h0q-8,8-3,18h0l16,19Z"/>
+    <path    style={{fill: '#0277bd'}} d="M48,56,61,71v36s-24,12-25,14-3,12-3,15,13,7,30,7a84,84,0,0,0,30-6s1-11-3-15-25-15-25-15V71L78,56"/>
+    <ellipse style={{fill: '#0277bd'}} cx="63" cy="56" rx="15" ry="2"/>
+    <ellipse style={{fill: '#37474f'}} cx="63" cy="20" rx="63" ry="9"/>
+    <rect    style={{fill: '#37474f'}} y="8" width="126" height="12"/>
+    <ellipse style={{fill: '#62727b'}} cx="63" cy="9" rx="63" ry="9"/>
   </svg>
 );
 
