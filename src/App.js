@@ -40,7 +40,7 @@ type State = {
 };
 
 class App extends Component<Props, State> {
-  _dataStore: DataStore;
+  _dataStore: DataStore = new DataStore();
 
   state: State = {
     authenticated: false,
@@ -50,10 +50,7 @@ class App extends Component<Props, State> {
     symptoms: [],
   };
 
-  constructor() {
-    super();
-
-    this._dataStore = new DataStore();
+  componentDidMount() {
     this._dataStore.authenticate().then(
       (user: User) => {
         this.setState({

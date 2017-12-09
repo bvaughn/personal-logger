@@ -10,11 +10,13 @@ type Record = {
   +id?: string,
 };
 
+// TODO Add better Firebase Flow types for refs and snapshots
+
 type Observer<T> = (records: Array<T>) => void;
 
 class Store<T: Record> {
   _category: string;
-  _entriesRef: any; // TODO Add better Firebase Flow types
+  _entriesRef: any;
   _observers: Array<Observer<T>> = [];
   _recordArray: Array<T> = [];
   _recordMap: {[id: string]: T} = {};
@@ -61,7 +63,7 @@ class Store<T: Record> {
       : this._entriesRef.add(data);
   };
 
-  _onSnapshot = (snapshot: any) => { // TODO Add better Firebase Flow types
+  _onSnapshot = (snapshot: any) => {
     this._recordMap = {};
     this._recordArray = [];
 
@@ -81,8 +83,6 @@ class Store<T: Record> {
     );
   };
 }
-
-// TODO Add a store for exercise (running, lifting)
 
 export default class DataStore {
   foods: Store<Food>;
