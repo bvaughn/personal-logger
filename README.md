@@ -1,4 +1,12 @@
-## Firestore
+## Local Installation
+
+This application was built with [`create-react-app`](https://github.com/facebookincubator/create-react-app). To run it locally, clone this repository and then:
+```
+yarn install
+yarn start
+```
+
+## Firestore Configuration
 
 ### Indexes
 
@@ -10,7 +18,7 @@ This application relies on a single collection, "entries", with a single index o
 ### Rules
 
 Security for this application relies on the following rules:
-```
+```js
 service cloud.firestore {
   match /databases/{database}/documents {
     match /{document=**} {
