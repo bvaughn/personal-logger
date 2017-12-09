@@ -1,3 +1,5 @@
+Try it out by signing in with your Google account at [personal-logger.now.sh](https://personal-logger.now.sh/).
+
 ## Local Installation
 
 This application was built with [`create-react-app`](https://github.com/facebookincubator/create-react-app). To run it locally, clone this repository and then:
