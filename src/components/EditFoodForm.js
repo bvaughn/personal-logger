@@ -3,7 +3,12 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ROUTES } from '../constants';
-import { DateIcon, DrinkIcon, FoodIcon, TimeIcon } from '../components/SvgIcons';
+import {
+  DateIcon,
+  DrinkIcon,
+  FoodIcon,
+  TimeIcon,
+} from '../components/SvgIcons';
 import { getDate, getDateString, getTimeString } from '../utils';
 
 import type { Food } from '../types';
@@ -24,21 +29,17 @@ type State = {
 export default class NewFoodDrink extends Component<Props, State> {
   state: State = {
     date: getDateString(this.props.food.date),
-    food: {...this.props.food}, // Shallow clone for editing
+    food: { ...this.props.food }, // Shallow clone for editing
     isSaving: false,
     time: getTimeString(this.props.food.date),
   };
 
   render() {
-    const {deleteFn} = this.props;
-    const {date, food, isSaving, time} = this.state;
+    const { deleteFn } = this.props;
+    const { date, food, isSaving, time } = this.state;
 
     return (
-      <form
-        className="new-form"
-        disabled={isSaving}
-        onSubmit={this._onSubmit}
-      >
+      <form className="new-form" disabled={isSaving} onSubmit={this._onSubmit}>
         <section className="new-form-section">
           <div className="new-form-section-header">
             <DateIcon className="new-form-section-header-svg" />
@@ -68,10 +69,12 @@ export default class NewFoodDrink extends Component<Props, State> {
             <label className="new-form-rating-radio-label">
               <small>Food</small>
               <FoodIcon
-                className={`new-form-type-svg ${food.type === "food" ? 'new-form-type-svg-active' : ''}`}
+                className={`new-form-type-svg ${
+                  food.type === 'food' ? 'new-form-type-svg-active' : ''
+                }`}
               />
               <input
-                checked={food.type === "food"}
+                checked={food.type === 'food'}
                 disabled={isSaving}
                 name="type"
                 onChange={this._onTypeChange}
@@ -82,10 +85,12 @@ export default class NewFoodDrink extends Component<Props, State> {
             <label className="new-form-rating-radio-label">
               <small>Drink</small>
               <DrinkIcon
-                className={`new-form-type-svg ${food.type === "drink" ? 'new-form-type-svg-active' : ''}`}
+                className={`new-form-type-svg ${
+                  food.type === 'drink' ? 'new-form-type-svg-active' : ''
+                }`}
               />
               <input
-                checked={food.type === "drink"}
+                checked={food.type === 'drink'}
                 disabled={isSaving}
                 name="type"
                 onChange={this._onTypeChange}
@@ -122,7 +127,9 @@ export default class NewFoodDrink extends Component<Props, State> {
               className="new-form-input"
               disabled={isSaving}
               key={index}
-              onChange={event => this._onIngredientChange(index, event.currentTarget.value)}
+              onChange={event =>
+                this._onIngredientChange(index, event.currentTarget.value)
+              }
               type="text"
               value={ingredient}
             />
@@ -158,10 +165,7 @@ export default class NewFoodDrink extends Component<Props, State> {
         )}
         <section className="new-form-section">
           <NavLink to={ROUTES.foods.list}>
-            <button
-              className="new-form-cancel-button"
-              disabled={isSaving}
-            >
+            <button className="new-form-cancel-button" disabled={isSaving}>
               Cancel
             </button>
           </NavLink>
@@ -175,7 +179,7 @@ export default class NewFoodDrink extends Component<Props, State> {
       food: {
         ...state.food,
         ingredients: [...state.food.ingredients, ''],
-      }
+      },
     }));
   };
 
@@ -188,9 +192,12 @@ export default class NewFoodDrink extends Component<Props, State> {
   _onDelete = (event: Event) => {
     event.preventDefault();
 
-    this.setState({
-      isSaving: true
-    }, this.props.deleteFn);
+    this.setState(
+      {
+        isSaving: true,
+      },
+      this.props.deleteFn
+    );
   };
 
   _onIngredientChange = (index: number, value: string) => {
@@ -202,7 +209,7 @@ export default class NewFoodDrink extends Component<Props, State> {
         food: {
           ...state.food,
           ingredients,
-        }
+        },
       };
     });
   };
@@ -220,19 +227,22 @@ export default class NewFoodDrink extends Component<Props, State> {
   _onSubmit = (event: Event) => {
     event.preventDefault();
 
-    const {saveFn} = this.props;
-    const {date, food, time} = this.state;
+    const { saveFn } = this.props;
+    const { date, food, time } = this.state;
 
     food.date = getDate(date, time);
     food.ingredients = food.ingredients.filter(Boolean);
 
-    this.setState({
-      isSaving: true
-    }, async () => {
-      await saveFn(food);
+    this.setState(
+      {
+        isSaving: true,
+      },
+      async () => {
+        await saveFn(food);
 
-      window.location.replace(ROUTES.foods.list);
-    });
+        window.location.replace(ROUTES.foods.list);
+      }
+    );
   };
 
   _onTimeChange = (event: SyntheticInputEvent<HTMLInputElement>) => {

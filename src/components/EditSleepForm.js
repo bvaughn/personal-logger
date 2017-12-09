@@ -24,20 +24,16 @@ type State = {
 export default class EditSleepForm extends Component<Props, State> {
   state: State = {
     date: getDateString(this.props.sleep.date),
-    sleep: {...this.props.sleep}, // Shallow clone for editing
+    sleep: { ...this.props.sleep }, // Shallow clone for editing
     isSaving: false,
   };
 
   render() {
-    const {deleteFn} = this.props;
-    const {date, isSaving, sleep} = this.state;
+    const { deleteFn } = this.props;
+    const { date, isSaving, sleep } = this.state;
 
     return (
-      <form
-        className="new-form"
-        disabled={isSaving}
-        onSubmit={this._onSubmit}
-      >
+      <form className="new-form" disabled={isSaving} onSubmit={this._onSubmit}>
         <section className="new-form-section">
           <div className="new-form-section-header">
             <DateIcon className="new-form-section-header-svg" />
@@ -50,9 +46,7 @@ export default class EditSleepForm extends Component<Props, State> {
             />
           </div>
         </section>
-        <section className="new-form-section">
-          Quality of Sleep
-        </section>
+        <section className="new-form-section">Quality of Sleep</section>
         <section className="new-form-section">
           <div className="new-form-section-header">
             <RatingRadioOption
@@ -119,10 +113,7 @@ export default class EditSleepForm extends Component<Props, State> {
           />
         </section>
         <section className="new-form-section">
-          <button
-            className="new-form-save-button"
-            disabled={isSaving}
-          >
+          <button className="new-form-save-button" disabled={isSaving}>
             Save
           </button>
         </section>
@@ -139,10 +130,7 @@ export default class EditSleepForm extends Component<Props, State> {
         )}
         <section className="new-form-section">
           <NavLink to={ROUTES.sleep.list}>
-            <button
-              className="new-form-cancel-button"
-              disabled={isSaving}
-            >
+            <button className="new-form-cancel-button" disabled={isSaving}>
               Cancel
             </button>
           </NavLink>
@@ -170,9 +158,12 @@ export default class EditSleepForm extends Component<Props, State> {
   _onDelete = (event: Event) => {
     event.preventDefault();
 
-    this.setState({
-      isSaving: true
-    }, this.props.deleteFn);
+    this.setState(
+      {
+        isSaving: true,
+      },
+      this.props.deleteFn
+    );
   };
 
   _onDurationChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
@@ -208,25 +199,30 @@ export default class EditSleepForm extends Component<Props, State> {
   _onSubmit = (event: Event) => {
     event.preventDefault();
 
-    const {saveFn} = this.props;
-    const {date, sleep} = this.state;
+    const { saveFn } = this.props;
+    const { date, sleep } = this.state;
 
     sleep.date = getDate(date);
 
-    this.setState({
-      isSaving: true
-    }, async () => {
-      await saveFn(sleep);
+    this.setState(
+      {
+        isSaving: true,
+      },
+      async () => {
+        await saveFn(sleep);
 
-      window.location.replace(ROUTES.sleep.list);
-    });
+        window.location.replace(ROUTES.sleep.list);
+      }
+    );
   };
 }
 
 const RatingRadioOption = ({ isSaving, Icon, onChange, rating, value }) => (
   <label className="new-form-rating-radio-label">
     <RatingIcon
-      className={`new-form-rating-svg ${rating === value ? 'new-form-rating-svg-active' : ''}`}
+      className={`new-form-rating-svg ${
+        rating === value ? 'new-form-rating-svg-active' : ''
+      }`}
       rating={value}
     />
     <input
@@ -238,4 +234,4 @@ const RatingRadioOption = ({ isSaving, Icon, onChange, rating, value }) => (
       value={value}
     />
   </label>
-)
+);

@@ -18,10 +18,5 @@ export default function NewFood({ saveFn }: Props) {
     type: 'food',
   };
 
-  return (
-    <EditFoodForm
-      saveFn={saveFn}
-      food={food}
-    />
-  );
+  return <EditFoodForm saveFn={saveFn} food={food} />;
 }

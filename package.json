@@ -5,6 +5,9 @@
   "dependencies": {
     "firebase": "^4.6.2",
     "flow-bin": "^0.60.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.0.0",
+    "prettier": "^1.9.1",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-router": "^4.2.0",
@@ -12,11 +15,19 @@
     "react-scripts": "1.0.17",
     "react-virtualized": "^9.13.0"
   },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --trailing-comma=es5 --write",
+      "git add"
+    ]
+  },
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
+    "eject": "react-scripts eject",
     "flow": "flow",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "format": "prettier --single-quote --trailing-comma=es5 --write 'src/**/*.{js,jsx}'",
+    "precommit": "lint-staged",
+    "start": "react-scripts start",
+    "test": "react-scripts test --env=jsdom"
   }
 }

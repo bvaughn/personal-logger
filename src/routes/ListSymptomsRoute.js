@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import AutoSizer from 'react-virtualized/dist/es/AutoSizer';
 import List from 'react-virtualized/dist/es/List';
 import { LOCALE_DATE_OPTIONS, LOCALE_TIME_OPTIONS, ROUTES } from '../constants';
@@ -16,7 +16,7 @@ type Props = {
 
 export default class ListSymptoms extends Component<Props> {
   render() {
-    const {symptoms} = this.props;
+    const { symptoms } = this.props;
 
     return [
       <AutoSizer key="AutoSizer">
@@ -31,13 +31,9 @@ export default class ListSymptoms extends Component<Props> {
         )}
       </AutoSizer>,
 
-      <Link
-        className="create-link"
-        key="Link"
-        to={ROUTES.symptoms.new}
-      >
+      <Link className="create-link" key="Link" to={ROUTES.symptoms.new}>
         <CreateIcon className="create-link-svg" />
-      </Link>
+      </Link>,
     ];
   }
 
@@ -60,10 +56,10 @@ export default class ListSymptoms extends Component<Props> {
           />
         </div>
         <div className="list-entry-time">
-          {symptom.date.toLocaleTimeString("en-US", LOCALE_TIME_OPTIONS)}
+          {symptom.date.toLocaleTimeString('en-US', LOCALE_TIME_OPTIONS)}
         </div>
         <small className="list-entry-date">
-          ({symptom.date.toLocaleDateString("en-US", LOCALE_DATE_OPTIONS)})
+          ({symptom.date.toLocaleDateString('en-US', LOCALE_DATE_OPTIONS)})
         </small>
       </Link>
     );
@@ -72,11 +68,11 @@ export default class ListSymptoms extends Component<Props> {
 
 const TypeIcon = ({ type }) => {
   switch (type) {
-    case "energy":
+    case 'energy':
       return <EnergyIcon className="list-entry-rating-icon" />;
-    case "stomach":
-      return <StomachIcon className="list-entry-rating-icon" />
+    case 'stomach':
+      return <StomachIcon className="list-entry-rating-icon" />;
     default:
       throw Error(`Invalid type "${type}" specified`);
   }
-}
+};

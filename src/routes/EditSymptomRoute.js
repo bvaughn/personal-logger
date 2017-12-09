@@ -31,9 +31,8 @@ export default class EditSymptom extends Component<Props> {
     }
   }
 
-  _getSymptom = (): ?Symptom => this.props.symptoms.find(
-    symptom => symptom.id === this.props.id
-  );
+  _getSymptom = (): ?Symptom =>
+    this.props.symptoms.find(symptom => symptom.id === this.props.id);
 
   _delete = async () => {
     await this.props.deleteFn(this.props.id);
@@ -41,8 +40,9 @@ export default class EditSymptom extends Component<Props> {
     window.location.replace(ROUTES.symptoms.list);
   };
 
-  _save = (data: Symptom) => this.props.saveFn({
-    ...data,
-    id: this.props.id,
-  });
+  _save = (data: Symptom) =>
+    this.props.saveFn({
+      ...data,
+      id: this.props.id,
+    });
 }

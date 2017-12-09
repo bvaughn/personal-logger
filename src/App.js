@@ -1,11 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  NavLink
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import DataStore from './DataStore';
 import {
   EditFoodRoute,
@@ -16,17 +12,17 @@ import {
   ListSymptomsRoute,
   NewFoodRoute,
   NewSleepRoute,
-  NewSymptomRoute
+  NewSymptomRoute,
 } from './routes';
 import LoadingSpinner from './components/LoadingSpinner';
 import {
   EatIcon,
   LogoutIcon,
   SleepIcon,
-  SymptomIcon
+  SymptomIcon,
 } from './components/SvgIcons';
 import { ROUTES } from './constants';
-import "./App.css";
+import './App.css';
 
 import type { Food, Sleep, Symptom, User } from './types';
 
@@ -51,27 +47,22 @@ class App extends Component<Props, State> {
   };
 
   componentDidMount() {
-    this._dataStore.authenticate().then(
-      (user: User) => {
-        this.setState({
-          authenticated: true,
-          avatarPhoto: user && user.photoURL,
-        });
-
-        this._dataStore.foods.registerObserver(
-          foods => this.setState({foods})
-        );
-        this._dataStore.sleep.registerObserver(
-          sleep => this.setState({sleep})
-        );
-        this._dataStore.symptoms.registerObserver(
-          symptoms => this.setState({symptoms})
-        );
+    this._dataStore.authenticate().then((user: User) => {
+      this.setState({
+        authenticated: true,
+        avatarPhoto: user && user.photoURL,
       });
+
+      this._dataStore.foods.registerObserver(foods => this.setState({ foods }));
+      this._dataStore.sleep.registerObserver(sleep => this.setState({ sleep }));
+      this._dataStore.symptoms.registerObserver(symptoms =>
+        this.setState({ symptoms })
+      );
+    });
   }
 
   render() {
-    const {authenticated, avatarPhoto, foods, sleep, symptoms} = this.state;
+    const { authenticated, avatarPhoto, foods, sleep, symptoms } = this.state;
 
     if (!authenticated) {
       return <LoadingSpinner />;
@@ -90,9 +81,7 @@ class App extends Component<Props, State> {
                 />
               </div>
 
-              <div className="header-title">
-                Personal Log
-              </div>
+              <div className="header-title">Personal Log</div>
 
               <div
                 className="header-logout-button"
@@ -151,9 +140,7 @@ class App extends Component<Props, State> {
             <Route
               exact
               path={ROUTES.foods.list}
-              render={() => (
-                <ListFoodsRoute foods={foods} />
-              )}
+              render={() => <ListFoodsRoute foods={foods} />}
             />
 
             <Route
@@ -178,9 +165,7 @@ class App extends Component<Props, State> {
             <Route
               exact
               path={ROUTES.sleep.list}
-              render={() => (
-                <ListSleepRoute sleep={sleep} />
-              )}
+              render={() => <ListSleepRoute sleep={sleep} />}
             />
 
             <Route
@@ -205,9 +190,7 @@ class App extends Component<Props, State> {
             <Route
               exact
               path={ROUTES.symptoms.list}
-              render={() => (
-                <ListSymptomsRoute symptoms={symptoms} />
-              )}
+              render={() => <ListSymptomsRoute symptoms={symptoms} />}
             />
           </main>
         </div>

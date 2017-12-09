@@ -3,7 +3,12 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ROUTES } from '../constants';
-import { DateIcon, EnergyIcon, StomachIcon, TimeIcon } from '../components/SvgIcons';
+import {
+  DateIcon,
+  EnergyIcon,
+  StomachIcon,
+  TimeIcon,
+} from '../components/SvgIcons';
 import RatingIcon from '../components/RatingIcon';
 import { getDate, getDateString, getTimeString } from '../utils';
 
@@ -25,21 +30,17 @@ type State = {
 export default class NewSymptom extends Component<Props, State> {
   state: State = {
     date: getDateString(this.props.symptom.date),
-    symptom: {...this.props.symptom}, // Shallow clone for editing
+    symptom: { ...this.props.symptom }, // Shallow clone for editing
     isSaving: false,
     time: getTimeString(this.props.symptom.date),
   };
 
   render() {
-    const {deleteFn} = this.props;
-    const {date, isSaving, symptom, time} = this.state;
+    const { deleteFn } = this.props;
+    const { date, isSaving, symptom, time } = this.state;
 
     return (
-      <form
-        className="new-form"
-        disabled={isSaving}
-        onSubmit={this._onSubmit}
-      >
+      <form className="new-form" disabled={isSaving} onSubmit={this._onSubmit}>
         <section className="new-form-section">
           <div className="new-form-section-header">
             <DateIcon className="new-form-section-header-svg" />
@@ -67,10 +68,12 @@ export default class NewSymptom extends Component<Props, State> {
             <label className="new-form-rating-radio-label">
               <small>Energy</small>
               <EnergyIcon
-                className={`new-form-type-svg ${symptom.type === "energy" ? 'new-form-type-svg-active' : ''}`}
+                className={`new-form-type-svg ${
+                  symptom.type === 'energy' ? 'new-form-type-svg-active' : ''
+                }`}
               />
               <input
-                checked={symptom.type === "energy"}
+                checked={symptom.type === 'energy'}
                 disabled={isSaving}
                 name="type"
                 onChange={this._onTypeChange}
@@ -81,10 +84,12 @@ export default class NewSymptom extends Component<Props, State> {
             <label className="new-form-rating-radio-label">
               <small>Stomach</small>
               <StomachIcon
-                className={`new-form-type-svg ${symptom.type === "stomach" ? 'new-form-type-svg-active' : ''}`}
+                className={`new-form-type-svg ${
+                  symptom.type === 'stomach' ? 'new-form-type-svg-active' : ''
+                }`}
               />
               <input
-                checked={symptom.type === "stomach"}
+                checked={symptom.type === 'stomach'}
                 disabled={isSaving}
                 name="type"
                 onChange={this._onTypeChange}
@@ -95,7 +100,7 @@ export default class NewSymptom extends Component<Props, State> {
           </div>
         </section>
         <section className="new-form-section">
-          <hr/>
+          <hr />
         </section>
         <section className="new-form-section">
           <div className="new-form-section-header">
@@ -141,10 +146,7 @@ export default class NewSymptom extends Component<Props, State> {
           />
         </section>
         <section className="new-form-section">
-          <button
-            className="new-form-save-button"
-            disabled={isSaving}
-          >
+          <button className="new-form-save-button" disabled={isSaving}>
             Save
           </button>
         </section>
@@ -161,10 +163,7 @@ export default class NewSymptom extends Component<Props, State> {
         )}
         <section className="new-form-section">
           <NavLink to={ROUTES.symptoms.list}>
-            <button
-              className="new-form-cancel-button"
-              disabled={isSaving}
-            >
+            <button className="new-form-cancel-button" disabled={isSaving}>
               Cancel
             </button>
           </NavLink>
@@ -182,9 +181,12 @@ export default class NewSymptom extends Component<Props, State> {
   _onDelete = (event: Event) => {
     event.preventDefault();
 
-    this.setState({
-      isSaving: true
-    }, this.props.deleteFn);
+    this.setState(
+      {
+        isSaving: true,
+      },
+      this.props.deleteFn
+    );
   };
 
   _onNotesChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
@@ -210,18 +212,21 @@ export default class NewSymptom extends Component<Props, State> {
   _onSubmit = (event: Event) => {
     event.preventDefault();
 
-    const {saveFn} = this.props;
-    const {date, symptom, time} = this.state;
+    const { saveFn } = this.props;
+    const { date, symptom, time } = this.state;
 
     symptom.date = getDate(date, time);
 
-    this.setState({
-      isSaving: true
-    }, async () => {
-      await saveFn(symptom);
+    this.setState(
+      {
+        isSaving: true,
+      },
+      async () => {
+        await saveFn(symptom);
 
-      window.location.replace(ROUTES.symptoms.list);
-    });
+        window.location.replace(ROUTES.symptoms.list);
+      }
+    );
   };
 
   _onTimeChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
@@ -244,7 +249,9 @@ export default class NewSymptom extends Component<Props, State> {
 const RatingRadioOption = ({ isSaving, onChange, rating, value }) => (
   <label className="new-form-rating-radio-label">
     <RatingIcon
-      className={`new-form-rating-svg ${rating === value ? 'new-form-rating-svg-active' : ''}`}
+      className={`new-form-rating-svg ${
+        rating === value ? 'new-form-rating-svg-active' : ''
+      }`}
       rating={value}
     />
     <input
@@ -256,4 +263,4 @@ const RatingRadioOption = ({ isSaving, onChange, rating, value }) => (
       value={value}
     />
   </label>
-)
+);

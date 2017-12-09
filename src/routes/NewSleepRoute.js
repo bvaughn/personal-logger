@@ -18,10 +18,5 @@ export default function NewSleep({ saveFn }: Props) {
     rating: 2,
   };
 
-  return (
-    <EditSleepForm
-      saveFn={saveFn}
-      sleep={sleep}
-    />
-  );
+  return <EditSleepForm saveFn={saveFn} sleep={sleep} />;
 }

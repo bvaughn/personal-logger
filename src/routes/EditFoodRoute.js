@@ -20,20 +20,15 @@ export default class EditFood extends Component<Props> {
 
     if (food) {
       return (
-        <EditFoodForm
-          deleteFn={this._delete}
-          saveFn={this._save}
-          food={food}
-        />
+        <EditFoodForm deleteFn={this._delete} saveFn={this._save} food={food} />
       );
     } else {
       return <LoadingSpinner />;
     }
   }
 
-  _getFood = (): ?Food => this.props.foods.find(
-    food => food.id === this.props.id
-  );
+  _getFood = (): ?Food =>
+    this.props.foods.find(food => food.id === this.props.id);
 
   _delete = async () => {
     await this.props.deleteFn(this.props.id);
@@ -41,8 +36,9 @@ export default class EditFood extends Component<Props> {
     window.location.replace(ROUTES.foods.list);
   };
 
-  _save = (data: Food) => this.props.saveFn({
-    ...data,
-    id: this.props.id,
-  });
+  _save = (data: Food) =>
+    this.props.saveFn({
+      ...data,
+      id: this.props.id,
+    });
 }

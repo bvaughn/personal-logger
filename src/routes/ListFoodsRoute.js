@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import AutoSizer from 'react-virtualized/dist/es/AutoSizer';
 import List from 'react-virtualized/dist/es/List';
 import { LOCALE_DATE_OPTIONS, LOCALE_TIME_OPTIONS, ROUTES } from '../constants';
@@ -30,13 +30,9 @@ export default class ListFoods extends Component<Props> {
         )}
       </AutoSizer>,
 
-      <Link
-        className="create-link"
-        key="Link"
-        to={ROUTES.foods.new}
-      >
+      <Link className="create-link" key="Link" to={ROUTES.foods.new}>
         <CreateIcon className="create-link-svg" />
-      </Link>
+      </Link>,
     ];
   }
 
@@ -56,23 +52,23 @@ export default class ListFoods extends Component<Props> {
           <div className="nowrap">{food.title}</div>
         </div>
         <div className="list-entry-time">
-          {food.date.toLocaleTimeString("en-US", LOCALE_TIME_OPTIONS)}
+          {food.date.toLocaleTimeString('en-US', LOCALE_TIME_OPTIONS)}
         </div>
         <small className="list-entry-date">
-          ({food.date.toLocaleDateString("en-US", LOCALE_DATE_OPTIONS)})
+          ({food.date.toLocaleDateString('en-US', LOCALE_DATE_OPTIONS)})
         </small>
       </Link>
     );
-  }
+  };
 }
 
 const TypeIcon = ({ type }) => {
   switch (type) {
-    case "drink":
+    case 'drink':
       return <DrinkIcon className="list-entry-rating-icon" />;
-    case "food":
+    case 'food':
       return <FoodIcon className="list-entry-rating-icon" />;
     default:
       throw Error(`Invalid type "${type}" specified`);
   }
-}
+};

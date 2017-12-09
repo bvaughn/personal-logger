@@ -19,13 +19,14 @@ export const ROUTES = {
     edit: '/symptoms/edit/:id',
     list: '/symptoms',
     new: '/symptoms/new',
-    editLink: (symptom: Symptom) => symptom.id && `/symptoms/edit/${symptom.id}`,
+    editLink: (symptom: Symptom) =>
+      symptom.id && `/symptoms/edit/${symptom.id}`,
   },
 };
 
 export const LOCALE_DATE_OPTIONS = {
-  month: "short",
-  day: "numeric"
+  month: 'short',
+  day: 'numeric',
 };
 
 export const LOCALE_TIME_OPTIONS = {

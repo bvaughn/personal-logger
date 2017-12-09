@@ -31,9 +31,8 @@ export default class EditSleep extends Component<Props> {
     }
   }
 
-  _getSleep = (): ?Sleep => this.props.sleep.find(
-    sleep => sleep.id === this.props.id
-  );
+  _getSleep = (): ?Sleep =>
+    this.props.sleep.find(sleep => sleep.id === this.props.id);
 
   _delete = async () => {
     await this.props.deleteFn(this.props.id);
@@ -41,8 +40,9 @@ export default class EditSleep extends Component<Props> {
     window.location.replace(ROUTES.sleep.list);
   };
 
-  _save = (data: Sleep) => this.props.saveFn({
-    ...data,
-    id: this.props.id,
-  });
+  _save = (data: Sleep) =>
+    this.props.saveFn({
+      ...data,
+      id: this.props.id,
+    });
 }

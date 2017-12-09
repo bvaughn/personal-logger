@@ -17,10 +17,5 @@ export default function NewSymptom({ saveFn }: Props) {
     type: 'stomach',
   };
 
-  return (
-    <EditSymptomForm
-      saveFn={saveFn}
-      symptom={symptom}
-    />
-  );
+  return <EditSymptomForm saveFn={saveFn} symptom={symptom} />;
 }
