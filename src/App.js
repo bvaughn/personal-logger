@@ -1,7 +1,12 @@
 // @flow
 
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  NavLink,
+} from 'react-router-dom';
 import DataStore from './DataStore';
 import {
   EditFoodRoute,
@@ -118,6 +123,12 @@ class App extends Component<Props, State> {
           </header>
 
           <main className="main">
+            <Route
+              exact
+              path="/"
+              render={() => <Redirect to={ROUTES.sleep.list} />}
+            />
+
             <Route
               exact
               path={ROUTES.foods.new}
