@@ -100,7 +100,7 @@
   right: 1rem;
   width: 3rem;
   height: 3rem;
-  padding: .75rem;
+  padding: 0.75rem;
   border-radius: 3rem;
   background: #eceff1;
 }
@@ -284,4 +284,26 @@
 .loading-spinner-svg {
   width: 5rem;
   height: 5rem;
+}
+
+.sign-in-screen {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign-in-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 0.5rem;
+  border-radius: 0.25em;
+  font-weight: bold;
+  background-color: #4285f4;
+  color: #ffffff;
+}
+
+.sign-in-icon {
+  margin-right: 0.5rem;
 }

@@ -15,6 +15,7 @@ import {
   ListFoodsRoute,
   ListSleepRoute,
   ListSymptomsRoute,
+  LoginRoute,
   NewFoodRoute,
   NewSleepRoute,
   NewSymptomRoute,
@@ -33,7 +34,7 @@ import type { Food, Sleep, Symptom, User } from './types';
 
 type Props = {};
 type State = {
-  authenticated: boolean,
+  authenticated: boolean | null,
   avatarPhoto: ?string,
   foods: Array<Food>,
   sleep: Array<Sleep>,
@@ -44,7 +45,7 @@ class App extends Component<Props, State> {
   _dataStore: DataStore = new DataStore();
 
   state: State = {
-    authenticated: false,
+    authenticated: null,
     avatarPhoto: null,
     foods: [],
     sleep: [],
@@ -52,25 +53,38 @@ class App extends Component<Props, State> {
   };
 
   componentDidMount() {
-    this._dataStore.authenticate().then((user: User) => {
-      this.setState({
-        authenticated: true,
-        avatarPhoto: user && user.photoURL,
-      });
+    this._dataStore.checkAuth().then(
+      (user: User) => {
+        this.setState({
+          authenticated: true,
+          avatarPhoto: user && user.photoURL,
+        });
 
-      this._dataStore.foods.registerObserver(foods => this.setState({ foods }));
-      this._dataStore.sleep.registerObserver(sleep => this.setState({ sleep }));
-      this._dataStore.symptoms.registerObserver(symptoms =>
-        this.setState({ symptoms })
-      );
-    });
+        this._dataStore.foods.registerObserver(foods =>
+          this.setState({ foods })
+        );
+        this._dataStore.sleep.registerObserver(sleep =>
+          this.setState({ sleep })
+        );
+        this._dataStore.symptoms.registerObserver(symptoms =>
+          this.setState({ symptoms })
+        );
+      },
+      error => {
+        this.setState({
+          authenticated: false,
+        });
+      }
+    );
   }
 
   render() {
     const { authenticated, avatarPhoto, foods, sleep, symptoms } = this.state;
 
-    if (!authenticated) {
+    if (authenticated === null) {
       return <LoadingSpinner />;
+    } else if (authenticated === false) {
+      return <LoginRoute login={this._dataStore.login} />;
     }
 
     return (

@@ -84,6 +84,8 @@ export default class DataStore {
   symptoms: Store<Symptom>;
   user: ?User = null;
 
+  _auth = null;
+
   constructor() {
     firebase.initializeApp({
       apiKey: 'AIzaSyDm_dXL-x8vjJc2lzJpQxW6369Arv2sLp0',
@@ -92,13 +94,18 @@ export default class DataStore {
     });
   }
 
-  authenticate(): Promise<User> {
-    const provider = new firebase.auth.GoogleAuthProvider();
+  get auth() {
+    if (this._auth === null) {
+      this._auth = firebase.auth();
+    }
 
+    return this._auth;
+  }
+
+  checkAuth(): Promise<User> {
     return new Promise(async (resolve, reject) => {
-      const auth = firebase.auth();
-      auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
-      auth.onAuthStateChanged(user => {
+      this.auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
+      this.auth.onAuthStateChanged(user => {
         if (user) {
           const db = firebase.firestore();
           const entriesRef = db.collection('entries');
@@ -113,11 +120,17 @@ export default class DataStore {
 
           resolve(user);
         } else {
-          auth.signInWithRedirect(provider);
+          reject();
         }
       });
     });
   }
+
+  login = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    this.auth.signInWithRedirect(provider);
+  };
 
   signout = () => {
     firebase.auth().signOut();
