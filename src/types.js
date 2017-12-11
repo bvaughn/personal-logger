@@ -1,5 +1,15 @@
 // @flow
 
+export type Exercise = {
+  date: Date,
+  distance: number,
+  duration: number,
+  id?: string,
+  intensity: number,
+  notes: string,
+  type: string,
+};
+
 export type Food = {
   date: Date,
   id?: string,

@@ -1,8 +1,14 @@
 // @flow
 
-import type { Food, Sleep, Symptom } from './types';
+import type { Exercise, Food, Sleep, Symptom } from './types';
 
 export const ROUTES = {
+  exercise: {
+    edit: '/exercise/edit/:id',
+    list: '/exercise',
+    new: '/exercise/new',
+    editLink: (food: Exercise) => food.id && `/exercise/edit/${food.id}`,
+  },
   foods: {
     edit: '/foods/edit/:id',
     list: '/foods',

@@ -168,6 +168,113 @@ export const FoodIcon = props => (
   </svg>
 );
 
+export const HeartIcon = props => (
+  <svg {...props} viewBox="0 0 107 91">
+    <circle style={{ fill: '#ff5131' }} cx="28" cy="28" r="28" />
+    <circle style={{ fill: '#ff5131' }} cx="78" cy="28" r="28" />
+    <polygon
+      style={{ fill: '#ff5131' }}
+      points="97 48 52 91 9 48 9 48 53 31 97 48"
+    />
+    <line
+      style={{
+        fill: 'none',
+        stroke: '#ffffff',
+        strokeLinecap: 'round',
+        strokeWidth: 3,
+      }}
+      x1="24"
+      y1="55"
+      x2="40"
+      y2="55"
+    />
+    <line
+      style={{
+        fill: 'none',
+        stroke: '#ffffff',
+        strokeLinecap: 'round',
+        strokeWidth: 3,
+      }}
+      x1="69"
+      y1="55"
+      x2="85"
+      y2="55"
+    />
+    <line
+      style={{
+        fill: 'none',
+        stroke: '#ffffff',
+        strokeLinecap: 'round',
+        strokeWidth: 3,
+      }}
+      x1="43"
+      y1="39"
+      x2="40"
+      y2="55"
+    />
+    <line
+      style={{
+        fill: 'none',
+        stroke: '#ffffff',
+        strokeLinecap: 'round',
+        strokeWidth: 3,
+      }}
+      x1="49"
+      y1="68"
+      x2="43"
+      y2="39"
+    />
+    <line
+      style={{
+        fill: 'none',
+        stroke: '#ffffff',
+        strokeLinecap: 'round',
+        strokeWidth: 3,
+      }}
+      x1="55"
+      y1="27"
+      x2="49"
+      y2="68"
+    />
+    <line
+      style={{
+        fill: 'none',
+        stroke: '#ffffff',
+        strokeLinecap: 'round',
+        strokeWidth: 3,
+      }}
+      x1="60"
+      y1="56"
+      x2="55"
+      y2="27"
+    />
+    <line
+      style={{
+        fill: 'none',
+        stroke: '#ffffff',
+        strokeLinecap: 'round',
+        strokeWidth: 3,
+      }}
+      x1="66"
+      y1="36"
+      x2="69"
+      y2="55"
+    />
+    <line
+      style={{
+        fill: 'none',
+        stroke: '#ffffff',
+        strokeLinecap: 'round',
+        strokeWidth: 3,
+      }}
+      x1="66"
+      y1="36"
+      x2="60"
+      y2="56"
+    />
+  </svg>
+);
+
 export const LoadingIcon = props => (
   <svg {...props} viewBox="0 0 126 167">
     <ellipse style={{ fill: '#37474f' }} cx="63" cy="146" rx="63" ry="21" />
@@ -195,7 +302,7 @@ export const LoadingIcon = props => (
 export const LogoutIcon = props => (
   <svg {...props} viewBox="0 0 139 139">
     <path
-      style={{ fill: '#a7c0cd' }}
+      style={{ fill: '#4f5b62' }}
       d="M69,139A69,69,0,0,1,69,0a69,69,0,0,1,42,14L99,30A49,49,0,0,0,69,20a49,49,0,0,0,0,99,49,49,0,0,0,30-10l12,16A69,69,0,0,1,69,139Z"
     />
     <polygon
@@ -206,7 +313,7 @@ export const LogoutIcon = props => (
 );
 
 export const SleepIcon = props => (
-  <svg {...props} viewBox="0 0 239 233">
+  <svg {...props} viewBox="0 0 241 233">
     <path
       style={{ fill: '#e0be54' }}
       d="M161,191A110,110,0,0,1,68,22,110,110,0,1,0,203,182,110,110,0,0,1,161,191Z"
@@ -242,6 +349,46 @@ export const StomachIcon = props => (
     <circle style={{ fill: '#ffffff' }} cx="71" cy="56" r="6" />
     <circle style={{ fill: '#ffffff' }} cx="60" cy="44" r="3" />
     <circle style={{ fill: '#ffffff' }} cx="74" cy="41" r="5" />
+  </svg>
+);
+
+export const StrengthIcon = props => (
+  <svg {...props} viewBox="0 0 400 200">
+    <rect style={{ fill: '#6d6d6d' }} y="85" width="400" height="30" />
+    <rect
+      style={{ fill: '#388e3c' }}
+      x="70"
+      width="60"
+      height="200"
+      rx="4"
+      ry="4"
+    />
+    <rect
+      style={{ fill: '#388e3c' }}
+      x="280"
+      width="60"
+      height="200"
+      rx="4"
+      ry="4"
+    />
+    <rect
+      style={{ fill: '#00600f' }}
+      x="40"
+      y="50"
+      width="30"
+      height="100"
+      rx="4"
+      ry="4"
+    />
+    <rect
+      style={{ fill: '#00600f' }}
+      x="340"
+      y="50"
+      width="30"
+      height="100"
+      rx="4"
+      ry="4"
+    />
   </svg>
 );
 

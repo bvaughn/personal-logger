@@ -217,7 +217,7 @@ export default class EditSleepForm extends Component<Props, State> {
   };
 }
 
-const RatingRadioOption = ({ isSaving, Icon, onChange, rating, value }) => (
+const RatingRadioOption = ({ isSaving, onChange, rating, value }) => (
   <label className="new-form-rating-radio-label">
     <RatingIcon
       className={`new-form-rating-svg ${

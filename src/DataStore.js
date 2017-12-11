@@ -4,7 +4,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
-import type { Food, Sleep, Symptom, User } from './types';
+import type { Exercise, Food, Sleep, Symptom, User } from './types';
 
 type Record = {
   +id?: string,
@@ -79,6 +79,7 @@ class Store<T: Record> {
 }
 
 export default class DataStore {
+  exercise: Store<Exercise>;
   foods: Store<Food>;
   sleep: Store<Sleep>;
   symptoms: Store<Symptom>;
@@ -94,7 +95,7 @@ export default class DataStore {
     });
   }
 
-  get auth() {
+  get auth(): any {
     if (this._auth === null) {
       this._auth = firebase.auth();
     }
@@ -114,6 +115,7 @@ export default class DataStore {
 
           const { uid } = user;
 
+          this.exercise = new Store(entriesRef, 'exercise', uid);
           this.foods = new Store(entriesRef, 'food', uid);
           this.sleep = new Store(entriesRef, 'sleep', uid);
           this.symptoms = new Store(entriesRef, 'symptom', uid);

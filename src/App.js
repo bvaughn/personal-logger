@@ -9,13 +9,16 @@ import {
 } from 'react-router-dom';
 import DataStore from './DataStore';
 import {
+  EditExerciseRoute,
   EditFoodRoute,
   EditSleepRoute,
   EditSymptomRoute,
+  ListExerciseRoute,
   ListFoodsRoute,
   ListSleepRoute,
   ListSymptomsRoute,
   LoginRoute,
+  NewExerciseRoute,
   NewFoodRoute,
   NewSleepRoute,
   NewSymptomRoute,
@@ -23,6 +26,7 @@ import {
 import LoadingSpinner from './components/LoadingSpinner';
 import {
   EatIcon,
+  HeartIcon,
   LogoutIcon,
   SleepIcon,
   SymptomIcon,
@@ -30,12 +34,13 @@ import {
 import { ROUTES } from './constants';
 import './App.css';
 
-import type { Food, Sleep, Symptom, User } from './types';
+import type { Exercise, Food, Sleep, Symptom, User } from './types';
 
 type Props = {};
 type State = {
   authenticated: boolean | null,
   avatarPhoto: ?string,
+  exercise: Array<Exercise>,
   foods: Array<Food>,
   sleep: Array<Sleep>,
   symptoms: Array<Symptom>,
@@ -47,6 +52,7 @@ class App extends Component<Props, State> {
   state: State = {
     authenticated: null,
     avatarPhoto: null,
+    exercise: [],
     foods: [],
     sleep: [],
     symptoms: [],
@@ -60,6 +66,9 @@ class App extends Component<Props, State> {
           avatarPhoto: user && user.photoURL,
         });
 
+        this._dataStore.exercise.registerObserver(exercise =>
+          this.setState({ exercise })
+        );
         this._dataStore.foods.registerObserver(foods =>
           this.setState({ foods })
         );
@@ -79,7 +88,14 @@ class App extends Component<Props, State> {
   }
 
   render() {
-    const { authenticated, avatarPhoto, foods, sleep, symptoms } = this.state;
+    const {
+      authenticated,
+      avatarPhoto,
+      exercise,
+      foods,
+      sleep,
+      symptoms,
+    } = this.state;
 
     if (authenticated === null) {
       return <LoadingSpinner />;
@@ -129,6 +145,13 @@ class App extends Component<Props, State> {
               <NavLink
                 activeClassName="nav-link-active"
                 className="nav-link"
+                to={ROUTES.exercise.list}
+              >
+                <HeartIcon className="nav-link-svg" />
+              </NavLink>
+              <NavLink
+                activeClassName="nav-link-active"
+                className="nav-link"
                 to={ROUTES.symptoms.list}
               >
                 <SymptomIcon className="nav-link-svg" />
@@ -141,6 +164,33 @@ class App extends Component<Props, State> {
               exact
               path="/"
               render={() => <Redirect to={ROUTES.sleep.list} />}
+            />
+
+            <Route
+              exact
+              path={ROUTES.exercise.new}
+              render={() => (
+                <NewExerciseRoute
+                  saveFn={this._dataStore.exercise.saveRecord}
+                />
+              )}
+            />
+            <Route
+              exact
+              path={ROUTES.exercise.edit}
+              render={({ match }) => (
+                <EditExerciseRoute
+                  deleteFn={this._dataStore.exercise.deleteRecord}
+                  exercise={exercise}
+                  id={match.params.id}
+                  saveFn={this._dataStore.exercise.saveRecord}
+                />
+              )}
+            />
+            <Route
+              exact
+              path={ROUTES.exercise.list}
+              render={() => <ListExerciseRoute exercise={exercise} />}
             />
 
             <Route

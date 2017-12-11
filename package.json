@@ -20,7 +20,7 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [
-      "prettier --single-quote --trailing-comma=es5 --write",
+      "prettier --write",
       "git add"
     ]
   },
@@ -28,8 +28,8 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "flow": "flow",
-    "format": "prettier --single-quote --trailing-comma=es5 --write 'src/**/*.{js,jsx}'",
     "precommit": "lint-staged",
+    "prettier": "prettier --single-quote --trailing-comma=es5 --write 'src/**/*.{js,jsx}'",
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom"
   }
