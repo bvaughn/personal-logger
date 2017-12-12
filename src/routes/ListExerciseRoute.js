@@ -6,37 +6,43 @@ import AutoSizer from 'react-virtualized/dist/es/AutoSizer';
 import List from 'react-virtualized/dist/es/List';
 import { LOCALE_DATE_OPTIONS, ROUTES } from '../constants';
 import { CreateIcon, HeartIcon, StrengthIcon } from '../components/SvgIcons';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 import type { RowRendererParams, Exercise } from '../types';
 
 type Props = {
-  exercise: Array<Exercise>,
+  exercise: Array<Exercise> | null,
 };
 
 export default class ListExercise extends Component<Props> {
   render() {
     const { exercise } = this.props;
 
-    return [
-      <AutoSizer key="AutoSizer">
-        {({ height, width }) => (
-          <List
-            width={width}
-            height={height}
-            rowCount={exercise.length}
-            rowHeight={54 /* 3rem */}
-            rowRenderer={this._rowRenderer}
-          />
-        )}
-      </AutoSizer>,
+    if (exercise === null) {
+      return <LoadingSpinner />;
+    } else {
+      return [
+        <AutoSizer key="AutoSizer">
+          {({ height, width }) => (
+            <List
+              width={width}
+              height={height}
+              rowCount={exercise.length}
+              rowHeight={54 /* 3rem */}
+              rowRenderer={this._rowRenderer}
+            />
+          )}
+        </AutoSizer>,
 
-      <Link className="create-link" key="Link" to={ROUTES.exercise.new}>
-        <CreateIcon className="create-link-svg" />
-      </Link>,
-    ];
+        <Link className="create-link" key="Link" to={ROUTES.exercise.new}>
+          <CreateIcon className="create-link-svg" />
+        </Link>,
+      ];
+    }
   }
 
   _rowRenderer = ({ key, index, style }: RowRendererParams) => {
+    // $FlowFixMe We know this is not null in this case
     const exercise = this.props.exercise[index];
 
     return (

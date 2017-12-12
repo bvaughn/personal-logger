@@ -40,10 +40,10 @@ type Props = {};
 type State = {
   authenticated: boolean | null,
   avatarPhoto: ?string,
-  exercise: Array<Exercise>,
-  foods: Array<Food>,
-  sleep: Array<Sleep>,
-  symptoms: Array<Symptom>,
+  exercise: Array<Exercise> | null,
+  foods: Array<Food> | null,
+  sleep: Array<Sleep> | null,
+  symptoms: Array<Symptom> | null,
 };
 
 class App extends Component<Props, State> {
@@ -52,10 +52,10 @@ class App extends Component<Props, State> {
   state: State = {
     authenticated: null,
     avatarPhoto: null,
-    exercise: [],
-    foods: [],
-    sleep: [],
-    symptoms: [],
+    exercise: null,
+    foods: null,
+    sleep: null,
+    symptoms: null,
   };
 
   componentDidMount() {
@@ -181,7 +181,7 @@ class App extends Component<Props, State> {
               render={({ match }) => (
                 <EditExerciseRoute
                   deleteFn={this._dataStore.exercise.deleteRecord}
-                  exercise={exercise}
+                  getRecord={this._dataStore.exercise.getRecord}
                   id={match.params.id}
                   saveFn={this._dataStore.exercise.saveRecord}
                 />
@@ -206,7 +206,7 @@ class App extends Component<Props, State> {
               render={({ match }) => (
                 <EditFoodRoute
                   deleteFn={this._dataStore.foods.deleteRecord}
-                  foods={foods}
+                  getRecord={this._dataStore.foods.getRecord}
                   id={match.params.id}
                   saveFn={this._dataStore.foods.saveRecord}
                 />
@@ -231,9 +231,9 @@ class App extends Component<Props, State> {
               render={({ match }) => (
                 <EditSleepRoute
                   deleteFn={this._dataStore.sleep.deleteRecord}
+                  getRecord={this._dataStore.sleep.getRecord}
                   id={match.params.id}
                   saveFn={this._dataStore.sleep.saveRecord}
-                  sleep={sleep}
                 />
               )}
             />
@@ -256,9 +256,9 @@ class App extends Component<Props, State> {
               render={({ match }) => (
                 <EditSymptomRoute
                   deleteFn={this._dataStore.symptoms.deleteRecord}
+                  getRecord={this._dataStore.symptoms.getRecord}
                   id={match.params.id}
                   saveFn={this._dataStore.symptoms.saveRecord}
-                  symptoms={symptoms}
                 />
               )}
             />

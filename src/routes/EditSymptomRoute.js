@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import EditSymptomForm from '../components/EditSymptomForm';
+import LoadingError from '../components/LoadingError';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { ROUTES } from '../constants';
 
@@ -9,16 +10,32 @@ import type { Symptom } from '../types';
 
 type Props = {
   deleteFn: (id: string) => Promise<void>,
+  getRecord: (id: string) => Promise<Symptom>,
   id: string,
   saveFn: (symptom: Symptom) => Promise<void>,
-  symptoms: Array<Symptom>,
 };
 
-export default class EditSymptom extends Component<Props> {
-  render() {
-    const symptom = this._getSymptom();
+type State = {
+  error: Error | null,
+  symptom: Symptom | null,
+};
 
-    if (symptom) {
+export default class EditSymptom extends Component<Props, State> {
+  state: State = {
+    error: null,
+    symptom: null,
+  };
+
+  componentDidMount() {
+    this._load();
+  }
+
+  render() {
+    const { error, symptom } = this.state;
+
+    if (error !== null) {
+      return <LoadingError />;
+    } else if (symptom !== null) {
       return (
         <EditSymptomForm
           deleteFn={this._delete}
@@ -31,14 +48,20 @@ export default class EditSymptom extends Component<Props> {
     }
   }
 
-  _getSymptom = (): ?Symptom =>
-    this.props.symptoms.find(symptom => symptom.id === this.props.id);
-
   _delete = async () => {
     await this.props.deleteFn(this.props.id);
 
     window.location.replace(ROUTES.symptoms.list);
   };
+
+  async _load() {
+    try {
+      const symptom = await this.props.getRecord(this.props.id);
+      this.setState({ symptom });
+    } catch (error) {
+      this.setState({ error });
+    }
+  }
 
   _save = (data: Symptom) =>
     this.props.saveFn({

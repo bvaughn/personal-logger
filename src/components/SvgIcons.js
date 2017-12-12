@@ -312,6 +312,59 @@ export const LogoutIcon = props => (
   </svg>
 );
 
+export const NotFoundIcon = props => (
+  <svg {...props} viewBox="0 0 144 176">
+    <rect style={{ fill: '#eceff1' }} width="144" height="176" rx="5" ry="5" />
+    <rect
+      style={{ fill: '#babdbe' }}
+      x="12"
+      y="13"
+      width="120"
+      height="10"
+      rx="4"
+      ry="4"
+    />
+    <rect
+      style={{ fill: '#babdbe' }}
+      x="12"
+      y="38"
+      width="120"
+      height="10"
+      rx="4"
+      ry="4"
+    />
+    <rect
+      style={{ fill: '#babdbe' }}
+      x="12"
+      y="63"
+      width="120"
+      height="10"
+      rx="4"
+      ry="4"
+    />
+    <rect
+      style={{ fill: '#d32f2f' }}
+      x="66"
+      y="81"
+      width="13"
+      height="83.79"
+      rx="4"
+      ry="4"
+      transform="translate(-66 87) rotate(-45)"
+    />
+    <rect
+      style={{ fill: '#d32f2f' }}
+      x="30"
+      y="117"
+      width="84"
+      height="12.57"
+      rx="4"
+      ry="4"
+      transform="translate(-66 87) rotate(-45)"
+    />
+  </svg>
+);
+
 export const SleepIcon = props => (
   <svg {...props} viewBox="0 0 241 233">
     <path

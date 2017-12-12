@@ -26,6 +26,11 @@ class Store<T: Record> {
     this._category = category;
     this._uid = uid;
 
+    // Flow incorrect handles class properties.
+    // Without this workaround it can't find <T> for getRecord.
+    // See https://tinyurl.com/ya9zfusp
+    this.getRecord = this._getRecord.bind(this);
+
     this._entriesRef = entriesRef;
     this._entriesRef
       .where('$category', '==', category)
@@ -39,9 +44,22 @@ class Store<T: Record> {
     return this._entriesRef.doc(id).delete();
   };
 
-  getRecord = (id: string): ?T => {
-    return this._recordMap.hasOwnProperty(id) ? this._recordMap[id] : null;
-  };
+  // Flow incorrect handles class properties.
+  // Without this workaround it can't find <T> for getRecord.
+  // See https://tinyurl.com/ya9zfusp
+  getRecord: (id: string) => Promise<T>;
+  _getRecord(id: string): Promise<T> {
+    if (this._recordMap !== null && this._recordMap.hasOwnProperty(id)) {
+      return Promise.resolve(this._recordMap[id]);
+    } else {
+      return Promise.resolve(
+        this._entriesRef
+          .doc(id)
+          .get()
+          .then(doc => doc.data())
+      );
+    }
+  }
 
   registerObserver(observer: Observer<T>) {
     this._observers.push(observer);
