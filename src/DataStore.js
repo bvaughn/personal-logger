@@ -4,7 +4,14 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
-import type { Exercise, Food, Sleep, Symptom, User } from './types';
+import type {
+  AuthenticationType,
+  Exercise,
+  Food,
+  Sleep,
+  Symptom,
+  User,
+} from './types';
 
 type Record = {
   +id?: string,
@@ -146,13 +153,26 @@ export default class DataStore {
     });
   }
 
-  login = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
+  login = (type: AuthenticationType) => {
+    let provider;
+
+    switch (type) {
+      //case 'facebook':
+      //provider = new firebase.auth.FacebookAuthProvider();
+      //break;
+      //case 'google':
+      //provider = new firebase.auth.GoogleAuthProvider();
+      //break;
+      case 'github':
+        provider = new firebase.auth.GithubAuthProvider();
+        break;
+      case 'twitter':
+        provider = new firebase.auth.TwitterAuthProvider();
+        break;
+    }
 
     this.auth.signInWithRedirect(provider);
   };
 
-  signout = () => {
-    firebase.auth().signOut();
-  };
+  signout = () => firebase.auth().signOut();
 }

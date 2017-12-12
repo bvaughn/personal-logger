@@ -1,25 +1,39 @@
 // @flow
 
 import React, { Component } from 'react';
-import GoogleAuthIcon from '../images/GoogleAuth.svg';
+import GitHubIcon from '../images/GitHub.svg';
+import TwitterIcon from '../images/Twitter.svg';
+
+import type { AuthenticationType } from '../types';
 
 type Props = {
-  login: () => void,
+  login: (type: AuthenticationType) => void,
 };
 
 export default class ListSymptoms extends Component<Props> {
   render() {
+    const { login } = this.props;
+
     return (
-      <div className="sign-in-screen">
-        <div className="sign-in-button" onClick={this.props.login}>
+      <ul className="sign-in-screen">
+        <li className="sign-in-button" onClick={() => login('github')}>
           <img
-            alt="Sign in with Google"
+            alt="Sign in with GitHub"
             className="sign-in-icon"
-            src={GoogleAuthIcon}
+            src={GitHubIcon}
           />
-          Sign in with Google
-        </div>
-      </div>
+          Sign in with GitHub
+        </li>
+
+        <li className="sign-in-button" onClick={() => login('twitter')}>
+          <img
+            alt="Sign in with Twitter"
+            className="sign-in-icon"
+            src={TwitterIcon}
+          />
+          Sign in with Twitter
+        </li>
+      </ul>
     );
   }
 }

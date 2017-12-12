@@ -293,6 +293,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
 }
 
 .sign-in-button {
@@ -301,11 +304,12 @@
   justify-content: center;
   padding-right: 0.5rem;
   border-radius: 0.25em;
-  font-weight: bold;
-  background-color: #4285f4;
-  color: #ffffff;
+  margin-bottom: 1rem;
+  cursor: pointer;
 }
 
 .sign-in-icon {
   margin-right: 0.5rem;
+  width: 2rem;
+  height: 2rem;
 }

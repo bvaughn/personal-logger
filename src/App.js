@@ -120,7 +120,7 @@ class App extends Component<Props, State> {
 
               <div
                 className="header-logout-button"
-                onClick={this._dataStore.signout}
+                onClick={this._signOut}
                 tabIndex={0}
               >
                 <LogoutIcon className="header-logout-button-svg" />
@@ -276,6 +276,13 @@ class App extends Component<Props, State> {
   _onDataStoreChanged = (state: State) => {
     this.setState(state);
   };
+
+  _signOut = () =>
+    this._dataStore.signout().then(() =>
+      this.setState({
+        authenticated: false,
+      })
+    );
 }
 
 export default App;

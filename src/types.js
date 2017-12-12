@@ -1,5 +1,7 @@
 // @flow
 
+export type AuthenticationType = 'github' | 'twitter';
+
 export type Exercise = {
   date: Date,
   distance: number,
