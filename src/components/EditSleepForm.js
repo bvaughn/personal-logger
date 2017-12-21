@@ -31,6 +31,7 @@ export default class EditSleepForm extends Component<Props, State> {
   render() {
     const { deleteFn } = this.props;
     const { date, isSaving, sleep } = this.state;
+    console.log('render sleep:', sleep);
 
     return (
       <form className="new-form" disabled={isSaving} onSubmit={this._onSubmit}>
@@ -83,7 +84,7 @@ export default class EditSleepForm extends Component<Props, State> {
         </section>
         <section className="new-form-section">
           <div className="new-form-section-header">
-            Duration
+            Duration&nbsp;<small>(hours)</small>
             <input
               className="new-form-input"
               disabled={isSaving}
@@ -92,7 +93,11 @@ export default class EditSleepForm extends Component<Props, State> {
               type="number"
               value={sleep.duration || ''}
             />
-            Awakened
+          </div>
+        </section>
+        <section className="new-form-section">
+          <div className="new-form-section-header">
+            Awakened<small />
             <input
               className="new-form-input"
               disabled={isSaving}
@@ -167,7 +172,7 @@ export default class EditSleepForm extends Component<Props, State> {
   };
 
   _onDurationChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
-    const duration = parseInt(event.currentTarget.value, 10) || 0;
+    const duration = parseFloat(event.currentTarget.value) || 0;
     this.setState(state => ({
       sleep: {
         ...state.sleep,

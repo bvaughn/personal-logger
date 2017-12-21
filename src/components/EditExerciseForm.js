@@ -197,7 +197,7 @@ export default class EditExerciseForm extends Component<Props, State> {
   };
 
   _onDistanceChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
-    const distance = parseInt(event.currentTarget.value, 10) || 0;
+    const distance = parseFloat(event.currentTarget.value) || 0;
     this.setState(state => ({
       exercise: {
         ...state.exercise,
