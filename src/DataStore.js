@@ -169,6 +169,8 @@ export default class DataStore {
       case 'twitter':
         provider = new firebase.auth.TwitterAuthProvider();
         break;
+      default:
+        throw Error(`Unexpected login type "${type}"`);
     }
 
     this.auth.signInWithRedirect(provider);
