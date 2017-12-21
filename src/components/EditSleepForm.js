@@ -90,7 +90,7 @@ export default class EditSleepForm extends Component<Props, State> {
               name="duration"
               onChange={this._onDurationChange}
               type="number"
-              value={sleep.duration}
+              value={sleep.duration || ''}
             />
             Awakened
             <input
@@ -99,7 +99,7 @@ export default class EditSleepForm extends Component<Props, State> {
               name="awakenings"
               onChange={this._onAwakeningsChange}
               type="number"
-              value={sleep.awakenings}
+              value={sleep.awakenings || ''}
             />
           </div>
         </section>

@@ -111,7 +111,7 @@ export default class EditExerciseForm extends Component<Props, State> {
                 name="duration"
                 onChange={this._onDistanceChange}
                 type="number"
-                value={exercise.distance}
+                value={exercise.distance || ''}
               />
             </div>
           </section>
@@ -125,7 +125,7 @@ export default class EditExerciseForm extends Component<Props, State> {
               name="duration"
               onChange={this._onDurationChange}
               type="number"
-              value={exercise.duration}
+              value={exercise.duration || ''}
             />
           </div>
         </section>
