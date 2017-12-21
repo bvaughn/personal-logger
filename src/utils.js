@@ -1,5 +1,21 @@
 export function getDate(date: string, time?: string): Date {
-  return new Date(`${date} ${time || '00:00:00'}`);
+  let hour = '00';
+  let minute = '00';
+  let second = '00';
+
+  if (time) {
+    const pieces = time.split(':');
+
+    hour = pieces[0];
+    minute = pieces[1];
+  }
+
+  const pieces = date.split('-');
+  const year = pieces[0];
+  const month = pieces[1] - 1;
+  const day = pieces[2];
+
+  return new Date(year, month, day, hour, minute, second);
 }
 
 export function getDateString(date: Date): string {
