@@ -17,6 +17,7 @@ type Props = {
 
 type State = {
   date: string,
+  hasConfirmed: boolean,
   isSaving: boolean,
   sleep: Sleep,
 };
@@ -25,13 +26,13 @@ export default class EditSleepForm extends Component<Props, State> {
   state: State = {
     date: getDateString(this.props.sleep.date),
     sleep: { ...this.props.sleep }, // Shallow clone for editing
+    hasConfirmed: false,
     isSaving: false,
   };
 
   render() {
     const { deleteFn } = this.props;
-    const { date, isSaving, sleep } = this.state;
-    console.log('render sleep:', sleep);
+    const { date, hasConfirmed, isSaving, sleep } = this.state;
 
     return (
       <form className="new-form" disabled={isSaving} onSubmit={this._onSubmit}>
@@ -129,7 +130,7 @@ export default class EditSleepForm extends Component<Props, State> {
               disabled={isSaving}
               onClick={this._onDelete}
             >
-              Delete
+              {hasConfirmed ? 'Are you sure?' : 'Delete'}
             </button>
           </section>
         )}
@@ -163,12 +164,18 @@ export default class EditSleepForm extends Component<Props, State> {
   _onDelete = (event: Event) => {
     event.preventDefault();
 
-    this.setState(
-      {
-        isSaving: true,
-      },
-      this.props.deleteFn
-    );
+    if (!this.state.hasConfirmed) {
+      this.setState({
+        hasConfirmed: true,
+      });
+    } else {
+      this.setState(
+        {
+          isSaving: true,
+        },
+        this.props.deleteFn
+      );
+    }
   };
 
   _onDurationChange = (event: SyntheticInputEvent<HTMLInputElement>) => {

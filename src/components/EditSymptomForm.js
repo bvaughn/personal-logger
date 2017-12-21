@@ -22,6 +22,7 @@ type Props = {
 
 type State = {
   date: string,
+  hasConfirmed: boolean,
   isSaving: boolean,
   symptom: Symptom,
   time: string,
@@ -31,13 +32,14 @@ export default class NewSymptom extends Component<Props, State> {
   state: State = {
     date: getDateString(this.props.symptom.date),
     symptom: { ...this.props.symptom }, // Shallow clone for editing
+    hasConfirmed: false,
     isSaving: false,
     time: getTimeString(this.props.symptom.date),
   };
 
   render() {
     const { deleteFn } = this.props;
-    const { date, isSaving, symptom, time } = this.state;
+    const { date, hasConfirmed, isSaving, symptom, time } = this.state;
 
     return (
       <form className="new-form" disabled={isSaving} onSubmit={this._onSubmit}>
@@ -157,7 +159,7 @@ export default class NewSymptom extends Component<Props, State> {
               disabled={isSaving}
               onClick={this._onDelete}
             >
-              Delete
+              {hasConfirmed ? 'Are you sure?' : 'Delete'}
             </button>
           </section>
         )}
@@ -181,12 +183,18 @@ export default class NewSymptom extends Component<Props, State> {
   _onDelete = (event: Event) => {
     event.preventDefault();
 
-    this.setState(
-      {
-        isSaving: true,
-      },
-      this.props.deleteFn
-    );
+    if (!this.state.hasConfirmed) {
+      this.setState({
+        hasConfirmed: true,
+      });
+    } else {
+      this.setState(
+        {
+          isSaving: true,
+        },
+        this.props.deleteFn
+      );
+    }
   };
 
   _onNotesChange = (event: SyntheticInputEvent<HTMLInputElement>) => {

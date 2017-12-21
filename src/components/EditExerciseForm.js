@@ -22,6 +22,7 @@ type Props = {
 
 type State = {
   date: string,
+  hasConfirmed: boolean,
   isSaving: boolean,
   exercise: Exercise,
   time: string,
@@ -31,13 +32,14 @@ export default class EditExerciseForm extends Component<Props, State> {
   state: State = {
     date: getDateString(this.props.exercise.date),
     exercise: { ...this.props.exercise }, // Shallow clone for editing
+    hasConfirmed: false,
     isSaving: false,
     time: getTimeString(this.props.exercise.date),
   };
 
   render() {
     const { deleteFn } = this.props;
-    const { date, isSaving, exercise, time } = this.state;
+    const { date, hasConfirmed, isSaving, exercise, time } = this.state;
 
     return (
       <form className="new-form" disabled={isSaving} onSubmit={this._onSubmit}>
@@ -164,7 +166,7 @@ export default class EditExerciseForm extends Component<Props, State> {
               disabled={isSaving}
               onClick={this._onDelete}
             >
-              Delete
+              {hasConfirmed ? 'Are you sure?' : 'Delete'}
             </button>
           </section>
         )}
@@ -188,12 +190,18 @@ export default class EditExerciseForm extends Component<Props, State> {
   _onDelete = (event: Event) => {
     event.preventDefault();
 
-    this.setState(
-      {
-        isSaving: true,
-      },
-      this.props.deleteFn
-    );
+    if (!this.state.hasConfirmed) {
+      this.setState({
+        hasConfirmed: true,
+      });
+    } else {
+      this.setState(
+        {
+          isSaving: true,
+        },
+        this.props.deleteFn
+      );
+    }
   };
 
   _onDistanceChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
