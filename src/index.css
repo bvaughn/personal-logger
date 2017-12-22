@@ -9,12 +9,6 @@ body,
   font-size: 18px;
 }
 
-html,
-body {
-  position: fixed;
-  overflow: hidden;
-}
-
 * {
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
