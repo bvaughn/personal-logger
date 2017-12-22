@@ -115,6 +115,43 @@ export default class NewFoodDrink extends Component<Props, State> {
           />
         </section>
         <section className="new-form-section">
+          <div className="new-form-section-header new-form-section-header-types">
+            <label className="new-form-radio-label">
+              <input
+                checked={food.attributes.spicy}
+                className="new-form-checkbox"
+                disabled={isSaving}
+                name="title"
+                onChange={this._onSpicyChange}
+                type="checkbox"
+              />
+              Spicy?
+            </label>
+            <label className="new-form-radio-label">
+              <input
+                checked={food.attributes.raw}
+                className="new-form-checkbox"
+                disabled={isSaving}
+                name="title"
+                onChange={this._onRawChange}
+                type="checkbox"
+              />
+              Raw?
+            </label>
+            <label className="new-form-radio-label">
+              <input
+                checked={food.attributes.alcoholic}
+                className="new-form-checkbox"
+                disabled={isSaving}
+                name="title"
+                onChange={this._onAlcoholicChange}
+                type="checkbox"
+              />
+              Alcoholic?
+            </label>
+          </div>
+        </section>
+        <section className="new-form-section">
           <div className="new-form-section-header">
             <label>Ingredients:</label>
             <input
@@ -186,6 +223,21 @@ export default class NewFoodDrink extends Component<Props, State> {
     }));
   };
 
+  _onAlcoholicChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
+    const alcoholic = event.currentTarget.checked;
+    this.setState(state => {
+      const attributes = { ...state.food.attributes };
+      attributes.alcoholic = alcoholic;
+
+      return {
+        food: {
+          ...state.food,
+          attributes,
+        },
+      };
+    });
+  };
+
   _onDateChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({
       date: event.currentTarget.value,
@@ -231,6 +283,36 @@ export default class NewFoodDrink extends Component<Props, State> {
         notes,
       },
     }));
+  };
+
+  _onRawChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
+    const raw = event.currentTarget.checked;
+    this.setState(state => {
+      const attributes = { ...state.food.attributes };
+      attributes.raw = raw;
+
+      return {
+        food: {
+          ...state.food,
+          attributes,
+        },
+      };
+    });
+  };
+
+  _onSpicyChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
+    const spicy = event.currentTarget.checked;
+    this.setState(state => {
+      const attributes = { ...state.food.attributes };
+      attributes.spicy = spicy;
+
+      return {
+        food: {
+          ...state.food,
+          attributes,
+        },
+      };
+    });
   };
 
   _onSubmit = (event: Event) => {

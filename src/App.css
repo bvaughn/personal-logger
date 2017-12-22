@@ -169,6 +169,10 @@
   margin-bottom: 0.5rem;
 }
 
+.new-form-checkbox {
+  margin-right: 0.5rem;
+}
+
 .new-form-textarea {
   width: 100%;
 }

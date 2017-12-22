@@ -13,6 +13,11 @@ export type Exercise = {
 };
 
 export type Food = {
+  attributes: {
+    alcoholic: boolean,
+    raw: boolean,
+    spicy: boolean,
+  },
   date: Date,
   id?: string,
   ingredients: Array<string>,

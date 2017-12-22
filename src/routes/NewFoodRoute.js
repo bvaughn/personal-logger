@@ -15,6 +15,11 @@ export default function NewFood({ history, saveFn }: Props) {
     date: new Date(),
     ingredients: [],
     notes: '',
+    attributes: {
+      alcoholic: false,
+      raw: false,
+      spicy: false,
+    },
     title: '',
     type: 'food',
   };

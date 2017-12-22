@@ -60,6 +60,10 @@ export default class EditFood extends Component<Props, State> {
   async _load() {
     try {
       const food = await this.props.getRecord(this.props.id);
+
+      // JIT Migrate older foods that didn't have attributes
+      food.attributes = food.attributes || {};
+
       this.setState({ food });
     } catch (error) {
       this.setState({ error });
