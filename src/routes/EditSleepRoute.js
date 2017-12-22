@@ -6,11 +6,12 @@ import LoadingError from '../components/LoadingError';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { ROUTES } from '../constants';
 
-import type { Sleep } from '../types';
+import type { History, Sleep } from '../types';
 
 type Props = {
   deleteFn: (id: string) => Promise<void>,
   getRecord: (id: string) => Promise<Sleep>,
+  history: History,
   id: string,
   saveFn: (sleep: Sleep) => Promise<void>,
 };
@@ -31,6 +32,7 @@ export default class EditSleep extends Component<Props, State> {
   }
 
   render() {
+    const { history } = this.props;
     const { error, sleep } = this.state;
 
     if (error !== null) {
@@ -39,6 +41,7 @@ export default class EditSleep extends Component<Props, State> {
       return (
         <EditSleepForm
           deleteFn={this._delete}
+          history={history}
           saveFn={this._save}
           sleep={sleep}
         />
@@ -51,7 +54,7 @@ export default class EditSleep extends Component<Props, State> {
   _delete = async () => {
     await this.props.deleteFn(this.props.id);
 
-    window.location.replace(ROUTES.sleep.list);
+    this.props.history.push(ROUTES.sleep.list);
   };
 
   async _load() {

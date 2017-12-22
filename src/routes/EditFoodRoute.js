@@ -6,11 +6,12 @@ import LoadingError from '../components/LoadingError';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { ROUTES } from '../constants';
 
-import type { Food } from '../types';
+import type { Food, History } from '../types';
 
 type Props = {
   deleteFn: (id: string) => Promise<void>,
   getRecord: (id: string) => Promise<Food>,
+  history: History,
   id: string,
   saveFn: (food: Food) => Promise<void>,
 };
@@ -31,13 +32,19 @@ export default class EditFood extends Component<Props, State> {
   }
 
   render() {
+    const { history } = this.props;
     const { error, food } = this.state;
 
     if (error !== null) {
       return <LoadingError />;
     } else if (food !== null) {
       return (
-        <EditFoodForm deleteFn={this._delete} saveFn={this._save} food={food} />
+        <EditFoodForm
+          deleteFn={this._delete}
+          history={history}
+          food={food}
+          saveFn={this._save}
+        />
       );
     } else {
       return <LoadingSpinner />;
@@ -47,7 +54,7 @@ export default class EditFood extends Component<Props, State> {
   _delete = async () => {
     await this.props.deleteFn(this.props.id);
 
-    window.location.replace(ROUTES.foods.list);
+    this.props.history.push(ROUTES.foods.list);
   };
 
   async _load() {

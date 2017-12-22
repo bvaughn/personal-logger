@@ -6,11 +6,12 @@ import LoadingError from '../components/LoadingError';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { ROUTES } from '../constants';
 
-import type { Symptom } from '../types';
+import type { History, Symptom } from '../types';
 
 type Props = {
   deleteFn: (id: string) => Promise<void>,
   getRecord: (id: string) => Promise<Symptom>,
+  history: History,
   id: string,
   saveFn: (symptom: Symptom) => Promise<void>,
 };
@@ -31,6 +32,7 @@ export default class EditSymptom extends Component<Props, State> {
   }
 
   render() {
+    const { history } = this.props;
     const { error, symptom } = this.state;
 
     if (error !== null) {
@@ -39,6 +41,7 @@ export default class EditSymptom extends Component<Props, State> {
       return (
         <EditSymptomForm
           deleteFn={this._delete}
+          history={history}
           saveFn={this._save}
           symptom={symptom}
         />
@@ -51,7 +54,7 @@ export default class EditSymptom extends Component<Props, State> {
   _delete = async () => {
     await this.props.deleteFn(this.props.id);
 
-    window.location.replace(ROUTES.symptoms.list);
+    this.props.history.push(ROUTES.symptoms.list);
   };
 
   async _load() {

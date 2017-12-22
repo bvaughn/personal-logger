@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Redirect,
   Route,
   NavLink,
@@ -163,14 +163,15 @@ class App extends Component<Props, State> {
             <Route
               exact
               path="/"
-              render={() => <Redirect to={ROUTES.sleep.list} />}
+              render={({ history }) => <Redirect to={ROUTES.sleep.list} />}
             />
 
             <Route
               exact
               path={ROUTES.exercise.new}
-              render={() => (
+              render={({ history }) => (
                 <NewExerciseRoute
+                  history={history}
                   saveFn={this._dataStore.exercise.saveRecord}
                 />
               )}
@@ -178,10 +179,11 @@ class App extends Component<Props, State> {
             <Route
               exact
               path={ROUTES.exercise.edit}
-              render={({ match }) => (
+              render={({ history, match }) => (
                 <EditExerciseRoute
                   deleteFn={this._dataStore.exercise.deleteRecord}
                   getRecord={this._dataStore.exercise.getRecord}
+                  history={history}
                   id={match.params.id}
                   saveFn={this._dataStore.exercise.saveRecord}
                 />
@@ -190,23 +192,29 @@ class App extends Component<Props, State> {
             <Route
               exact
               path={ROUTES.exercise.list}
-              render={() => <ListExerciseRoute exercise={exercise} />}
+              render={({ history }) => (
+                <ListExerciseRoute history={history} exercise={exercise} />
+              )}
             />
 
             <Route
               exact
               path={ROUTES.foods.new}
-              render={() => (
-                <NewFoodRoute saveFn={this._dataStore.foods.saveRecord} />
+              render={({ history }) => (
+                <NewFoodRoute
+                  history={history}
+                  saveFn={this._dataStore.foods.saveRecord}
+                />
               )}
             />
             <Route
               exact
               path={ROUTES.foods.edit}
-              render={({ match }) => (
+              render={({ history, match }) => (
                 <EditFoodRoute
                   deleteFn={this._dataStore.foods.deleteRecord}
                   getRecord={this._dataStore.foods.getRecord}
+                  history={history}
                   id={match.params.id}
                   saveFn={this._dataStore.foods.saveRecord}
                 />
@@ -215,23 +223,29 @@ class App extends Component<Props, State> {
             <Route
               exact
               path={ROUTES.foods.list}
-              render={() => <ListFoodsRoute foods={foods} />}
+              render={({ history }) => (
+                <ListFoodsRoute history={history} foods={foods} />
+              )}
             />
 
             <Route
               exact
               path={ROUTES.sleep.new}
-              render={() => (
-                <NewSleepRoute saveFn={this._dataStore.sleep.saveRecord} />
+              render={({ history }) => (
+                <NewSleepRoute
+                  history={history}
+                  saveFn={this._dataStore.sleep.saveRecord}
+                />
               )}
             />
             <Route
               exact
               path={ROUTES.sleep.edit}
-              render={({ match }) => (
+              render={({ history, match }) => (
                 <EditSleepRoute
                   deleteFn={this._dataStore.sleep.deleteRecord}
                   getRecord={this._dataStore.sleep.getRecord}
+                  history={history}
                   id={match.params.id}
                   saveFn={this._dataStore.sleep.saveRecord}
                 />
@@ -240,23 +254,29 @@ class App extends Component<Props, State> {
             <Route
               exact
               path={ROUTES.sleep.list}
-              render={() => <ListSleepRoute sleep={sleep} />}
+              render={({ history }) => (
+                <ListSleepRoute history={history} sleep={sleep} />
+              )}
             />
 
             <Route
               exact
               path={ROUTES.symptoms.new}
-              render={() => (
-                <NewSymptomRoute saveFn={this._dataStore.symptoms.saveRecord} />
+              render={({ history }) => (
+                <NewSymptomRoute
+                  history={history}
+                  saveFn={this._dataStore.symptoms.saveRecord}
+                />
               )}
             />
             <Route
               exact
               path={ROUTES.symptoms.edit}
-              render={({ match }) => (
+              render={({ history, match }) => (
                 <EditSymptomRoute
                   deleteFn={this._dataStore.symptoms.deleteRecord}
                   getRecord={this._dataStore.symptoms.getRecord}
+                  history={history}
                   id={match.params.id}
                   saveFn={this._dataStore.symptoms.saveRecord}
                 />
@@ -265,7 +285,9 @@ class App extends Component<Props, State> {
             <Route
               exact
               path={ROUTES.symptoms.list}
-              render={() => <ListSymptomsRoute symptoms={symptoms} />}
+              render={({ history }) => (
+                <ListSymptomsRoute history={history} symptoms={symptoms} />
+              )}
             />
           </main>
         </div>

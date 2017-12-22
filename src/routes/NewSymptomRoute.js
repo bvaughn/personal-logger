@@ -3,13 +3,14 @@
 import React from 'react';
 import EditSymptomForm from '../components/EditSymptomForm';
 
-import type { Symptom } from '../types';
+import type { History, Symptom } from '../types';
 
 type Props = {
+  history: History,
   saveFn: (symptom: Symptom) => Promise<void>,
 };
 
-export default function NewSymptom({ saveFn }: Props) {
+export default function NewSymptom({ history, saveFn }: Props) {
   const symptom = {
     date: new Date(),
     notes: '',
@@ -17,5 +18,7 @@ export default function NewSymptom({ saveFn }: Props) {
     type: 'stomach',
   };
 
-  return <EditSymptomForm saveFn={saveFn} symptom={symptom} />;
+  return (
+    <EditSymptomForm history={history} saveFn={saveFn} symptom={symptom} />
+  );
 }

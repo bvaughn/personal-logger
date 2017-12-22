@@ -12,10 +12,11 @@ import {
 import RatingIcon from '../components/RatingIcon';
 import { getDate, getDateString, getTimeString } from '../utils';
 
-import type { Symptom } from '../types';
+import type { History, Symptom } from '../types';
 
 type Props = {
   deleteFn?: () => Promise<void>,
+  history: History,
   saveFn: (Symptom: Symptom) => Promise<void>,
   symptom: Symptom,
 };
@@ -220,7 +221,7 @@ export default class NewSymptom extends Component<Props, State> {
   _onSubmit = (event: Event) => {
     event.preventDefault();
 
-    const { saveFn } = this.props;
+    const { history, saveFn } = this.props;
     const { date, symptom, time } = this.state;
 
     symptom.date = getDate(date, time);
@@ -232,7 +233,7 @@ export default class NewSymptom extends Component<Props, State> {
       async () => {
         await saveFn(symptom);
 
-        window.location.replace(ROUTES.symptoms.list);
+        history.push(ROUTES.symptoms.list);
       }
     );
   };

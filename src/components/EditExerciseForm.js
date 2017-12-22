@@ -12,12 +12,13 @@ import {
 import { getDate, getDateString, getTimeString } from '../utils';
 import IntensityIcon from './IntensityIcon';
 
-import type { Exercise } from '../types';
+import type { Exercise, History } from '../types';
 
 type Props = {
   deleteFn?: () => Promise<void>,
-  saveFn: (exercise: Exercise) => Promise<void>,
   exercise: Exercise,
+  history: History,
+  saveFn: (exercise: Exercise) => Promise<void>,
 };
 
 type State = {
@@ -247,7 +248,7 @@ export default class EditExerciseForm extends Component<Props, State> {
   _onSubmit = (event: Event) => {
     event.preventDefault();
 
-    const { saveFn } = this.props;
+    const { history, saveFn } = this.props;
     const { date, exercise, time } = this.state;
 
     exercise.date = getDate(date, time);
@@ -259,7 +260,7 @@ export default class EditExerciseForm extends Component<Props, State> {
       async () => {
         await saveFn(exercise);
 
-        window.location.replace(ROUTES.exercise.list);
+        history.push(ROUTES.exercise.list);
       }
     );
   };

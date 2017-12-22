@@ -11,10 +11,11 @@ import {
 } from '../components/SvgIcons';
 import { getDate, getDateString, getTimeString } from '../utils';
 
-import type { Food } from '../types';
+import type { Food, History } from '../types';
 
 type Props = {
   deleteFn?: () => Promise<void>,
+  history: History,
   saveFn: (Food: Food) => Promise<void>,
   food: Food,
 };
@@ -235,7 +236,7 @@ export default class NewFoodDrink extends Component<Props, State> {
   _onSubmit = (event: Event) => {
     event.preventDefault();
 
-    const { saveFn } = this.props;
+    const { history, saveFn } = this.props;
     const { date, food, time } = this.state;
 
     food.date = getDate(date, time);
@@ -248,7 +249,7 @@ export default class NewFoodDrink extends Component<Props, State> {
       async () => {
         await saveFn(food);
 
-        window.location.replace(ROUTES.foods.list);
+        history.push(ROUTES.foods.list);
       }
     );
   };

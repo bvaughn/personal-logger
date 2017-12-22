@@ -21,6 +21,16 @@ export type Food = {
   type: string,
 };
 
+export type History = {
+  push: (path: string) => void,
+};
+
+export type RowRendererParams = {
+  index: number,
+  key: string,
+  style: Object,
+};
+
 export type Sleep = {
   awakenings: number,
   date: Date,
@@ -28,12 +38,6 @@ export type Sleep = {
   id?: string,
   notes: string,
   rating: number,
-};
-
-export type RowRendererParams = {
-  index: number,
-  key: string,
-  style: Object,
 };
 
 export type Symptom = {

@@ -3,13 +3,14 @@
 import React from 'react';
 import EditSleepForm from '../components/EditSleepForm';
 
-import type { Sleep } from '../types';
+import type { History, Sleep } from '../types';
 
 type Props = {
+  history: History,
   saveFn: (sleep: Sleep) => Promise<void>,
 };
 
-export default function NewSleep({ saveFn }: Props) {
+export default function NewSleep({ history, saveFn }: Props) {
   const sleep = {
     awakenings: 0,
     date: new Date(),
@@ -18,5 +19,5 @@ export default function NewSleep({ saveFn }: Props) {
     rating: 2,
   };
 
-  return <EditSleepForm saveFn={saveFn} sleep={sleep} />;
+  return <EditSleepForm history={history} saveFn={saveFn} sleep={sleep} />;
 }

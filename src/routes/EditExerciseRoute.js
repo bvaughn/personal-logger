@@ -6,11 +6,12 @@ import LoadingError from '../components/LoadingError';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { ROUTES } from '../constants';
 
-import type { Exercise } from '../types';
+import type { Exercise, History } from '../types';
 
 type Props = {
   deleteFn: (id: string) => Promise<void>,
   getRecord: (id: string) => Promise<Exercise>,
+  history: History,
   id: string,
   saveFn: (exercise: Exercise) => Promise<void>,
 };
@@ -31,6 +32,7 @@ export default class EditExercise extends Component<Props, State> {
   }
 
   render() {
+    const { history } = this.props;
     const { error, exercise } = this.state;
 
     if (error !== null) {
@@ -39,8 +41,9 @@ export default class EditExercise extends Component<Props, State> {
       return (
         <EditExerciseForm
           deleteFn={this._delete}
-          saveFn={this._save}
           exercise={exercise}
+          history={history}
+          saveFn={this._save}
         />
       );
     } else {
@@ -51,7 +54,7 @@ export default class EditExercise extends Component<Props, State> {
   _delete = async () => {
     await this.props.deleteFn(this.props.id);
 
-    window.location.replace(ROUTES.exercise.list);
+    this.props.history.push(ROUTES.exercise.list);
   };
 
   async _load() {

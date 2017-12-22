@@ -7,10 +7,11 @@ import { DateIcon } from '../components/SvgIcons';
 import RatingIcon from '../components/RatingIcon';
 import { getDate, getDateString } from '../utils';
 
-import type { Sleep } from '../types';
+import type { History, Sleep } from '../types';
 
 type Props = {
   deleteFn?: () => Promise<void>,
+  history: History,
   saveFn: (sleep: Sleep) => Promise<void>,
   sleep: Sleep,
 };
@@ -211,7 +212,7 @@ export default class EditSleepForm extends Component<Props, State> {
   _onSubmit = (event: Event) => {
     event.preventDefault();
 
-    const { saveFn } = this.props;
+    const { history, saveFn } = this.props;
     const { date, sleep } = this.state;
 
     sleep.date = getDate(date);
@@ -223,7 +224,7 @@ export default class EditSleepForm extends Component<Props, State> {
       async () => {
         await saveFn(sleep);
 
-        window.location.replace(ROUTES.sleep.list);
+        history.push(ROUTES.sleep.list);
       }
     );
   };
