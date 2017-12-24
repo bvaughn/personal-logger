@@ -12,11 +12,12 @@ import type { RowRendererParams, Exercise } from '../types';
 
 type Props = {
   exercise: Array<Exercise> | null,
+  cssStyle: Object,
 };
 
 export default class ListExercise extends Component<Props> {
   render() {
-    const { exercise } = this.props;
+    const { exercise, cssStyle } = this.props;
 
     if (exercise === null) {
       return <LoadingSpinner />;
@@ -34,7 +35,12 @@ export default class ListExercise extends Component<Props> {
           )}
         </AutoSizer>,
 
-        <Link className="create-link" key="Link" to={ROUTES.exercise.new}>
+        <Link
+          className="create-link"
+          key="Link"
+          to={ROUTES.exercise.new}
+          {...cssStyle}
+        >
           <CreateIcon className="create-link-svg" />
         </Link>,
       ];

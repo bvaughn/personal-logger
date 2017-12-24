@@ -1,17 +1,3 @@
-.create-link {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  width: 3rem;
-  height: 3rem;
-  padding: 0.75rem;
-  border-radius: 3rem;
-  background: #eceff1;
-}
-
-.new-form {
-}
-
 .new-form-section {
   margin-bottom: 1rem;
 }
@@ -194,31 +180,4 @@
 .loading-spinner-svg {
   width: 5rem;
   height: 5rem;
-}
-
-.sign-in-screen {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-}
-
-.sign-in-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-right: 0.5rem;
-  border-radius: 0.25em;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  cursor: pointer;
-}
-
-.sign-in-icon {
-  margin-right: 0.5rem;
-  width: 2rem;
-  height: 2rem;
 }

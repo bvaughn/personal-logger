@@ -13,11 +13,12 @@ import type { RowRendererParams, Sleep } from '../types';
 
 type Props = {
   sleep: Array<Sleep> | null,
+  cssStyle: Object,
 };
 
 export default class ListSleep extends Component<Props> {
   render() {
-    const { sleep } = this.props;
+    const { sleep, cssStyle } = this.props;
 
     if (sleep === null) {
       return <LoadingSpinner />;
@@ -35,7 +36,12 @@ export default class ListSleep extends Component<Props> {
           )}
         </AutoSizer>,
 
-        <Link className="create-link" key="Link" to={ROUTES.sleep.new}>
+        <Link
+          className="create-link"
+          key="Link"
+          to={ROUTES.sleep.new}
+          {...cssStyle}
+        >
           <CreateIcon className="create-link-svg" />
         </Link>,
       ];

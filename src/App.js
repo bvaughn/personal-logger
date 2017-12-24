@@ -122,6 +122,17 @@ class App extends Component<Props, State> {
       fill: 'currentColor',
     });
 
+    const createLinkStyle = css({
+      position: 'absolute',
+      bottom: '1rem',
+      right: '1rem',
+      width: '3rem',
+      height: '3rem',
+      padding: '0.75rem',
+      borderRadius: '3rem',
+      background: '#eceff1',
+    });
+
     return (
       <Router>
         <div
@@ -296,7 +307,11 @@ class App extends Component<Props, State> {
               exact
               path={ROUTES.exercise.list}
               render={({ history }) => (
-                <ListExerciseRoute history={history} exercise={exercise} />
+                <ListExerciseRoute
+                  history={history}
+                  exercise={exercise}
+                  cssStyle={createLinkStyle}
+                />
               )}
             />
 
@@ -327,7 +342,11 @@ class App extends Component<Props, State> {
               exact
               path={ROUTES.foods.list}
               render={({ history }) => (
-                <ListFoodsRoute history={history} foods={foods} />
+                <ListFoodsRoute
+                  history={history}
+                  foods={foods}
+                  cssStyle={createLinkStyle}
+                />
               )}
             />
 
@@ -358,7 +377,11 @@ class App extends Component<Props, State> {
               exact
               path={ROUTES.sleep.list}
               render={({ history }) => (
-                <ListSleepRoute history={history} sleep={sleep} />
+                <ListSleepRoute
+                  history={history}
+                  sleep={sleep}
+                  cssStyle={createLinkStyle}
+                />
               )}
             />
 
@@ -389,7 +412,11 @@ class App extends Component<Props, State> {
               exact
               path={ROUTES.symptoms.list}
               render={({ history }) => (
-                <ListSymptomsRoute history={history} symptoms={symptoms} />
+                <ListSymptomsRoute
+                  history={history}
+                  symptoms={symptoms}
+                  cssStyle={createLinkStyle}
+                />
               )}
             />
           </main>

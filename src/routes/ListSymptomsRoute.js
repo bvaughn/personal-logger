@@ -13,11 +13,12 @@ import type { RowRendererParams, Symptom } from '../types';
 
 type Props = {
   symptoms: Array<Symptom> | null,
+  cssStyle: Object,
 };
 
 export default class ListSymptoms extends Component<Props> {
   render() {
-    const { symptoms } = this.props;
+    const { symptoms, cssStyle } = this.props;
 
     if (symptoms === null) {
       return <LoadingSpinner />;
@@ -35,7 +36,12 @@ export default class ListSymptoms extends Component<Props> {
           )}
         </AutoSizer>,
 
-        <Link className="create-link" key="Link" to={ROUTES.symptoms.new}>
+        <Link
+          className="create-link"
+          key="Link"
+          to={ROUTES.symptoms.new}
+          {...cssStyle}
+        >
           <CreateIcon className="create-link-svg" />
         </Link>,
       ];

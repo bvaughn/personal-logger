@@ -12,11 +12,12 @@ import type { Food, RowRendererParams } from '../types';
 
 type Props = {
   foods: Array<Food> | null,
+  cssStyle: Object,
 };
 
 export default class ListFoods extends Component<Props> {
   render() {
-    const { foods } = this.props;
+    const { foods, cssStyle } = this.props;
 
     if (foods === null) {
       return <LoadingSpinner />;
@@ -34,7 +35,12 @@ export default class ListFoods extends Component<Props> {
           )}
         </AutoSizer>,
 
-        <Link className="create-link" key="Link" to={ROUTES.foods.new}>
+        <Link
+          className="create-link"
+          key="Link"
+          to={ROUTES.foods.new}
+          {...cssStyle}
+        >
           <CreateIcon className="create-link-svg" />
         </Link>,
       ];
