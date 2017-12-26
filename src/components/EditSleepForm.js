@@ -36,7 +36,12 @@ export default class EditSleepForm extends Component<Props, State> {
     const { date, hasConfirmed, isSaving, sleep } = this.state;
 
     return (
-      <form className="new-form" disabled={isSaving} onSubmit={this._onSubmit}>
+      <form
+        className="new-form"
+        disabled={isSaving}
+        onSubmit={this._onSubmit}
+        autocapitalize="none"
+      >
         <section className="new-form-section">
           <div className="new-form-section-header">
             <DateIcon className="new-form-section-header-svg" />
