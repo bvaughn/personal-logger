@@ -30,7 +30,7 @@
     "flow": "flow",
     "postbuild": "cd build && rm ./static/js/*.js.map && rm ./static/css/*.css.map",
     "precommit": "lint-staged",
-    "prettier": "prettier --single-quote --trailing-comma=es5 --write 'src/**/*.{js,jsx}'",
+    "prettier": "prettier --single-quote --trailing-comma=es5 --write 'src/**/*.{js,jsx,json,css}'",
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom"
   }
