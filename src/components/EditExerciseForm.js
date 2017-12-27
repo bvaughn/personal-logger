@@ -221,7 +221,7 @@ export default class EditExerciseForm extends Component<Props, State> {
   };
 
   _onDurationChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
-    const duration = parseInt(event.currentTarget.value, 10) || 0;
+    const duration = parseFloat(event.currentTarget.value) || 0;
     this.setState(state => ({
       exercise: {
         ...state.exercise,
