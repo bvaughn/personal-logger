@@ -1,4 +1,5 @@
 import React from 'react';
+import { css } from 'glamor';
 
 export const CreateIcon = props => (
   <svg {...props} viewBox="0 0 325 325">
@@ -276,7 +277,14 @@ export const HeartIcon = props => (
 );
 
 export const LoadingIcon = props => (
-  <svg {...props} viewBox="0 0 126 167">
+  <svg
+    {...props}
+    viewBox="0 0 126 167"
+    {...css({
+      width: '5rem',
+      height: '5rem',
+    })}
+  >
     <ellipse style={{ fill: '#37474f' }} cx="63" cy="146" rx="63" ry="21" />
     <rect style={{ fill: '#37474f' }} y="137" width="126" height="9" />
     <ellipse style={{ fill: '#62727b' }} cx="63" cy="137" rx="63" ry="21" />
@@ -313,7 +321,14 @@ export const LogoutIcon = props => (
 );
 
 export const NotFoundIcon = props => (
-  <svg {...props} viewBox="0 0 144 176">
+  <svg
+    {...props}
+    viewBox="0 0 144 176"
+    {...css({
+      width: '5rem',
+      height: '5rem',
+    })}
+  >
     <rect style={{ fill: '#eceff1' }} width="144" height="176" rx="5" ry="5" />
     <rect
       style={{ fill: '#babdbe' }}

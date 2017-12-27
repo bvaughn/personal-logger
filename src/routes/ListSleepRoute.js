@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { css } from 'glamor';
 import AutoSizer from 'react-virtualized/dist/es/AutoSizer';
 import List from 'react-virtualized/dist/es/List';
 import { LOCALE_DATE_OPTIONS, ROUTES } from '../constants';
@@ -40,7 +41,7 @@ export default class ListSleep extends Component<Props> {
           className="create-link"
           key="Link"
           to={ROUTES.sleep.new}
-          {...cssStyle}
+          {...css(cssStyle)}
         >
           <CreateIcon className="create-link-svg" />
         </Link>,

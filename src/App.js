@@ -116,13 +116,13 @@ class App extends Component<Props, State> {
       filter: 'grayscale(0%)',
     };
 
-    const navLinkSvg = css({
+    const navLinkSvgStyle = {
       width: '2rem',
       height: '2rem',
       fill: 'currentColor',
-    });
+    };
 
-    const createLinkStyle = css({
+    const createLinkStyle = {
       position: 'absolute',
       bottom: '1rem',
       right: '1rem',
@@ -131,7 +131,7 @@ class App extends Component<Props, State> {
       padding: '0.75rem',
       borderRadius: '3rem',
       background: '#eceff1',
-    });
+    };
 
     return (
       <Router>
@@ -232,7 +232,7 @@ class App extends Component<Props, State> {
                 {...css(navLinkStyle)}
                 activeStyle={navActiveLinkStyle}
               >
-                <SleepIcon className={navLinkSvg} />
+                <SleepIcon className="nav-link-svg" {...css(navLinkSvgStyle)} />
               </NavLink>
               <NavLink
                 activeClassName="nav-link-active"
@@ -241,7 +241,7 @@ class App extends Component<Props, State> {
                 {...css(navLinkStyle)}
                 activeStyle={navActiveLinkStyle}
               >
-                <EatIcon className={navLinkSvg} />
+                <EatIcon className="nav-link-svg" {...css(navLinkSvgStyle)} />
               </NavLink>
               <NavLink
                 activeClassName="nav-link-active"
@@ -250,7 +250,7 @@ class App extends Component<Props, State> {
                 {...css(navLinkStyle)}
                 activeStyle={navActiveLinkStyle}
               >
-                <HeartIcon className={navLinkSvg} />
+                <HeartIcon className="nav-link-svg" {...css(navLinkSvgStyle)} />
               </NavLink>
               <NavLink
                 activeClassName="nav-link-active"
@@ -259,7 +259,10 @@ class App extends Component<Props, State> {
                 {...css(navLinkStyle)}
                 activeStyle={navActiveLinkStyle}
               >
-                <SymptomIcon className={navLinkSvg} />
+                <SymptomIcon
+                  className="nav-link-svg"
+                  {...css(navLinkSvgStyle)}
+                />
               </NavLink>
             </nav>
           </header>

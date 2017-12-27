@@ -127,19 +127,6 @@
   filter: grayscale(0%);
 }
 
-.nowrap {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.entry-type-svg {
-  width: 1rem;
-  height: 1rem;
-  margin-right: 0.25rem;
-  fill: #1da1f2;
-}
-
 .list-entry {
   display: flex;
   flex-direction: row;
@@ -165,19 +152,4 @@
   width: 1.5rem;
   height: 1.5rem;
   margin-right: 0.5rem;
-}
-
-.loading-error,
-.loading-spinner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-.loading-error-svg,
-.loading-spinner-svg {
-  width: 5rem;
-  height: 5rem;
 }
