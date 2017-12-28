@@ -2,23 +2,22 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { css } from 'glamor';
 import AutoSizer from 'react-virtualized/dist/es/AutoSizer';
 import List from 'react-virtualized/dist/es/List';
 import { LOCALE_DATE_OPTIONS, ROUTES } from '../constants';
-import { CreateIcon, HeartIcon, StrengthIcon } from '../components/SvgIcons';
+import { HeartIcon, StrengthIcon } from '../components/SvgIcons';
+import CreateLinkIcon from '../components/CreateLinkIcon';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 import type { RowRendererParams, Exercise } from '../types';
 
 type Props = {
   exercise: Array<Exercise> | null,
-  cssStyle: Object,
 };
 
 export default class ListExercise extends Component<Props> {
   render() {
-    const { exercise, cssStyle } = this.props;
+    const { exercise } = this.props;
 
     if (exercise === null) {
       return <LoadingSpinner />;
@@ -36,13 +35,8 @@ export default class ListExercise extends Component<Props> {
           )}
         </AutoSizer>,
 
-        <Link
-          className="create-link"
-          key="Link"
-          to={ROUTES.exercise.new}
-          {...css(cssStyle)}
-        >
-          <CreateIcon className="create-link-svg" />
+        <Link className="create-link" key="Link" to={ROUTES.exercise.new}>
+          <CreateLinkIcon />
         </Link>,
       ];
     }

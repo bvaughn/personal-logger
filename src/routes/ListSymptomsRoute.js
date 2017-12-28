@@ -2,11 +2,11 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { css } from 'glamor';
 import AutoSizer from 'react-virtualized/dist/es/AutoSizer';
 import List from 'react-virtualized/dist/es/List';
 import { LOCALE_DATE_OPTIONS, LOCALE_TIME_OPTIONS, ROUTES } from '../constants';
-import { CreateIcon, EnergyIcon, StomachIcon } from '../components/SvgIcons';
+import { EnergyIcon, StomachIcon } from '../components/SvgIcons';
+import CreateLinkIcon from '../components/CreateLinkIcon';
 import LoadingSpinner from '../components/LoadingSpinner';
 import RatingIcon from '../components/RatingIcon';
 
@@ -14,12 +14,11 @@ import type { RowRendererParams, Symptom } from '../types';
 
 type Props = {
   symptoms: Array<Symptom> | null,
-  cssStyle: Object,
 };
 
 export default class ListSymptoms extends Component<Props> {
   render() {
-    const { symptoms, cssStyle } = this.props;
+    const { symptoms } = this.props;
 
     if (symptoms === null) {
       return <LoadingSpinner />;
@@ -37,13 +36,8 @@ export default class ListSymptoms extends Component<Props> {
           )}
         </AutoSizer>,
 
-        <Link
-          className="create-link"
-          key="Link"
-          to={ROUTES.symptoms.new}
-          {...css(cssStyle)}
-        >
-          <CreateIcon className="create-link-svg" />
+        <Link className="create-link" key="Link" to={ROUTES.symptoms.new}>
+          <CreateLinkIcon />
         </Link>,
       ];
     }

@@ -6,19 +6,19 @@ import { css } from 'glamor';
 import AutoSizer from 'react-virtualized/dist/es/AutoSizer';
 import List from 'react-virtualized/dist/es/List';
 import { LOCALE_DATE_OPTIONS, LOCALE_TIME_OPTIONS, ROUTES } from '../constants';
-import { CreateIcon, DrinkIcon, FoodIcon } from '../components/SvgIcons';
+import { DrinkIcon, FoodIcon } from '../components/SvgIcons';
+import CreateLinkIcon from '../components/CreateLinkIcon';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 import type { Food, RowRendererParams } from '../types';
 
 type Props = {
   foods: Array<Food> | null,
-  cssStyle: Object,
 };
 
 export default class ListFoods extends Component<Props> {
   render() {
-    const { foods, cssStyle } = this.props;
+    const { foods } = this.props;
 
     if (foods === null) {
       return <LoadingSpinner />;
@@ -36,13 +36,8 @@ export default class ListFoods extends Component<Props> {
           )}
         </AutoSizer>,
 
-        <Link
-          className="create-link"
-          key="Link"
-          to={ROUTES.foods.new}
-          {...css(cssStyle)}
-        >
-          <CreateIcon className="create-link-svg" />
+        <Link className="create-link" key="Link" to={ROUTES.foods.new}>
+          <CreateLinkIcon />
         </Link>,
       ];
     }

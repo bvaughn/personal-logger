@@ -6,7 +6,6 @@ import { LoadingIcon } from '../components/SvgIcons';
 export default function LoadingSpinner() {
   return (
     <div
-      className="loading-spinner"
       {...css({
         display: 'flex',
         flexDirection: 'column',
@@ -15,7 +14,7 @@ export default function LoadingSpinner() {
         height: '100%',
       })}
     >
-      <LoadingIcon className="loading-spinner-svg" />
+      <LoadingIcon />
     </div>
   );
 }

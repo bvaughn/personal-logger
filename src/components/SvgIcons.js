@@ -1,6 +1,12 @@
 import React from 'react';
 import { css } from 'glamor';
 
+const navLinkSvgStyle = {
+  width: '2rem',
+  height: '2rem',
+  fill: 'currentColor',
+};
+
 export const CreateIcon = props => (
   <svg {...props} viewBox="0 0 325 325">
     <polygon
@@ -110,7 +116,7 @@ export const DrinkIcon = props => (
 );
 
 export const EatIcon = props => (
-  <svg {...props} viewBox="0 0 115 158">
+  <svg {...props} viewBox="0 0 115 158" {...css(navLinkSvgStyle)}>
     <path style={{ fill: '#00c853' }} d="M21,92v57s0,9,11,9,11-9,11-9V92" />
     <path
       style={{ fill: '#0091ea' }}
@@ -170,7 +176,7 @@ export const FoodIcon = props => (
 );
 
 export const HeartIcon = props => (
-  <svg {...props} viewBox="0 0 107 91">
+  <svg {...props} viewBox="0 0 107 91" {...css(navLinkSvgStyle)}>
     <circle style={{ fill: '#ff5131' }} cx="28" cy="28" r="28" />
     <circle style={{ fill: '#ff5131' }} cx="78" cy="28" r="28" />
     <polygon
@@ -381,7 +387,7 @@ export const NotFoundIcon = props => (
 );
 
 export const SleepIcon = props => (
-  <svg {...props} viewBox="0 0 241 233">
+  <svg {...props} viewBox="0 0 241 233" {...css(navLinkSvgStyle)}>
     <path
       style={{ fill: '#e0be54' }}
       d="M161,191A110,110,0,0,1,68,22,110,110,0,1,0,203,182,110,110,0,0,1,161,191Z"
@@ -461,7 +467,7 @@ export const StrengthIcon = props => (
 );
 
 export const SymptomIcon = props => (
-  <svg {...props} viewBox="0 0 535 583">
+  <svg {...props} viewBox="0 0 535 583" {...css(navLinkSvgStyle)}>
     <path
       style={{ fill: '#00c853' }}
       d="M272,356c-11-29-38-79-68-124s-79-96-83-93,27,41,62,117c16,34,25,60,32,78,22,61,37,102,43,158,0,0,0,2,5,89h0a343,343,0,0,1-112-48C73,481,35,410,26,381s-16-64-16-64L7,301C0,251-3,191,4,139S31,0,31,0h0s99,28,195,96c76,54,104,97,104,97l-32,67a289,289,0,0,0-26,96"

@@ -2,11 +2,10 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { css } from 'glamor';
 import AutoSizer from 'react-virtualized/dist/es/AutoSizer';
 import List from 'react-virtualized/dist/es/List';
 import { LOCALE_DATE_OPTIONS, ROUTES } from '../constants';
-import { CreateIcon } from '../components/SvgIcons';
+import CreateLinkIcon from '../components/CreateLinkIcon';
 import LoadingSpinner from '../components/LoadingSpinner';
 import RatingIcon from '../components/RatingIcon';
 
@@ -14,12 +13,11 @@ import type { RowRendererParams, Sleep } from '../types';
 
 type Props = {
   sleep: Array<Sleep> | null,
-  cssStyle: Object,
 };
 
 export default class ListSleep extends Component<Props> {
   render() {
-    const { sleep, cssStyle } = this.props;
+    const { sleep } = this.props;
 
     if (sleep === null) {
       return <LoadingSpinner />;
@@ -37,13 +35,8 @@ export default class ListSleep extends Component<Props> {
           )}
         </AutoSizer>,
 
-        <Link
-          className="create-link"
-          key="Link"
-          to={ROUTES.sleep.new}
-          {...css(cssStyle)}
-        >
-          <CreateIcon className="create-link-svg" />
+        <Link className="create-link" key="Link" to={ROUTES.sleep.new}>
+          <CreateLinkIcon />
         </Link>,
       ];
     }

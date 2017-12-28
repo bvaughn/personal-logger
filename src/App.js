@@ -116,23 +116,6 @@ class App extends Component<Props, State> {
       filter: 'grayscale(0%)',
     };
 
-    const navLinkSvgStyle = {
-      width: '2rem',
-      height: '2rem',
-      fill: 'currentColor',
-    };
-
-    const createLinkStyle = {
-      position: 'absolute',
-      bottom: '1rem',
-      right: '1rem',
-      width: '3rem',
-      height: '3rem',
-      padding: '0.75rem',
-      borderRadius: '3rem',
-      background: '#eceff1',
-    };
-
     return (
       <Router>
         <div
@@ -232,7 +215,7 @@ class App extends Component<Props, State> {
                 {...css(navLinkStyle)}
                 activeStyle={navActiveLinkStyle}
               >
-                <SleepIcon className="nav-link-svg" {...css(navLinkSvgStyle)} />
+                <SleepIcon />
               </NavLink>
               <NavLink
                 activeClassName="nav-link-active"
@@ -241,7 +224,7 @@ class App extends Component<Props, State> {
                 {...css(navLinkStyle)}
                 activeStyle={navActiveLinkStyle}
               >
-                <EatIcon className="nav-link-svg" {...css(navLinkSvgStyle)} />
+                <EatIcon />
               </NavLink>
               <NavLink
                 activeClassName="nav-link-active"
@@ -250,7 +233,7 @@ class App extends Component<Props, State> {
                 {...css(navLinkStyle)}
                 activeStyle={navActiveLinkStyle}
               >
-                <HeartIcon className="nav-link-svg" {...css(navLinkSvgStyle)} />
+                <HeartIcon />
               </NavLink>
               <NavLink
                 activeClassName="nav-link-active"
@@ -259,10 +242,7 @@ class App extends Component<Props, State> {
                 {...css(navLinkStyle)}
                 activeStyle={navActiveLinkStyle}
               >
-                <SymptomIcon
-                  className="nav-link-svg"
-                  {...css(navLinkSvgStyle)}
-                />
+                <SymptomIcon />
               </NavLink>
             </nav>
           </header>
@@ -310,11 +290,7 @@ class App extends Component<Props, State> {
               exact
               path={ROUTES.exercise.list}
               render={({ history }) => (
-                <ListExerciseRoute
-                  history={history}
-                  exercise={exercise}
-                  cssStyle={createLinkStyle}
-                />
+                <ListExerciseRoute history={history} exercise={exercise} />
               )}
             />
 
@@ -345,11 +321,7 @@ class App extends Component<Props, State> {
               exact
               path={ROUTES.foods.list}
               render={({ history }) => (
-                <ListFoodsRoute
-                  history={history}
-                  foods={foods}
-                  cssStyle={createLinkStyle}
-                />
+                <ListFoodsRoute history={history} foods={foods} />
               )}
             />
 
@@ -380,11 +352,7 @@ class App extends Component<Props, State> {
               exact
               path={ROUTES.sleep.list}
               render={({ history }) => (
-                <ListSleepRoute
-                  history={history}
-                  sleep={sleep}
-                  cssStyle={createLinkStyle}
-                />
+                <ListSleepRoute history={history} sleep={sleep} />
               )}
             />
 
@@ -415,11 +383,7 @@ class App extends Component<Props, State> {
               exact
               path={ROUTES.symptoms.list}
               render={({ history }) => (
-                <ListSymptomsRoute
-                  history={history}
-                  symptoms={symptoms}
-                  cssStyle={createLinkStyle}
-                />
+                <ListSymptomsRoute history={history} symptoms={symptoms} />
               )}
             />
           </main>

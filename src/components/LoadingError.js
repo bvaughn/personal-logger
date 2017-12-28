@@ -6,7 +6,6 @@ import { NotFoundIcon } from '../components/SvgIcons';
 export default function LoadingError() {
   return (
     <div
-      className="loading-error"
       {...css({
         display: 'flex',
         flexDirection: 'column',
@@ -15,7 +14,7 @@ export default function LoadingError() {
         height: '100%',
       })}
     >
-      <NotFoundIcon className="loading-error-svg" />
+      <NotFoundIcon />
     </div>
   );
 }
