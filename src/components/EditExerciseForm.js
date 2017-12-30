@@ -116,8 +116,10 @@ export default class EditExerciseForm extends Component<Props, State> {
               <input
                 className="new-form-input"
                 disabled={isSaving}
+                min="0"
                 name="duration"
                 onChange={this._onDistanceChange}
+                step="0.25"
                 type="number"
                 value={exercise.distance || ''}
               />
@@ -130,8 +132,10 @@ export default class EditExerciseForm extends Component<Props, State> {
             <input
               className="new-form-input"
               disabled={isSaving}
+              min="0"
               name="duration"
               onChange={this._onDurationChange}
+              step="0.25"
               type="number"
               value={exercise.duration || ''}
             />
