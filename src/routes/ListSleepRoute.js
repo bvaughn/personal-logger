@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import AutoSizer from 'react-virtualized/dist/es/AutoSizer';
 import List from 'react-virtualized/dist/es/List';
 import { LOCALE_DATE_OPTIONS, ROUTES } from '../constants';
-import { CreateIcon } from '../components/SvgIcons';
+import CreateLinkIcon from '../components/CreateLinkIcon';
 import LoadingSpinner from '../components/LoadingSpinner';
 import RatingIcon from '../components/RatingIcon';
 
@@ -36,7 +36,7 @@ export default class ListSleep extends Component<Props> {
         </AutoSizer>,
 
         <Link className="create-link" key="Link" to={ROUTES.sleep.new}>
-          <CreateIcon className="create-link-svg" />
+          <CreateLinkIcon />
         </Link>,
       ];
     }

@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
+import { css } from 'glamor';
 import {
   HashRouter as Router,
   Redirect,
@@ -103,63 +104,159 @@ class App extends Component<Props, State> {
       return <LoginRoute login={this._dataStore.login} />;
     }
 
+    const navLinkStyle = {
+      color: '#fff',
+      filter: 'grayscale(100%)',
+      transition: 'filter 500ms ease-in-out',
+      cursor: 'pointer',
+    };
+
+    const navActiveLinkStyle = {
+      color: '#1da1f2',
+      filter: 'grayscale(0%)',
+    };
+
     return (
       <Router>
-        <div className="app">
-          <header className="header">
-            <div className="header-title-row">
-              <div className="header-user-avatar">
+        <div
+          className="app"
+          {...css({
+            display: 'flex',
+            flexDirection: 'column',
+            height: '100%',
+          })}
+        >
+          <header
+            className="header"
+            {...css({
+              marginBottom: '1rem',
+              backgroundColor: '#263238',
+              color: '#ffffff',
+              padding: '0.5rem',
+            })}
+          >
+            <div
+              className="header-title-row"
+              {...css({
+                flex: '0 0 auto',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '1rem',
+              })}
+            >
+              <div
+                className="header-user-avatar"
+                {...css({
+                  flex: '0 0 2rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                })}
+              >
                 <img
                   alt="User avatar"
                   className="header-user-avatar-img"
                   src={avatarPhoto}
+                  {...css({
+                    width: '1.5rem',
+                    height: '1.5rem',
+                    borderRadius: '1.5rem',
+                  })}
                 />
               </div>
 
-              <div className="header-title">Personal Log</div>
+              <div
+                className="header-title"
+                {...css({
+                  flex: '1 1 auto',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontWeight: 'bold',
+                })}
+              >
+                Personal Log
+              </div>
 
               <div
                 className="header-logout-button"
                 onClick={this._signOut}
                 tabIndex={0}
+                {...css({
+                  flex: '0 0 2rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                })}
               >
-                <LogoutIcon className="header-logout-button-svg" />
+                <LogoutIcon
+                  className="header-logout-button-svg"
+                  {...css({
+                    width: '1.5rem',
+                    height: '1.5rem',
+                    color: '#fff',
+                  })}
+                />
               </div>
             </div>
 
-            <nav className="nav">
+            <nav
+              className="nav"
+              {...css({
+                display: 'flex',
+                justifyContent: 'space-around',
+              })}
+            >
               <NavLink
                 activeClassName="nav-link-active"
                 className="nav-link"
                 to={ROUTES.sleep.list}
+                {...css(navLinkStyle)}
+                activeStyle={navActiveLinkStyle}
               >
-                <SleepIcon className="nav-link-svg" />
+                <SleepIcon />
               </NavLink>
               <NavLink
                 activeClassName="nav-link-active"
                 className="nav-link"
                 to={ROUTES.foods.list}
+                {...css(navLinkStyle)}
+                activeStyle={navActiveLinkStyle}
               >
-                <EatIcon className="nav-link-svg" />
+                <EatIcon />
               </NavLink>
               <NavLink
                 activeClassName="nav-link-active"
                 className="nav-link"
                 to={ROUTES.exercise.list}
+                {...css(navLinkStyle)}
+                activeStyle={navActiveLinkStyle}
               >
-                <HeartIcon className="nav-link-svg" />
+                <HeartIcon />
               </NavLink>
               <NavLink
                 activeClassName="nav-link-active"
                 className="nav-link"
                 to={ROUTES.symptoms.list}
+                {...css(navLinkStyle)}
+                activeStyle={navActiveLinkStyle}
               >
-                <SymptomIcon className="nav-link-svg" />
+                <SymptomIcon />
               </NavLink>
             </nav>
           </header>
 
-          <main className="main">
+          <main
+            className="main"
+            {...css({
+              padding: '0 1em',
+              marginBottom: '1em',
+              flex: '1 1 auto',
+              minHeight: '0',
+              overflow: 'auto',
+            })}
+          >
             <Route
               exact
               path="/"
