@@ -32,6 +32,19 @@
   justify-content: space-around;
 }
 
+@media (orientation: landscape) {
+  .header,
+  .main,
+  .nav {
+    /* iPhone X: iOS 11.1 */
+    padding-left: constant(safe-area-inset-left);
+    padding-right: constant(safe-area-inset-right);
+    /* iPhone X: iOS 11.2+ */
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
 .nav-list-item {
   flex: 1 0 1px;
   display: inline-flex;
@@ -307,7 +320,7 @@
   align-items: center;
   justify-content: center;
   padding-right: 0.5rem;
-  border-radius: 0.25em;
+  border-radius: 0.5em;
   margin-bottom: 1rem;
   padding: 1rem;
   cursor: pointer;
