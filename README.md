@@ -1,4 +1,4 @@
-Try it out by signing in with your Github or Twitter account at [personal-logger.now.sh](https://personal-logger.now.sh/).
+Try it out by signing in with your Google, Github, or Twitter accounts at [personal-logger.now.sh](https://personal-logger.now.sh/).
 
 ## Local Installation
 

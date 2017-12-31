@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
+import GoogleIcon from '../images/Google.svg';
 import GitHubIcon from '../images/GitHub.svg';
 import TwitterIcon from '../images/Twitter.svg';
 
@@ -23,6 +24,15 @@ export default class ListSymptoms extends Component<Props> {
             src={GitHubIcon}
           />
           Sign in with GitHub
+        </li>
+
+        <li className="sign-in-button" onClick={() => login('google')}>
+          <img
+            alt="Sign in with Google"
+            className="sign-in-icon"
+            src={GoogleIcon}
+          />
+          Sign in with Google
         </li>
 
         <li className="sign-in-button" onClick={() => login('twitter')}>

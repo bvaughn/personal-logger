@@ -160,11 +160,11 @@ export default class DataStore {
       //case 'facebook':
       //provider = new firebase.auth.FacebookAuthProvider();
       //break;
-      //case 'google':
-      //provider = new firebase.auth.GoogleAuthProvider();
-      //break;
       case 'github':
         provider = new firebase.auth.GithubAuthProvider();
+        break;
+      case 'google':
+        provider = new firebase.auth.GoogleAuthProvider();
         break;
       case 'twitter':
         provider = new firebase.auth.TwitterAuthProvider();
