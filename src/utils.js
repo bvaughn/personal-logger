@@ -19,7 +19,7 @@ export function getDate(date: string, time?: string): Date {
 }
 
 export function getDateString(date: Date): string {
-  let year = date.getUTCFullYear();
+  let year = date.getFullYear();
 
   let month = date.getMonth() + 1;
   if (month < 10) {
