@@ -66,20 +66,17 @@ export default class Summary extends Component<Props, State> {
     if (this.state.isLoading && !prevState.isLoading) {
       this._loadSummary();
     }
-
-    if (
-      !this.state.isLoading &&
-      prevState.isLoading &&
-      !this.state.showSummary
-    ) {
-      downloadData(
-        'personal-logger-export.txt',
-        JSON.stringify(this.state.entries)
-      );
-    }
   }
 
   render() {
+    if (this.state.showSummary) {
+      return this._renderSummary();
+    } else {
+      return this._renderForm();
+    }
+  }
+
+  _renderForm() {
     const {
       isExerciseSelected,
       isFoodSelected,
@@ -90,108 +87,103 @@ export default class Summary extends Component<Props, State> {
     } = this.state;
 
     return (
-      <div className="new-form">
-        <form onSubmit={this._onSubmit} autocapitalize="none">
-          <section className="new-form-section">
-            <div className="new-form-section-header">
-              <DateStartIcon className="new-form-section-header-svg" />
-              <input
-                className="new-form-date-time-input"
-                name="startDate"
-                onChange={this._onStartDateChange}
-                type="date"
-                value={startDate || ''}
-              />
-            </div>
-          </section>
-          <section className="new-form-section">
-            <div className="new-form-section-header">
-              <DateStopIcon className="new-form-section-header-svg" />
-              <input
-                className="new-form-date-time-input"
-                name="stopDate"
-                onChange={this._onStopDateChange}
-                type="date"
-                value={stopDate || ''}
-              />
-            </div>
-          </section>
-          <section className="new-form-section">
-            <div className="new-form-section-header new-form-section-header-types">
-              <label className="new-form-rating-radio-label">
-                <SleepIcon
-                  className={`new-form-type-svg ${
-                    isSleepSelected ? 'new-form-type-svg-active' : ''
-                  }`}
-                />
-                <input
-                  checked={isSleepSelected}
-                  name="type"
-                  onChange={this._onIsSleepChange}
-                  type="checkbox"
-                  value="drink"
-                />
-              </label>
-              <label className="new-form-rating-radio-label">
-                <EatIcon
-                  className={`new-form-type-svg ${
-                    isFoodSelected ? 'new-form-type-svg-active' : ''
-                  }`}
-                />
-                <input
-                  checked={isFoodSelected}
-                  name="type"
-                  onChange={this._onIsFoodChange}
-                  type="checkbox"
-                  value="food"
-                />
-              </label>
-              <label className="new-form-rating-radio-label">
-                <HeartIcon
-                  className={`new-form-type-svg ${
-                    isExerciseSelected ? 'new-form-type-svg-active' : ''
-                  }`}
-                />
-                <input
-                  checked={isExerciseSelected}
-                  name="type"
-                  onChange={this._onIsExerciseChange}
-                  type="checkbox"
-                  value="drink"
-                />
-              </label>
-              <label className="new-form-rating-radio-label">
-                <SymptomIcon
-                  className={`new-form-type-svg ${
-                    isSymptomSelected ? 'new-form-type-svg-active' : ''
-                  }`}
-                />
-                <input
-                  checked={isSymptomSelected}
-                  name="type"
-                  onChange={this._onIsSymptomChange}
-                  type="checkbox"
-                  value="drink"
-                />
-              </label>
-            </div>
-          </section>
-          <section className="new-form-section">
-            <button className="new-form-save-button">Show Summary</button>
-          </section>
-        </form>
+      <form
+        className="new-form"
+        onSubmit={this._onSubmit}
+        autocapitalize="none"
+      >
         <section className="new-form-section">
-          <button className="new-form-save-button" onClick={this._onDownload}>
-            Download
-          </button>
+          <div className="new-form-section-header">
+            <DateStartIcon className="new-form-section-header-svg" />
+            <input
+              className="new-form-date-time-input"
+              name="startDate"
+              onChange={this._onStartDateChange}
+              type="date"
+              value={startDate || ''}
+            />
+          </div>
         </section>
-        <hr />
-        {this._renderEntries()}
-      </div>
+        <section className="new-form-section">
+          <div className="new-form-section-header">
+            <DateStopIcon className="new-form-section-header-svg" />
+            <input
+              className="new-form-date-time-input"
+              name="stopDate"
+              onChange={this._onStopDateChange}
+              type="date"
+              value={stopDate || ''}
+            />
+          </div>
+        </section>
+        <section className="new-form-section">
+          <div className="new-form-section-header new-form-section-header-types">
+            <label className="new-form-rating-radio-label">
+              <SleepIcon
+                className={`new-form-type-svg ${
+                  isSleepSelected ? 'new-form-type-svg-active' : ''
+                }`}
+              />
+              <input
+                checked={isSleepSelected}
+                name="type"
+                onChange={this._onIsSleepChange}
+                type="checkbox"
+                value="drink"
+              />
+            </label>
+            <label className="new-form-rating-radio-label">
+              <EatIcon
+                className={`new-form-type-svg ${
+                  isFoodSelected ? 'new-form-type-svg-active' : ''
+                }`}
+              />
+              <input
+                checked={isFoodSelected}
+                name="type"
+                onChange={this._onIsFoodChange}
+                type="checkbox"
+                value="food"
+              />
+            </label>
+            <label className="new-form-rating-radio-label">
+              <HeartIcon
+                className={`new-form-type-svg ${
+                  isExerciseSelected ? 'new-form-type-svg-active' : ''
+                }`}
+              />
+              <input
+                checked={isExerciseSelected}
+                name="type"
+                onChange={this._onIsExerciseChange}
+                type="checkbox"
+                value="drink"
+              />
+            </label>
+            <label className="new-form-rating-radio-label">
+              <SymptomIcon
+                className={`new-form-type-svg ${
+                  isSymptomSelected ? 'new-form-type-svg-active' : ''
+                }`}
+              />
+              <input
+                checked={isSymptomSelected}
+                name="type"
+                onChange={this._onIsSymptomChange}
+                type="checkbox"
+                value="drink"
+              />
+            </label>
+          </div>
+        </section>
+        <section className="new-form-section">
+          <button className="new-form-save-button">Show Summary</button>
+        </section>
+      </form>
     );
   }
 
-  _renderEntries() {
+  _renderSummary() {
     const { entries, error, isLoading, showSummary } = this.state;
 
     if (!showSummary) {
@@ -202,17 +194,25 @@ export default class Summary extends Component<Props, State> {
       return <LoadingSpinner />;
     } else if (entries !== null) {
       return (
-        <AutoSizer>
-          {({ height, width }) => (
-            <List
-              width={width}
-              height={height}
-              rowCount={entries.length}
-              rowHeight={54 /* 3rem */}
-              rowRenderer={this._rowRenderer}
-            />
-          )}
-        </AutoSizer>
+        <div className="summary-container">
+          <div className="summary-auto-sizer-wrapper">
+            <AutoSizer>
+              {({ height, width }) => (
+                <List
+                  width={width}
+                  height={height}
+                  rowCount={entries.length}
+                  rowHeight={54 /* 3rem */}
+                  rowRenderer={this._rowRenderer}
+                />
+              )}
+            </AutoSizer>
+          </div>
+          <hr />
+          <button className="new-form-save-button" onClick={this._onDownload}>
+            Download
+          </button>
+        </div>
       );
     } else {
       return null;
@@ -334,6 +334,9 @@ export default class Summary extends Component<Props, State> {
   _onDownload = (event: Event) => {
     event.preventDefault();
 
-    this.setState({ isLoading: true });
+    downloadData(
+      'personal-logger-export.txt',
+      JSON.stringify(this.state.entries)
+    );
   };
 }
