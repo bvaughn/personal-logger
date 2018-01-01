@@ -4,10 +4,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AutoSizer from 'react-virtualized/dist/es/AutoSizer';
 import List from 'react-virtualized/dist/es/List';
-import { LOCALE_DATE_OPTIONS, LOCALE_TIME_OPTIONS, ROUTES } from '../constants';
-import { CreateIcon, EnergyIcon, StomachIcon } from '../components/SvgIcons';
+import { ROUTES } from '../constants';
+import { CreateIcon } from '../components/SvgIcons';
 import LoadingSpinner from '../components/LoadingSpinner';
-import RatingIcon from '../components/RatingIcon';
+import SymptomEntry from '../components/SymptomEntry';
 
 import type { RowRendererParams, Symptom } from '../types';
 
@@ -46,39 +46,6 @@ export default class ListSymptoms extends Component<Props> {
     // $FlowFixMe We know this is not null in this case
     const symptom = this.props.symptoms[index];
 
-    return (
-      <Link
-        className="list-entry"
-        key={key}
-        params={{ id: symptom.id }}
-        style={style}
-        to={ROUTES.symptoms.editLink(symptom)}
-      >
-        <div className="list-entry-title">
-          <TypeIcon type={symptom.type} />
-          <RatingIcon
-            className="list-entry-rating-icon"
-            rating={symptom.rating}
-          />
-        </div>
-        <div className="list-entry-time">
-          {symptom.date.toLocaleTimeString('en-US', LOCALE_TIME_OPTIONS)}
-        </div>
-        <small className="list-entry-date">
-          ({symptom.date.toLocaleDateString('en-US', LOCALE_DATE_OPTIONS)})
-        </small>
-      </Link>
-    );
+    return <SymptomEntry key={key} style={style} symptom={symptom} />;
   };
 }
-
-const TypeIcon = ({ type }) => {
-  switch (type) {
-    case 'energy':
-      return <EnergyIcon className="list-entry-rating-icon" />;
-    case 'stomach':
-      return <StomachIcon className="list-entry-rating-icon" />;
-    default:
-      throw Error(`Invalid type "${type}" specified`);
-  }
-};

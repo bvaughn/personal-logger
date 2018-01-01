@@ -183,9 +183,9 @@ export default class DataStore {
     stopDate: Date | null,
     categories: Array<string>
   ): Promise<Array<Exercise | Food | Sleep | Symptom>> => {
-    let resolve, reject;
+    let resolve;
     const promise = new Promise((...args) => {
-      [resolve, reject] = args;
+      resolve = args[0];
     });
 
     // Convert to map for faster client-side filtering :(
@@ -198,31 +198,38 @@ export default class DataStore {
     const { uid } = this.user;
 
     // Firestore doesn't support logical OR,
-    // And we can't invert and use a logical AND because it also doesn't support "!=".
+    // Nor can we use an inverted logical AND because it doesn't support the "!=" operator.
     // So (for now) I'm being lazy and filtering on the client.
     // The alternative would be to run multiple queries and join them on the client.
+    // TODO Run separate queries and merge the result.
     // $FlowFixMe We know this is not null
-    this._entriesRef
-      .where('user', '==', uid)
-      .orderBy('date', 'desc')
-      .onSnapshot((snapshot: any) => {
-        const results = [];
+    let query = this._entriesRef.where('user', '==', uid);
 
-        snapshot.forEach(data => {
-          const id = data.id;
-          const record = {
-            ...data.data(),
-            id,
-          };
+    if (startDate !== null) {
+      query = query.where('date', '>=', startDate);
+    }
+    if (stopDate !== null) {
+      query = query.where('date', '<=', stopDate);
+    }
 
-          // Client-side category filtering :(
-          if (categoryMap[record['$category']]) {
-            results.push(record);
-          }
-        });
+    query.orderBy('date', 'desc').onSnapshot((snapshot: any) => {
+      const results = [];
 
-        resolve(results);
+      snapshot.forEach(data => {
+        const id = data.id;
+        const record = {
+          ...data.data(),
+          id,
+        };
+
+        // Client-side category filtering :(
+        if (categoryMap[record['$category']]) {
+          results.push(record);
+        }
       });
+
+      resolve(results);
+    });
 
     return promise;
   };

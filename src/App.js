@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import DataStore from './DataStore';
 import {
+  ConfigureSummaryRoute,
   EditExerciseRoute,
   EditFoodRoute,
   EditSleepRoute,
@@ -22,7 +23,7 @@ import {
   NewFoodRoute,
   NewSleepRoute,
   NewSymptomRoute,
-  SummaryRoute,
+  SummaryResultsRoute,
 } from './routes';
 import LoadingSpinner from './components/LoadingSpinner';
 import {
@@ -120,7 +121,7 @@ class App extends Component<Props, State> {
               <NavLink
                 activeClassName="header-title-active"
                 className="header-title"
-                to={ROUTES.summary}
+                to={ROUTES.summary.configure}
               >
                 Personal Log
               </NavLink>
@@ -170,16 +171,28 @@ class App extends Component<Props, State> {
             <Route
               exact
               path="/"
-              render={({ history }) => <Redirect to={ROUTES.summary} />}
+              render={({ history }) => (
+                <Redirect to={ROUTES.summary.configure} />
+              )}
             />
 
             <Route
               exact
-              path={ROUTES.summary}
+              path={ROUTES.summary.configure}
               render={({ history }) => (
-                <SummaryRoute
-                  history={history}
+                <ConfigureSummaryRoute history={history} />
+              )}
+            />
+
+            <Route
+              exact
+              path={ROUTES.summary.results}
+              render={({ history, match }) => (
+                <SummaryResultsRoute
+                  categories={match.params.categories}
                   runQuery={this._dataStore.runQuery}
+                  startDate={match.params.startDate}
+                  stopDate={match.params.stopDate}
                 />
               )}
             />

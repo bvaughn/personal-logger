@@ -1,5 +1,6 @@
 // @flow
 
+export { default as ConfigureSummaryRoute } from './ConfigureSummaryRoute';
 export { default as EditExerciseRoute } from './EditExerciseRoute';
 export { default as EditFoodRoute } from './EditFoodRoute';
 export { default as EditSleepRoute } from './EditSleepRoute';
@@ -13,4 +14,4 @@ export { default as NewExerciseRoute } from './NewExerciseRoute';
 export { default as NewFoodRoute } from './NewFoodRoute';
 export { default as NewSleepRoute } from './NewSleepRoute';
 export { default as NewSymptomRoute } from './NewSymptomRoute';
-export { default as SummaryRoute } from './SummaryRoute';
+export { default as SummaryResultsRoute } from './SummaryResultsRoute';

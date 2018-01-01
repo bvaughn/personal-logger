@@ -1,8 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import LoadingError from '../components/LoadingError';
-import LoadingSpinner from '../components/LoadingSpinner';
 import {
   DateStartIcon,
   DateStopIcon,
@@ -11,62 +9,36 @@ import {
   SleepIcon,
   SymptomIcon,
 } from '../components/SvgIcons';
-import { getDate, getDateString } from '../utils';
+import { ROUTES } from '../constants';
+import { getDateString } from '../utils';
 
-import type { Exercise, Food, Sleep, Symptom } from '../types';
+import type { History } from '../types';
 
 type Props = {
-  runQuery: (
-    startDate: Date | null,
-    stopDate: Date | null,
-    categories: Array<string>
-  ) => Promise<Array<Exercise | Food | Sleep | Symptom>>,
+  history: History,
 };
 
-// TODO Split this out into 2 states
-// Move fiter params into the URL
 type State = {
-  error: Error | null,
-  isLoading: boolean,
   isExerciseSelected: boolean,
   isFoodSelected: boolean,
   isSleepSelected: boolean,
   isSymptomSelected: boolean,
-  summary: Array<Exercise | Food | Sleep | Symptom> | null,
   startDate: string | null,
   stopDate: string | null,
 };
 
 export default class Summary extends Component<Props, State> {
   state: State = {
-    error: null,
-    isLoading: false,
     isExerciseSelected: true,
     isFoodSelected: true,
     isSleepSelected: true,
     isSymptomSelected: true,
     startDate: null,
     stopDate: getDateString(new Date()),
-    summary: null,
   };
 
   render() {
-    const { error, isLoading, summary } = this.state;
-
-    if (error) {
-      return <LoadingError />;
-    } else if (isLoading) {
-      return <LoadingSpinner />;
-    } else if (summary === null) {
-      return this._renderForm();
-    } else {
-      return this._renderSummary();
-    }
-  }
-
-  _renderForm() {
     const {
-      isLoading,
       isExerciseSelected,
       isFoodSelected,
       isSleepSelected,
@@ -78,7 +50,6 @@ export default class Summary extends Component<Props, State> {
     return (
       <form
         className="new-form"
-        disabled={isLoading}
         onSubmit={this._onSubmit}
         autocapitalize="none"
       >
@@ -90,7 +61,6 @@ export default class Summary extends Component<Props, State> {
             <DateStartIcon className="new-form-section-header-svg" />
             <input
               className="new-form-date-time-input"
-              disabled={isLoading}
               name="startDate"
               onChange={this._onStartDateChange}
               type="date"
@@ -103,7 +73,6 @@ export default class Summary extends Component<Props, State> {
             <DateStopIcon className="new-form-section-header-svg" />
             <input
               className="new-form-date-time-input"
-              disabled={isLoading}
               name="stopDate"
               onChange={this._onStopDateChange}
               type="date"
@@ -124,7 +93,6 @@ export default class Summary extends Component<Props, State> {
               />
               <input
                 checked={isSleepSelected}
-                disabled={isLoading}
                 name="type"
                 onChange={this._onIsSleepChange}
                 type="checkbox"
@@ -139,7 +107,6 @@ export default class Summary extends Component<Props, State> {
               />
               <input
                 checked={isFoodSelected}
-                disabled={isLoading}
                 name="type"
                 onChange={this._onIsFoodChange}
                 type="checkbox"
@@ -154,7 +121,6 @@ export default class Summary extends Component<Props, State> {
               />
               <input
                 checked={isExerciseSelected}
-                disabled={isLoading}
                 name="type"
                 onChange={this._onIsExerciseChange}
                 type="checkbox"
@@ -169,7 +135,6 @@ export default class Summary extends Component<Props, State> {
               />
               <input
                 checked={isSymptomSelected}
-                disabled={isLoading}
                 name="type"
                 onChange={this._onIsSymptomChange}
                 type="checkbox"
@@ -179,18 +144,10 @@ export default class Summary extends Component<Props, State> {
           </div>
         </section>
         <section className="new-form-section">
-          <button className="new-form-save-button" disabled={isLoading}>
-            Submit
-          </button>
+          <button className="new-form-save-button">Submit</button>
         </section>
       </form>
     );
-  }
-
-  _renderSummary() {
-    const { summary } = this.state;
-
-    return <div>TODO</div>;
   }
 
   _onIsExerciseChange = (event: SyntheticInputEvent<HTMLInputElement>) =>
@@ -226,48 +183,31 @@ export default class Summary extends Component<Props, State> {
   _onSubmit = (event: Event) => {
     event.preventDefault();
 
-    this.setState(
-      {
-        isLoading: true,
-      },
-      async () => {
-        const {
-          isExerciseSelected,
-          isFoodSelected,
-          isSleepSelected,
-          isSymptomSelected,
-          startDate,
-          stopDate,
-        } = this.state;
+    const {
+      isExerciseSelected,
+      isFoodSelected,
+      isSleepSelected,
+      isSymptomSelected,
+      startDate,
+      stopDate,
+    } = this.state;
 
-        try {
-          const categories = [];
-          if (isExerciseSelected) {
-            categories.push('exercise');
-          }
-          if (isFoodSelected) {
-            categories.push('food');
-          }
-          if (isSleepSelected) {
-            categories.push('sleep');
-          }
-          if (isSymptomSelected) {
-            categories.push('symptom');
-          }
+    const categories = [];
+    if (isExerciseSelected) {
+      categories.push('exercise');
+    }
+    if (isFoodSelected) {
+      categories.push('food');
+    }
+    if (isSleepSelected) {
+      categories.push('sleep');
+    }
+    if (isSymptomSelected) {
+      categories.push('symptom');
+    }
 
-          const summary = await this.props.runQuery(
-            startDate ? getDate(startDate) : null,
-            stopDate ? getDate(stopDate) : null,
-            categories
-          );
-
-          this.setState({ isLoading: false, summary });
-        } catch (error) {
-          console.error(error);
-
-          this.setState({ isLoading: false, error });
-        }
-      }
+    this.props.history.push(
+      ROUTES.summary.resultsLink(startDate, stopDate, categories)
     );
   };
 }

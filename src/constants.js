@@ -21,7 +21,16 @@ export const ROUTES = {
     new: '/sleep/new',
     editLink: (sleep: Sleep) => sleep.id && `/sleep/edit/${sleep.id}`,
   },
-  summary: '/summary',
+  summary: {
+    configure: '/query',
+    results: '/summary/:startDate?/:stopDate?/:categories',
+    resultsLink: (
+      startDate: string | null,
+      stopDate: string | null,
+      categories: Array<string>
+    ) =>
+      `/summary/${startDate || '-'}/${stopDate || '-'}/${categories.join(',')}`,
+  },
   symptoms: {
     edit: '/symptoms/edit/:id',
     list: '/symptoms',

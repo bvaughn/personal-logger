@@ -3,6 +3,7 @@
 export type AuthenticationType = 'github' | 'google' | 'twitter';
 
 export type Exercise = {
+  $category?: string,
   date: Date,
   distance: number,
   duration: number,
@@ -13,6 +14,7 @@ export type Exercise = {
 };
 
 export type Food = {
+  $category?: string,
   attributes: {
     alcoholic: boolean,
     raw: boolean,
@@ -37,6 +39,7 @@ export type RowRendererParams = {
 };
 
 export type Sleep = {
+  $category?: string,
   awakenings: number,
   date: Date,
   duration: number,
@@ -46,6 +49,7 @@ export type Sleep = {
 };
 
 export type Symptom = {
+  $category?: string,
   date: Date,
   id?: string,
   notes: string,
