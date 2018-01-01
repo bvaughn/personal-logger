@@ -90,7 +90,7 @@ export default class Summary extends Component<Props, State> {
       <form
         className="new-form"
         onSubmit={this._onSubmit}
-        autocapitalize="none"
+        autoCapitalize="none"
       >
         <section className="new-form-section">
           <div className="new-form-section-header">
