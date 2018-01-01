@@ -19,10 +19,12 @@ type Props = {
   runQuery: (
     startDate: Date | null,
     stopDate: Date | null,
-    types: Array<string>
+    categories: Array<string>
   ) => Promise<Array<Exercise | Food | Sleep | Symptom>>,
 };
 
+// TODO Split this out into 2 states
+// Move fiter params into the URL
 type State = {
   error: Error | null,
   isLoading: boolean,
@@ -72,11 +74,6 @@ export default class Summary extends Component<Props, State> {
       startDate,
       stopDate,
     } = this.state;
-
-    // TODO Show query controls:
-    // Date range pickers
-    // Which type of entries to include (checkboxes)
-    // Then JIT query ALL record types (rather than joining)
 
     return (
       <form
@@ -191,6 +188,8 @@ export default class Summary extends Component<Props, State> {
   }
 
   _renderSummary() {
+    const { summary } = this.state;
+
     return <div>TODO</div>;
   }
 
@@ -242,28 +241,30 @@ export default class Summary extends Component<Props, State> {
         } = this.state;
 
         try {
-          const types = [];
+          const categories = [];
           if (isExerciseSelected) {
-            types.push('exercise');
+            categories.push('exercise');
           }
           if (isFoodSelected) {
-            types.push('food');
+            categories.push('food');
           }
           if (isSleepSelected) {
-            types.push('sleep');
+            categories.push('sleep');
           }
           if (isSymptomSelected) {
-            types.push('symptom');
+            categories.push('symptom');
           }
 
           const summary = await this.props.runQuery(
             startDate ? getDate(startDate) : null,
             stopDate ? getDate(stopDate) : null,
-            types
+            categories
           );
 
           this.setState({ isLoading: false, summary });
         } catch (error) {
+          console.error(error);
+
           this.setState({ isLoading: false, error });
         }
       }
