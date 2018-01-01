@@ -176,5 +176,13 @@ export default class DataStore {
     this.auth.signInWithRedirect(provider);
   };
 
+  runQuery = (
+    startDate: Date | null,
+    stopDate: Date | null,
+    types: Array<string>
+  ): Promise<Array<Exercise | Food | Sleep | Symptom>> => {
+    return Promise.resolve([]); // TODO
+  };
+
   signout = () => firebase.auth().signOut();
 }

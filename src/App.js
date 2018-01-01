@@ -22,6 +22,7 @@ import {
   NewFoodRoute,
   NewSleepRoute,
   NewSymptomRoute,
+  SummaryRoute,
 } from './routes';
 import LoadingSpinner from './components/LoadingSpinner';
 import {
@@ -116,7 +117,13 @@ class App extends Component<Props, State> {
                 />
               </div>
 
-              <div className="header-title">Personal Log</div>
+              <NavLink
+                activeClassName="header-title-active"
+                className="header-title"
+                to={ROUTES.summary}
+              >
+                Personal Log
+              </NavLink>
 
               <div
                 className="header-logout-button"
@@ -163,7 +170,18 @@ class App extends Component<Props, State> {
             <Route
               exact
               path="/"
-              render={({ history }) => <Redirect to={ROUTES.sleep.list} />}
+              render={({ history }) => <Redirect to={ROUTES.summary} />}
+            />
+
+            <Route
+              exact
+              path={ROUTES.summary}
+              render={({ history }) => (
+                <SummaryRoute
+                  history={history}
+                  runQuery={this._dataStore.runQuery}
+                />
+              )}
             />
 
             <Route

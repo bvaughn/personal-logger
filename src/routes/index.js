@@ -13,3 +13,4 @@ export { default as NewExerciseRoute } from './NewExerciseRoute';
 export { default as NewFoodRoute } from './NewFoodRoute';
 export { default as NewSleepRoute } from './NewSleepRoute';
 export { default as NewSymptomRoute } from './NewSymptomRoute';
+export { default as SummaryRoute } from './SummaryRoute';

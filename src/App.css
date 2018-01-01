@@ -84,6 +84,12 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  color: #78909c;
+  transition: color 500ms ease-in-out;
+}
+
+.header-title-active {
+  color: #ffffff;
 }
 
 .header-logout-button {

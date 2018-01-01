@@ -82,6 +82,48 @@ export const DateIcon = props => (
   </svg>
 );
 
+export const DateStartIcon = props => (
+  <svg {...props} viewBox="0 0 168 176">
+    <circle style={{ fill: '#dd2c00' }} cx="20" cy="36" r="20" />
+    <circle style={{ fill: '#dd2c00' }} cx="148" cy="36" r="20" />
+    <rect style={{ fill: '#dd2c00' }} x="20" y="16" width="128" height="40" />
+    <rect style={{ fill: '#dd2c00' }} y="35" width="168" height="33" />
+    <circle style={{ fill: '#e0e0e0' }} cx="20" cy="156" r="20" />
+    <circle style={{ fill: '#e0e0e0' }} cx="148" cy="156" r="20" />
+    <rect style={{ fill: '#e0e0e0' }} y="68" width="168" height="87.5" />
+    <rect style={{ fill: '#e0e0e0' }} x="20" y="154" width="128" height="22" />
+    <circle style={{ fill: '#a30000' }} cx="42" cy="29" r="15" />
+    <circle style={{ fill: '#a30000' }} cx="126" cy="29" r="15" />
+    <circle style={{ fill: '#aeaeae' }} cx="42" cy="10" r="10" />
+    <circle style={{ fill: '#aeaeae' }} cx="126" cy="10" r="10" />
+    <circle style={{ fill: '#aeaeae' }} cx="42" cy="29" r="10" />
+    <circle style={{ fill: '#aeaeae' }} cx="126" cy="29" r="10" />
+    <polyline style={{ fill: '#aeaeae' }} points="32 120 72 89 72 151" />
+    <polyline style={{ fill: '#707070' }} points="95 151 95 89 135 120" />
+  </svg>
+);
+
+export const DateStopIcon = props => (
+  <svg {...props} viewBox="0 0 168 176">
+    <circle style={{ fill: '#dd2c00' }} cx="20" cy="36" r="20" />
+    <circle style={{ fill: '#dd2c00' }} cx="148" cy="36" r="20" />
+    <rect style={{ fill: '#dd2c00' }} x="20" y="16" width="128" height="40" />
+    <rect style={{ fill: '#dd2c00' }} y="35" width="168" height="33" />
+    <circle style={{ fill: '#e0e0e0' }} cx="20" cy="156" r="20" />
+    <circle style={{ fill: '#e0e0e0' }} cx="148" cy="156" r="20" />
+    <rect style={{ fill: '#e0e0e0' }} y="68" width="168" height="87.5" />
+    <rect style={{ fill: '#e0e0e0' }} x="20" y="154" width="128" height="22" />
+    <circle style={{ fill: '#a30000' }} cx="42" cy="29" r="15" />
+    <circle style={{ fill: '#a30000' }} cx="126" cy="29" r="15" />
+    <circle style={{ fill: '#aeaeae' }} cx="42" cy="10" r="10" />
+    <circle style={{ fill: '#aeaeae' }} cx="126" cy="10" r="10" />
+    <circle style={{ fill: '#aeaeae' }} cx="42" cy="29" r="10" />
+    <circle style={{ fill: '#aeaeae' }} cx="126" cy="29" r="10" />
+    <polyline style={{ fill: '#707070' }} points="32 120 72 89 72 151" />
+    <polyline style={{ fill: '#aeaeae' }} points="95 151 95 89 135 120" />
+  </svg>
+);
+
 export const DrinkIcon = props => (
   <svg {...props} viewBox="0 0 97 107">
     <polygon
