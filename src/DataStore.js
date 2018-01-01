@@ -43,7 +43,7 @@ class Store<T: Record> {
       .where('$category', '==', category)
       .where('user', '==', uid)
       .orderBy('date', 'desc')
-      .limit(100)
+      .limit(40)
       .onSnapshot(this._onSnapshot);
   }
 
