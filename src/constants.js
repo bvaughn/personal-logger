@@ -21,6 +21,7 @@ export const ROUTES = {
     new: '/sleep/new',
     editLink: (sleep: Sleep) => sleep.id && `/sleep/edit/${sleep.id}`,
   },
+  summary: '/summary',
   symptoms: {
     edit: '/symptoms/edit/:id',
     list: '/symptoms',

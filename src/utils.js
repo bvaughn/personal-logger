@@ -1,25 +1,45 @@
+// @flow
+
+export function downloadData(fileName: string, text: string): void {
+  var element = document.createElement('a');
+  element.setAttribute(
+    'href',
+    'data:text/plain;charset=utf-8,' + encodeURIComponent(text)
+  );
+  element.setAttribute('download', fileName);
+  element.style.display = 'none';
+
+  // $FlowFixMe
+  document.body.appendChild(element);
+
+  element.click();
+
+  // $FlowFixMe
+  document.body.removeChild(element);
+}
+
 export function getDate(date: string, time?: string): Date {
-  let hour = '00';
-  let minute = '00';
-  let second = '00';
+  let hour = 0;
+  let minute = 0;
+  let second = 0;
 
   if (time) {
     const pieces = time.split(':');
 
-    hour = pieces[0];
-    minute = pieces[1];
+    hour = parseInt(pieces[0], 10);
+    minute = parseInt(pieces[1], 10);
   }
 
   const pieces = date.split('-');
-  const year = pieces[0];
-  const month = pieces[1] - 1;
-  const day = pieces[2];
+  const year = parseInt(pieces[0], 10);
+  const month = parseInt(pieces[1], 10) - 1;
+  const day = parseInt(pieces[2], 10);
 
   return new Date(year, month, day, hour, minute, second);
 }
 
 export function getDateString(date: Date): string {
-  let year = date.getUTCFullYear();
+  let year = date.getFullYear();
 
   let month = date.getMonth() + 1;
   if (month < 10) {

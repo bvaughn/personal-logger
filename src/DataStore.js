@@ -43,7 +43,7 @@ class Store<T: Record> {
       .where('$category', '==', category)
       .where('user', '==', uid)
       .orderBy('date', 'desc')
-      .limit(100)
+      .limit(40)
       .onSnapshot(this._onSnapshot);
   }
 
@@ -111,6 +111,7 @@ export default class DataStore {
   user: ?User = null;
 
   _auth = null;
+  _entriesRef = null;
 
   constructor() {
     firebase.initializeApp({
@@ -134,16 +135,17 @@ export default class DataStore {
       this.auth.onAuthStateChanged(user => {
         if (user) {
           const db = firebase.firestore();
-          const entriesRef = db.collection('entries');
+
+          this._entriesRef = db.collection('entries');
 
           this.user = user;
 
           const { uid } = user;
 
-          this.exercise = new Store(entriesRef, 'exercise', uid);
-          this.foods = new Store(entriesRef, 'food', uid);
-          this.sleep = new Store(entriesRef, 'sleep', uid);
-          this.symptoms = new Store(entriesRef, 'symptom', uid);
+          this.exercise = new Store(this._entriesRef, 'exercise', uid);
+          this.foods = new Store(this._entriesRef, 'food', uid);
+          this.sleep = new Store(this._entriesRef, 'sleep', uid);
+          this.symptoms = new Store(this._entriesRef, 'symptom', uid);
 
           resolve(user);
         } else {
@@ -174,6 +176,62 @@ export default class DataStore {
     }
 
     this.auth.signInWithRedirect(provider);
+  };
+
+  runQuery = (
+    startDate: Date | null,
+    stopDate: Date | null,
+    categories: Array<string>
+  ): Promise<Array<Exercise | Food | Sleep | Symptom>> => {
+    let resolve;
+    const promise = new Promise((...args) => {
+      resolve = args[0];
+    });
+
+    // Convert to map for faster client-side filtering :(
+    const categoryMap = categories.reduce((map, category) => {
+      map[category] = true;
+      return map;
+    }, {});
+
+    // $FlowFixMe We know this is not null
+    const { uid } = this.user;
+
+    // Firestore doesn't support logical OR,
+    // Nor can we use an inverted logical AND because it doesn't support the "!=" operator.
+    // So (for now) I'm being lazy and filtering on the client.
+    // The alternative would be to run multiple queries and join them on the client.
+    // TODO Run separate queries and merge the result.
+    // $FlowFixMe We know this is not null
+    let query = this._entriesRef.where('user', '==', uid);
+
+    if (startDate !== null) {
+      query = query.where('date', '>=', startDate);
+    }
+    if (stopDate !== null) {
+      query = query.where('date', '<=', stopDate);
+    }
+
+    query.orderBy('date', 'desc').onSnapshot((snapshot: any) => {
+      const results = [];
+
+      snapshot.forEach(data => {
+        const id = data.id;
+        const record = {
+          ...data.data(),
+          id,
+        };
+
+        // Client-side category filtering :(
+        if (categoryMap[record['$category']]) {
+          results.push(record);
+        }
+      });
+
+      resolve(results);
+    });
+
+    return promise;
   };
 
   signout = () => firebase.auth().signOut();
