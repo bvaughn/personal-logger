@@ -46,7 +46,7 @@ export default class NewFoodDrink extends Component<Props, State> {
         className="new-form"
         disabled={isSaving}
         onSubmit={this._onSubmit}
-        autocapitalize="none"
+        autoCapitalize="none"
       >
         <section className="new-form-section">
           <div className="new-form-section-header">
