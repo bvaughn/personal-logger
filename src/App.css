@@ -288,21 +288,6 @@
   margin-right: 0.5rem;
 }
 
-.loading-error,
-.loading-spinner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-.loading-error-svg,
-.loading-spinner-svg {
-  width: 5rem;
-  height: 5rem;
-}
-
 .sign-in-screen {
   height: 100%;
   display: flex;
