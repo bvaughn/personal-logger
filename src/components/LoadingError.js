@@ -1,8 +1,8 @@
 import React from 'react';
 import { css } from 'glamor';
-import { LoadingIcon } from '../components/SvgIcons';
+import { NotFoundIcon } from '../components/SvgIcons';
 
-export default function LoadingSpinner() {
+export default function LoadingError() {
   return (
     <div
       {...css({
@@ -13,7 +13,7 @@ export default function LoadingSpinner() {
         height: '100%',
       })}
     >
-      <LoadingIcon {...css({ width: '5rem', height: '5rem' })} />
+      <NotFoundIcon {...css({ width: '5rem', height: '5rem' })} />
     </div>
   );
 }

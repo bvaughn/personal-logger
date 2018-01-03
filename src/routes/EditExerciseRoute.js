@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import EditExerciseForm from '../components/EditExerciseForm';
 import LoadingSpinner from '../components/LoadingSpinner';
+import LoadingError from '../components/LoadingError';
 import { ROUTES } from '../constants';
 
 import type { Exercise, History } from '../types';
@@ -35,7 +36,7 @@ export default class EditExercise extends Component<Props, State> {
     const { error, exercise } = this.state;
 
     if (error !== null) {
-      return <LoadingSpinner error={true} />;
+      return <LoadingError />;
     } else if (exercise !== null) {
       return (
         <EditExerciseForm

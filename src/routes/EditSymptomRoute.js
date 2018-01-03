@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import EditSymptomForm from '../components/EditSymptomForm';
 import LoadingSpinner from '../components/LoadingSpinner';
+import LoadingError from '../components/LoadingError';
 import { ROUTES } from '../constants';
 
 import type { History, Symptom } from '../types';
@@ -35,7 +36,7 @@ export default class EditSymptom extends Component<Props, State> {
     const { error, symptom } = this.state;
 
     if (error !== null) {
-      return <LoadingSpinner error={true} />;
+      return <LoadingError />;
     } else if (symptom !== null) {
       return (
         <EditSymptomForm

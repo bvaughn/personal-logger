@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import EditSleepForm from '../components/EditSleepForm';
 import LoadingSpinner from '../components/LoadingSpinner';
+import LoadingError from '../components/LoadingError';
 import { ROUTES } from '../constants';
 
 import type { History, Sleep } from '../types';
@@ -35,7 +36,7 @@ export default class EditSleep extends Component<Props, State> {
     const { error, sleep } = this.state;
 
     if (error !== null) {
-      return <LoadingSpinner error={true} />;
+      return <LoadingError />;
     } else if (sleep !== null) {
       return (
         <EditSleepForm

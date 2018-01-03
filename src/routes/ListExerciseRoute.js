@@ -1,12 +1,11 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import AutoSizer from 'react-virtualized/dist/es/AutoSizer';
 import List from 'react-virtualized/dist/es/List';
 import { ROUTES } from '../constants';
 import ExerciseEntry from '../components/ExerciseEntry';
-import CreateLinkIcon from '../components/CreateLinkIcon';
+import CreateLink from '../components/CreateLink';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 import type { RowRendererParams, Exercise } from '../types';
@@ -34,10 +33,7 @@ export default class ListExercise extends Component<Props> {
             />
           )}
         </AutoSizer>,
-
-        <Link key="Link" to={ROUTES.exercise.new}>
-          <CreateLinkIcon />
-        </Link>,
+        <CreateLink key="Link" to={ROUTES.exercise.new} />,
       ];
     }
   }

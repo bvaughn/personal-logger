@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import EditFoodForm from '../components/EditFoodForm';
 import LoadingSpinner from '../components/LoadingSpinner';
+import LoadingError from '../components/LoadingError';
 import { ROUTES } from '../constants';
 
 import type { Food, History } from '../types';
@@ -35,7 +36,7 @@ export default class EditFood extends Component<Props, State> {
     const { error, food } = this.state;
 
     if (error !== null) {
-      return <LoadingSpinner error={true} />;
+      return <LoadingError />;
     } else if (food !== null) {
       return (
         <EditFoodForm

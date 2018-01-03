@@ -1,9 +1,11 @@
 import React from 'react';
 import { css } from 'glamor';
+import { Link } from 'react-router-dom';
 import { CreateIcon } from './SvgIcons';
 
-const CreateLinkIcon = props => (
-  <div
+const CreateLink = ({ to }) => (
+  <Link
+    to={to}
     {...css({
       position: 'absolute',
       bottom: '1rem',
@@ -16,7 +18,7 @@ const CreateLinkIcon = props => (
     })}
   >
     <CreateIcon />
-  </div>
+  </Link>
 );
 
-export default CreateLinkIcon;
+export default CreateLink;
