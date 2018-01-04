@@ -122,17 +122,6 @@
   fill: currentColor;
 }
 
-.create-link {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  width: 3rem;
-  height: 3rem;
-  padding: 0.75rem;
-  border-radius: 3rem;
-  background: #eceff1;
-}
-
 .new-form {
 }
 
@@ -303,21 +292,6 @@
   width: 1.5rem;
   height: 1.5rem;
   margin-right: 0.5rem;
-}
-
-.loading-error,
-.loading-spinner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-.loading-error-svg,
-.loading-spinner-svg {
-  width: 5rem;
-  height: 5rem;
 }
 
 .sign-in-screen {

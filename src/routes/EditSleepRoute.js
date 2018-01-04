@@ -2,8 +2,8 @@
 
 import React, { Component } from 'react';
 import EditSleepForm from '../components/EditSleepForm';
-import LoadingError from '../components/LoadingError';
 import LoadingSpinner from '../components/LoadingSpinner';
+import LoadingError from '../components/LoadingError';
 import { ROUTES } from '../constants';
 
 import type { History, Sleep } from '../types';

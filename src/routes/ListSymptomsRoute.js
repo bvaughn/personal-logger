@@ -1,11 +1,10 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import AutoSizer from 'react-virtualized/dist/es/AutoSizer';
 import List from 'react-virtualized/dist/es/List';
 import { ROUTES } from '../constants';
-import { CreateIcon } from '../components/SvgIcons';
+import CreateLink from '../components/CreateLink';
 import LoadingSpinner from '../components/LoadingSpinner';
 import SymptomEntry from '../components/SymptomEntry';
 
@@ -34,10 +33,7 @@ export default class ListSymptoms extends Component<Props> {
             />
           )}
         </AutoSizer>,
-
-        <Link className="create-link" key="Link" to={ROUTES.symptoms.new}>
-          <CreateIcon className="create-link-svg" />
-        </Link>,
+        <CreateLink key="Link" to={ROUTES.symptoms.new} />,
       ];
     }
   }
