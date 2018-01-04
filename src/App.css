@@ -287,11 +287,17 @@
 .list-entry-date {
   flex: 0 0 70px;
 }
-.list-entry-rating-icon {
+.flex-icon-left {
   flex: 0 0 auto;
   width: 1.5rem;
   height: 1.5rem;
   margin-right: 0.5rem;
+}
+.flex-icon-right {
+  flex: 0 0 auto;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: 0.5rem;
 }
 
 .sign-in-screen {

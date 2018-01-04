@@ -429,6 +429,24 @@ export const SleepIcon = props => (
   </svg>
 );
 
+export const SleepingIcon = props => (
+  <svg {...props} viewBox="0 0 55 55">
+    <circle style={{ fill: '#ffdd56' }} cx="27" cy="27" r="27" />
+    <path
+      style={{ fill: '#ca2' }}
+      d="M17,32c-3,0-5-2-7-5a1,1,0,0,1,0-1h1c2,3,4,5,6,5s4-2,6-5h1a1,1,0,0,1,0,1C21,30,19,32,17,32Z"
+    />
+    <path
+      style={{ fill: '#ca2' }}
+      d="M39,32c-3,0-5-2-7-5a1,1,0,0,1,0-1h1c2,3,4,5,6,5s4-2,6-5h1a1,1,0,0,1,0,1C43,30,41,32,39,32Z"
+    />
+    <circle style={{ fill: '#a80' }} cx="27" cy="42" r="3" />
+    <path style={{ fill: '#a80' }} d="M33,13l-4,6h4v2H24l4-6H24V13h9Z" />
+    <path style={{ fill: '#a80' }} d="M55,1,51,7h4v2H46l4-6H46V1h9Z" />
+    <path style={{ fill: '#a80' }} d="M44,7l-4,6h4v2H35l4-6H35V7h9Z" />
+  </svg>
+);
+
 export const StomachIcon = props => (
   <svg {...props} viewBox="0 0 87 88">
     <path

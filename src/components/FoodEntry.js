@@ -37,9 +37,9 @@ export default FoodEntry;
 const TypeIcon = ({ type }) => {
   switch (type) {
     case 'drink':
-      return <DrinkIcon className="list-entry-rating-icon" />;
+      return <DrinkIcon className="flex-icon-left" />;
     case 'food':
-      return <FoodIcon className="list-entry-rating-icon" />;
+      return <FoodIcon className="flex-icon-left" />;
     default:
       throw Error(`Invalid type "${type}" specified`);
   }

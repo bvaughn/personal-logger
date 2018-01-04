@@ -48,9 +48,9 @@ const Summary = ({ distance, duration, type }) => {
 const TypeIcon = ({ type }) => {
   switch (type) {
     case 'cardio':
-      return <HeartIcon className="list-entry-rating-icon" />;
+      return <HeartIcon className="flex-icon-left" />;
     case 'strength':
-      return <StrengthIcon className="list-entry-rating-icon" />;
+      return <StrengthIcon className="flex-icon-left" />;
     default:
       throw Error(`Invalid type "${type}" specified`);
   }

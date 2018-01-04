@@ -22,7 +22,7 @@ const SymptomEntry = ({ symptom, style }: Props) => (
   >
     <div className="list-entry-title">
       <TypeIcon type={symptom.type} />
-      <RatingIcon className="list-entry-rating-icon" rating={symptom.rating} />
+      <RatingIcon className="flex-icon-left" rating={symptom.rating} />
     </div>
     <div className="list-entry-time">
       {symptom.date.toLocaleTimeString('en-US', LOCALE_TIME_OPTIONS)}
@@ -38,9 +38,9 @@ export default SymptomEntry;
 const TypeIcon = ({ type }) => {
   switch (type) {
     case 'energy':
-      return <EnergyIcon className="list-entry-rating-icon" />;
+      return <EnergyIcon className="flex-icon-left" />;
     case 'stomach':
-      return <StomachIcon className="list-entry-rating-icon" />;
+      return <StomachIcon className="flex-icon-left" />;
     default:
       throw Error(`Invalid type "${type}" specified`);
   }
