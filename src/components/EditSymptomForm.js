@@ -11,6 +11,7 @@ import {
 } from '../components/SvgIcons';
 import RatingIcon from '../components/RatingIcon';
 import FormSectionHeader from '../components/form/FormSectionHeader';
+import FormButton from '../components/form/FormButton';
 import { getDate, getDateString, getTimeString } from '../utils';
 
 import type { History, Symptom } from '../types';
@@ -157,26 +158,26 @@ export default class NewSymptom extends Component<Props, State> {
           </FormSectionHeader>
         </section>
         <section className="new-form-section">
-          <button className="new-form-save-button" disabled={isSaving}>
+          <FormButton className="new-form-save-button" disabled={isSaving}>
             Save
-          </button>
+          </FormButton>
         </section>
         {!!deleteFn && (
           <section className="new-form-section">
-            <button
+            <FormButton
               className="new-form-delete-button"
               disabled={isSaving}
               onClick={this._onDelete}
             >
               {hasConfirmed ? 'Are you sure?' : 'Delete'}
-            </button>
+            </FormButton>
           </section>
         )}
         <section className="new-form-section">
           <NavLink to={ROUTES.symptoms.list}>
-            <button className="new-form-cancel-button" disabled={isSaving}>
+            <FormButton className="new-form-cancel-button" disabled={isSaving}>
               Cancel
-            </button>
+            </FormButton>
           </NavLink>
         </section>
       </form>

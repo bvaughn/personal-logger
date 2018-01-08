@@ -10,6 +10,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import SleepEntry from '../components/SleepEntry';
 import SymptomEntry from '../components/SymptomEntry';
 import FormSectionHeader from '../components/form/FormSectionHeader';
+import FormButton from '../components/form/FormButton';
 import {
   DateStartIcon,
   DateStopIcon,
@@ -178,7 +179,7 @@ export default class Summary extends Component<Props, State> {
           </FormSectionHeader>
         </section>
         <section className="new-form-section">
-          <button className="new-form-save-button">Show Summary</button>
+          <FormButton className="new-form-save-button">Show Summary</FormButton>
         </section>
       </form>
     );
@@ -210,9 +211,12 @@ export default class Summary extends Component<Props, State> {
             </AutoSizer>
           </div>
           <hr />
-          <button className="new-form-save-button" onClick={this._onDownload}>
+          <FormButton
+            className="new-form-save-button"
+            onClick={this._onDownload}
+          >
             Download
-          </button>
+          </FormButton>
         </div>
       );
     } else {

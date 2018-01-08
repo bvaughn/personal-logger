@@ -129,33 +129,6 @@
   margin-bottom: 1rem;
 }
 
-.new-form-save-button {
-  width: 100%;
-  background-color: #00c853;
-  color: #fff;
-  -webkit-appearance: none;
-  border: none;
-  padding: 0.5rem 1rem;
-}
-
-.new-form-delete-button {
-  width: 100%;
-  background-color: #dd2c00;
-  color: #fff;
-  -webkit-appearance: none;
-  border: none;
-  padding: 0.5rem 1rem;
-}
-
-.new-form-cancel-button {
-  width: 100%;
-  background-color: #ddd;
-  color: #333;
-  -webkit-appearance: none;
-  border: none;
-  padding: 0.5rem 1rem;
-}
-
 .nowrap {
   overflow: hidden;
   text-overflow: ellipsis;
