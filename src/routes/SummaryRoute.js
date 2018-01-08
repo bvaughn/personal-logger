@@ -9,6 +9,7 @@ import LoadingError from '../components/LoadingError';
 import LoadingSpinner from '../components/LoadingSpinner';
 import SleepEntry from '../components/SleepEntry';
 import SymptomEntry from '../components/SymptomEntry';
+import FormSectionHeader from '../components/form/FormSectionHeader';
 import {
   DateStartIcon,
   DateStopIcon,
@@ -93,7 +94,7 @@ export default class Summary extends Component<Props, State> {
         autoCapitalize="none"
       >
         <section className="new-form-section">
-          <div className="new-form-section-header">
+          <FormSectionHeader>
             <DateStartIcon className="new-form-section-header-svg" />
             <input
               className="new-form-date-time-input"
@@ -102,10 +103,10 @@ export default class Summary extends Component<Props, State> {
               type="date"
               value={startDate || ''}
             />
-          </div>
+          </FormSectionHeader>
         </section>
         <section className="new-form-section">
-          <div className="new-form-section-header">
+          <FormSectionHeader>
             <DateStopIcon className="new-form-section-header-svg" />
             <input
               className="new-form-date-time-input"
@@ -114,10 +115,10 @@ export default class Summary extends Component<Props, State> {
               type="date"
               value={stopDate || ''}
             />
-          </div>
+          </FormSectionHeader>
         </section>
         <section className="new-form-section">
-          <div className="new-form-section-header new-form-section-header-types">
+          <FormSectionHeader className="new-form-section-header-types">
             <label className="new-form-rating-radio-label">
               <SleepIcon
                 className={`new-form-type-svg ${
@@ -174,7 +175,7 @@ export default class Summary extends Component<Props, State> {
                 value="drink"
               />
             </label>
-          </div>
+          </FormSectionHeader>
         </section>
         <section className="new-form-section">
           <button className="new-form-save-button">Show Summary</button>

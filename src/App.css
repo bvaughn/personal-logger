@@ -129,79 +129,6 @@
   margin-bottom: 1rem;
 }
 
-.new-form-section-header {
-  font-weight: bold;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-.new-form-section-header > * {
-  margin-right: 1rem;
-}
-.new-form-section-header > *:last-child {
-  margin-right: 0;
-}
-
-.new-form-section-header-types {
-  align-items: flex-start;
-  justify-content: space-around;
-}
-
-.new-form-section-header-svg {
-  width: 1.25rem;
-  height: 1.25rem;
-  flex: 0 0 1.25rem;
-}
-
-.new-form-section-header-spacer {
-  flex: 1 0 auto;
-}
-
-.new-form-date-time-input {
-  flex: 1 1 auto;
-}
-
-.new-form-type-svg {
-  width: 3rem;
-  height: 3rem;
-  margin: 0.5rem 0;
-  filter: grayscale(100%);
-  transition: filter 500ms ease-in-out;
-}
-
-.new-form-type-svg-active {
-  filter: grayscale(0%);
-}
-
-.new-form-radio-label {
-  flex: 0 1 auto;
-  padding: 0.25rem;
-  display: flex;
-  align-items: center;
-}
-
-.new-form-input {
-  width: 100%;
-  margin-bottom: 0.5rem;
-}
-
-.new-form-checkbox {
-  margin-right: 0.5rem;
-}
-
-.new-form-textarea {
-  width: 100%;
-}
-
-.new-form-add-ingredient-button {
-  background: #ddd;
-  color: #333;
-  -webkit-appearance: none;
-  border: none;
-  padding: 0.25rem 0.5rem;
-}
-
 .new-form-save-button {
   width: 100%;
   background-color: #00c853;
@@ -227,31 +154,6 @@
   -webkit-appearance: none;
   border: none;
   padding: 0.5rem 1rem;
-}
-
-.new-form-rating-radio-label {
-  flex: 0 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.new-form-rating-svg {
-  width: 3rem;
-  height: 3rem;
-  margin-bottom: 0.5rem;
-  filter: grayscale(100%);
-  transition: filter 500ms ease-in-out;
-}
-@media screen and (max-width: 360px) {
-  .new-form-rating-svg {
-    width: 2rem;
-    height: 2rem;
-  }
-}
-
-.new-form-rating-svg-active {
-  filter: grayscale(0%);
 }
 
 .nowrap {

@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { ROUTES } from '../constants';
 import { DateIcon } from '../components/SvgIcons';
 import RatingIcon from '../components/RatingIcon';
+import FormSectionHeader from '../components/form/FormSectionHeader';
 import { getDate, getDateString } from '../utils';
 
 import type { History, Sleep } from '../types';
@@ -43,7 +44,7 @@ export default class EditSleepForm extends Component<Props, State> {
         autoCapitalize="none"
       >
         <section className="new-form-section">
-          <div className="new-form-section-header">
+          <FormSectionHeader>
             <DateIcon className="new-form-section-header-svg" />
             <input
               className="new-form-date-time-input"
@@ -52,11 +53,11 @@ export default class EditSleepForm extends Component<Props, State> {
               type="date"
               value={date}
             />
-          </div>
+          </FormSectionHeader>
         </section>
         <section className="new-form-section">Quality of Sleep</section>
         <section className="new-form-section">
-          <div className="new-form-section-header">
+          <FormSectionHeader>
             <RatingRadioOption
               isSaving={isSaving}
               onChange={this._onRatingChange}
@@ -87,10 +88,10 @@ export default class EditSleepForm extends Component<Props, State> {
               rating={sleep.rating}
               value={4}
             />
-          </div>
+          </FormSectionHeader>
         </section>
         <section className="new-form-section">
-          <div className="new-form-section-header">
+          <FormSectionHeader>
             Duration&nbsp;<small>(hours)</small>
             <input
               className="new-form-input"
@@ -102,10 +103,10 @@ export default class EditSleepForm extends Component<Props, State> {
               type="number"
               value={sleep.duration || ''}
             />
-          </div>
+          </FormSectionHeader>
         </section>
         <section className="new-form-section">
-          <div className="new-form-section-header">
+          <FormSectionHeader>
             Awakened<small />
             <input
               className="new-form-input"
@@ -115,16 +116,18 @@ export default class EditSleepForm extends Component<Props, State> {
               type="number"
               value={sleep.awakenings || ''}
             />
-          </div>
+          </FormSectionHeader>
         </section>
         <section className="new-form-section">
-          <textarea
-            className="new-form-textarea"
-            disabled={isSaving}
-            onChange={this._onNotesChange}
-            placeholder="Notes (optional)"
-            value={sleep.notes}
-          />
+          <FormSectionHeader>
+            <textarea
+              className="new-form-textarea"
+              disabled={isSaving}
+              onChange={this._onNotesChange}
+              placeholder="Notes (optional)"
+              value={sleep.notes}
+            />
+          </FormSectionHeader>
         </section>
         <section className="new-form-section">
           <button className="new-form-save-button" disabled={isSaving}>

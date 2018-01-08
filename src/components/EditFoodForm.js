@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { css } from 'glamor';
 import { ROUTES } from '../constants';
 import {
   DateIcon,
@@ -10,6 +11,7 @@ import {
   TimeIcon,
 } from '../components/SvgIcons';
 import { getDate, getDateString, getTimeString } from '../utils';
+import FormSectionHeader from './form/FormSectionHeader';
 
 import type { Food, History } from '../types';
 
@@ -49,7 +51,7 @@ export default class NewFoodDrink extends Component<Props, State> {
         autoCapitalize="none"
       >
         <section className="new-form-section">
-          <div className="new-form-section-header">
+          <FormSectionHeader>
             <DateIcon className="new-form-section-header-svg" />
             <input
               className="new-form-date-time-input"
@@ -59,8 +61,8 @@ export default class NewFoodDrink extends Component<Props, State> {
               type="date"
               value={date}
             />
-          </div>
-          <div className="new-form-section-header">
+          </FormSectionHeader>
+          <FormSectionHeader>
             <TimeIcon className="new-form-section-header-svg" />
             <input
               className="new-form-date-time-input"
@@ -70,10 +72,10 @@ export default class NewFoodDrink extends Component<Props, State> {
               type="time"
               value={time}
             />
-          </div>
+          </FormSectionHeader>
         </section>
         <section className="new-form-section">
-          <div className="new-form-section-header new-form-section-header-types">
+          <FormSectionHeader className="new-form-section-header-types">
             <label className="new-form-rating-radio-label">
               <small>Food</small>
               <FoodIcon
@@ -106,21 +108,23 @@ export default class NewFoodDrink extends Component<Props, State> {
                 value="drink"
               />
             </label>
-          </div>
+          </FormSectionHeader>
         </section>
         <section className="new-form-section">
-          <input
-            className="new-form-input"
-            disabled={isSaving}
-            name="title"
-            onChange={this._onTitleChange}
-            placeholder="What did you eat/drink?"
-            type="text"
-            value={food.title}
-          />
+          <FormSectionHeader>
+            <input
+              className="new-form-input"
+              disabled={isSaving}
+              name="title"
+              onChange={this._onTitleChange}
+              placeholder="What did you eat/drink?"
+              type="text"
+              value={food.title}
+            />
+          </FormSectionHeader>
         </section>
         <section className="new-form-section">
-          <div className="new-form-section-header new-form-section-header-types">
+          <FormSectionHeader className="new-form-section-header-types">
             <label className="new-form-radio-label">
               <input
                 checked={food.attributes.spicy}
@@ -154,10 +158,10 @@ export default class NewFoodDrink extends Component<Props, State> {
               />
               Alcoholic?
             </label>
-          </div>
+          </FormSectionHeader>
         </section>
         <section className="new-form-section">
-          <div className="new-form-section-header">
+          <FormSectionHeader>
             <label>Ingredients:</label>
             <input
               className="new-form-add-ingredient-button"
@@ -165,8 +169,15 @@ export default class NewFoodDrink extends Component<Props, State> {
               onClick={this._addIngredient}
               type="button"
               value="+ add"
+              {...css({
+                background: '#ddd',
+                color: '#333',
+                appearance: 'none',
+                border: 'none',
+                padding: '0.25rem 0.5rem',
+              })}
             />
-          </div>
+          </FormSectionHeader>
           {food.ingredients.map((ingredient, index) => (
             <input
               className="new-form-input"
@@ -181,13 +192,15 @@ export default class NewFoodDrink extends Component<Props, State> {
           ))}
         </section>
         <section className="new-form-section">
-          <textarea
-            className="new-form-textarea"
-            disabled={isSaving}
-            onChange={this._onNotesChange}
-            placeholder="Notes (optional)"
-            value={food.notes}
-          />
+          <FormSectionHeader>
+            <textarea
+              className="new-form-textarea"
+              disabled={isSaving}
+              onChange={this._onNotesChange}
+              placeholder="Notes (optional)"
+              value={food.notes}
+            />
+          </FormSectionHeader>
         </section>
         <section className="new-form-section">
           <button

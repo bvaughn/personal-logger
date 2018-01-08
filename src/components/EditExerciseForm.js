@@ -11,6 +11,7 @@ import {
 } from '../components/SvgIcons';
 import { getDate, getDateString, getTimeString } from '../utils';
 import IntensityIcon from './IntensityIcon';
+import FormSectionHeader from './form/FormSectionHeader';
 
 import type { Exercise, History } from '../types';
 
@@ -50,7 +51,7 @@ export default class EditExerciseForm extends Component<Props, State> {
         autoCapitalize="none"
       >
         <section className="new-form-section">
-          <div className="new-form-section-header">
+          <FormSectionHeader>
             <DateIcon className="new-form-section-header-svg" />
             <input
               className="new-form-date-time-input"
@@ -60,8 +61,8 @@ export default class EditExerciseForm extends Component<Props, State> {
               type="date"
               value={date}
             />
-          </div>
-          <div className="new-form-section-header">
+          </FormSectionHeader>
+          <FormSectionHeader>
             <TimeIcon className="new-form-section-header-svg" />
             <input
               className="new-form-date-time-input"
@@ -71,10 +72,10 @@ export default class EditExerciseForm extends Component<Props, State> {
               type="time"
               value={time}
             />
-          </div>
+          </FormSectionHeader>
         </section>
         <section className="new-form-section">
-          <div className="new-form-section-header new-form-section-header-types">
+          <FormSectionHeader className="new-form-section-header-types">
             <label className="new-form-rating-radio-label">
               <small>Cardio</small>
               <HeartIcon
@@ -107,11 +108,11 @@ export default class EditExerciseForm extends Component<Props, State> {
                 value="strength"
               />
             </label>
-          </div>
+          </FormSectionHeader>
         </section>
         {exercise.type === 'cardio' && (
           <section className="new-form-section">
-            <div className="new-form-section-header">
+            <FormSectionHeader>
               Distance&nbsp;<small>(miles)</small>
               <input
                 className="new-form-input"
@@ -123,11 +124,11 @@ export default class EditExerciseForm extends Component<Props, State> {
                 type="number"
                 value={exercise.distance || ''}
               />
-            </div>
+            </FormSectionHeader>
           </section>
         )}
         <section className="new-form-section">
-          <div className="new-form-section-header">
+          <FormSectionHeader>
             Duration&nbsp;<small>(minutes)</small>
             <input
               className="new-form-input"
@@ -139,11 +140,11 @@ export default class EditExerciseForm extends Component<Props, State> {
               type="number"
               value={exercise.duration || ''}
             />
-          </div>
+          </FormSectionHeader>
         </section>
         <section className="new-form-section">Intensity</section>
         <section className="new-form-section">
-          <div className="new-form-section-header">
+          <FormSectionHeader>
             <IntensityRadioOption
               intensity={exercise.intensity}
               isSaving={isSaving}
@@ -162,7 +163,7 @@ export default class EditExerciseForm extends Component<Props, State> {
               onChange={this._onIntensityChange}
               value={3}
             />
-          </div>
+          </FormSectionHeader>
         </section>
         <section className="new-form-section">
           <button className="new-form-save-button" disabled={isSaving}>

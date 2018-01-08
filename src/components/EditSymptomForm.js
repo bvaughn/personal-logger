@@ -10,6 +10,7 @@ import {
   TimeIcon,
 } from '../components/SvgIcons';
 import RatingIcon from '../components/RatingIcon';
+import FormSectionHeader from '../components/form/FormSectionHeader';
 import { getDate, getDateString, getTimeString } from '../utils';
 
 import type { History, Symptom } from '../types';
@@ -50,7 +51,7 @@ export default class NewSymptom extends Component<Props, State> {
         autoCapitalize="none"
       >
         <section className="new-form-section">
-          <div className="new-form-section-header">
+          <FormSectionHeader>
             <DateIcon className="new-form-section-header-svg" />
             <input
               className="new-form-date-time-input"
@@ -59,8 +60,8 @@ export default class NewSymptom extends Component<Props, State> {
               type="date"
               value={date}
             />
-          </div>
-          <div className="new-form-section-header">
+          </FormSectionHeader>
+          <FormSectionHeader>
             <TimeIcon className="new-form-section-header-svg" />
             <input
               className="new-form-date-time-input"
@@ -69,10 +70,10 @@ export default class NewSymptom extends Component<Props, State> {
               type="time"
               value={time}
             />
-          </div>
+          </FormSectionHeader>
         </section>
         <section className="new-form-section">
-          <div className="new-form-section-header new-form-section-header-types">
+          <FormSectionHeader className="new-form-section-header-types">
             <label className="new-form-rating-radio-label">
               <small>Energy</small>
               <EnergyIcon
@@ -105,13 +106,13 @@ export default class NewSymptom extends Component<Props, State> {
                 value="stomach"
               />
             </label>
-          </div>
+          </FormSectionHeader>
         </section>
         <section className="new-form-section">
           <hr />
         </section>
         <section className="new-form-section">
-          <div className="new-form-section-header">
+          <FormSectionHeader>
             <RatingRadioOption
               isSaving={isSaving}
               onChange={this._onRatingChange}
@@ -142,16 +143,18 @@ export default class NewSymptom extends Component<Props, State> {
               rating={symptom.rating}
               value={4}
             />
-          </div>
+          </FormSectionHeader>
         </section>
         <section className="new-form-section">
-          <textarea
-            className="new-form-textarea"
-            disabled={isSaving}
-            onChange={this._onNotesChange}
-            placeholder="Notes (optional)"
-            value={symptom.notes}
-          />
+          <FormSectionHeader>
+            <textarea
+              className="new-form-textarea"
+              disabled={isSaving}
+              onChange={this._onNotesChange}
+              placeholder="Notes (optional)"
+              value={symptom.notes}
+            />
+          </FormSectionHeader>
         </section>
         <section className="new-form-section">
           <button className="new-form-save-button" disabled={isSaving}>
