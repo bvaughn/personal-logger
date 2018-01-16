@@ -119,6 +119,35 @@ export default class NewFoodDrink extends Component<Props, State> {
             value={food.title}
           />
         </section>
+        {food.type === 'food' ? (
+          <section className="new-form-section">
+            <div className="new-form-section-header new-form-section-header-types">
+              <label>Meal Size:</label>
+              <select onChange={this._onSizeChange}>
+                <option
+                  value={'snack'}
+                  selected={food.size === 'snack' ? 'selected' : ''}
+                >
+                  Snack
+                </option>
+                <option
+                  value={'small'}
+                  selected={food.size === 'small' ? 'selected' : ''}
+                >
+                  Small
+                </option>
+                <option
+                  value={'large'}
+                  selected={food.size === 'large' ? 'selected' : ''}
+                >
+                  Large
+                </option>
+              </select>
+            </div>
+          </section>
+        ) : (
+          ''
+        )}
         <section className="new-form-section">
           <div className="new-form-section-header new-form-section-header-types">
             <label className="new-form-radio-label">
@@ -315,6 +344,19 @@ export default class NewFoodDrink extends Component<Props, State> {
         food: {
           ...state.food,
           attributes,
+        },
+      };
+    });
+  };
+
+  _onSizeChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
+    const size = event.currentTarget.value;
+    console.log(size);
+    this.setState(state => {
+      return {
+        food: {
+          ...state.food,
+          size,
         },
       };
     });
