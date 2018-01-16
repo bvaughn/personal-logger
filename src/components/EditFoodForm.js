@@ -123,26 +123,39 @@ export default class NewFoodDrink extends Component<Props, State> {
           <section className="new-form-section">
             <div className="new-form-section-header new-form-section-header-types">
               <label>Meal Size:</label>
-              <select onChange={this._onSizeChange}>
-                <option
-                  value={'snack'}
-                  selected={food.size === 'snack' ? 'selected' : ''}
-                >
-                  Snack
-                </option>
-                <option
-                  value={'small'}
-                  selected={food.size === 'small' ? 'selected' : ''}
-                >
-                  Small
-                </option>
-                <option
-                  value={'large'}
-                  selected={food.size === 'large' ? 'selected' : ''}
-                >
-                  Large
-                </option>
-              </select>
+              <label className="new-form-rating-radio-label">
+                <small>Snack</small>
+                <input
+                  checked={food.size === 'snack'}
+                  disabled={isSaving}
+                  name="size"
+                  onChange={this._onSizeChange}
+                  type="radio"
+                  value="snack"
+                />
+              </label>
+              <label className="new-form-rating-radio-label">
+                <small>Small</small>
+                <input
+                  checked={food.size === 'small'}
+                  disabled={isSaving}
+                  name="size"
+                  onChange={this._onSizeChange}
+                  type="radio"
+                  value="small"
+                />
+              </label>
+              <label className="new-form-rating-radio-label">
+                <small>Large</small>
+                <input
+                  checked={food.size === 'large'}
+                  disabled={isSaving}
+                  name="size"
+                  onChange={this._onSizeChange}
+                  type="radio"
+                  value="large"
+                />
+              </label>
             </div>
           </section>
         ) : (
@@ -351,7 +364,6 @@ export default class NewFoodDrink extends Component<Props, State> {
 
   _onSizeChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
     const size = event.currentTarget.value;
-    console.log(size);
     this.setState(state => {
       return {
         food: {
