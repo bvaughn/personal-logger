@@ -112,9 +112,7 @@ export default class NewFoodDrink extends Component<Props, State> {
         {food.type === 'food' ? (
           <section className="new-form-section">
             <FormSectionHeader>
-              <label>Meal Size:</label>
-              <label className="new-form-rating-radio-label">
-                <small>Snack</small>
+              <label className="new-form-radio-label">
                 <input
                   checked={food.size === 'snack'}
                   disabled={isSaving}
@@ -123,9 +121,9 @@ export default class NewFoodDrink extends Component<Props, State> {
                   type="radio"
                   value="snack"
                 />
+                Snack
               </label>
-              <label className="new-form-rating-radio-label">
-                <small>Small</small>
+              <label className="new-form-radio-label">
                 <input
                   checked={food.size === 'small'}
                   disabled={isSaving}
@@ -134,9 +132,9 @@ export default class NewFoodDrink extends Component<Props, State> {
                   type="radio"
                   value="small"
                 />
+                Small
               </label>
-              <label className="new-form-rating-radio-label">
-                <small>Large</small>
+              <label className="new-form-radio-label">
                 <input
                   checked={food.size === 'large'}
                   disabled={isSaving}
@@ -145,6 +143,7 @@ export default class NewFoodDrink extends Component<Props, State> {
                   type="radio"
                   value="large"
                 />
+                Large
               </label>
             </FormSectionHeader>
           </section>
