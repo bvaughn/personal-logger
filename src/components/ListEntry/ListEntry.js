@@ -2,12 +2,10 @@ import React from 'react';
 import { css } from 'glamor';
 import { Link } from 'react-router-dom';
 
-export default function ListEntry({ children, id, to, style, ...props }) {
+export default function ListEntry({ children, ...props }) {
   return (
     <Link
-      to={to}
-      params={{ id }}
-      style={style}
+      {...props}
       {...css({
         display: 'flex',
         flexDirection: 'row',
