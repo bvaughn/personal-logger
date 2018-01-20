@@ -36,6 +36,7 @@ export default function FormButton({ children, onClick, type }: Props) {
         appearance: 'none',
         border: 'none',
         padding: '0.5rem 1rem',
+        marginBottom: '0.5rem',
         backgroundColor,
         color,
       })}

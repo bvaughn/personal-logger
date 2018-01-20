@@ -4,16 +4,20 @@ import * as React from 'react';
 import { css } from 'glamor';
 
 type Props = {
+  alignment?: 'around' | 'between',
   children: React.Node,
 };
 
-export default function FormSectionHeader({ children }: Props) {
+export default function FormSectionHeader({
+  alignment = 'around',
+  children,
+}: Props) {
   return (
     <div
       {...css({
         fontWeight: 'bold',
         display: 'flex',
-        justifyContent: 'space-around',
+        justifyContent: `space-${alignment}`,
         alignItems: 'center',
         marginBottom: '0.5rem',
         '& > *': { marginRight: '1rem' },

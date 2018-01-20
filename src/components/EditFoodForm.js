@@ -150,6 +150,42 @@ export default class NewFoodDrink extends Component<Props, State> {
         ) : (
           ''
         )}
+        <hr />
+        <section className="new-form-section">
+          <FormSectionHeader alignment="between">
+            <label>Ingredients:</label>
+            <input
+              className="new-form-add-ingredient-button"
+              disabled={isSaving}
+              onClick={this._addIngredient}
+              type="button"
+              value="+ add"
+              {...css({
+                background: '#ddd',
+                color: '#333',
+                appearance: 'none',
+                border: 'none',
+                padding: '0.25rem 0.5rem',
+              })}
+            />
+          </FormSectionHeader>
+          {food.ingredients.map((ingredient, index) => (
+            <input
+              disabled={isSaving}
+              key={index}
+              onChange={event =>
+                this._onIngredientChange(index, event.currentTarget.value)
+              }
+              type="text"
+              value={ingredient}
+              {...css({
+                width: '100%',
+                marginTop: '0.5rem',
+              })}
+            />
+          ))}
+        </section>
+        <hr />
         <section className="new-form-section">
           <FormSectionHeader>
             <label className="new-form-radio-label">
@@ -186,40 +222,6 @@ export default class NewFoodDrink extends Component<Props, State> {
               Alcoholic?
             </label>
           </FormSectionHeader>
-        </section>
-        <section className="new-form-section">
-          <FormSectionHeader>
-            <label>Ingredients:</label>
-            <input
-              className="new-form-add-ingredient-button"
-              disabled={isSaving}
-              onClick={this._addIngredient}
-              type="button"
-              value="+ add"
-              {...css({
-                background: '#ddd',
-                color: '#333',
-                appearance: 'none',
-                border: 'none',
-                padding: '0.25rem 0.5rem',
-              })}
-            />
-          </FormSectionHeader>
-          {food.ingredients.map((ingredient, index) => (
-            <input
-              disabled={isSaving}
-              key={index}
-              onChange={event =>
-                this._onIngredientChange(index, event.currentTarget.value)
-              }
-              type="text"
-              value={ingredient}
-              {...css({
-                width: '100%',
-                marginBottom: '0.5rem',
-              })}
-            />
-          ))}
         </section>
         <section className="new-form-section">
           <FormSectionHeader>

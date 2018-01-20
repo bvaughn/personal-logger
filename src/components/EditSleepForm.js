@@ -8,6 +8,7 @@ import FormSectionHeader from './form/FormSectionHeader';
 import FormButton from './form/FormButton';
 import RatingRadioOption from './form/RatingRadioOption';
 import { getDate, getDateString } from '../utils';
+import { css } from 'glamor';
 
 import type { History, Sleep } from '../types';
 
@@ -56,8 +57,8 @@ export default class EditSleepForm extends Component<Props, State> {
             />
           </FormSectionHeader>
         </section>
-        <section className="new-form-section">Quality of Sleep</section>
         <section className="new-form-section">
+          <div {...css({ margin: '1rem 0' })}>Quality of Sleep</div>
           <FormSectionHeader>
             <RatingRadioOption
               isDisabled={isSaving}
