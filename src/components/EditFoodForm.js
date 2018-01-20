@@ -119,6 +119,48 @@ export default class NewFoodDrink extends Component<Props, State> {
             value={food.title}
           />
         </section>
+        {food.type === 'food' ? (
+          <section className="new-form-section">
+            <div className="new-form-section-header new-form-section-header-types">
+              <label>Meal Size:</label>
+              <label className="new-form-rating-radio-label">
+                <small>Snack</small>
+                <input
+                  checked={food.size === 'snack'}
+                  disabled={isSaving}
+                  name="size"
+                  onChange={this._onSizeChange}
+                  type="radio"
+                  value="snack"
+                />
+              </label>
+              <label className="new-form-rating-radio-label">
+                <small>Small</small>
+                <input
+                  checked={food.size === 'small'}
+                  disabled={isSaving}
+                  name="size"
+                  onChange={this._onSizeChange}
+                  type="radio"
+                  value="small"
+                />
+              </label>
+              <label className="new-form-rating-radio-label">
+                <small>Large</small>
+                <input
+                  checked={food.size === 'large'}
+                  disabled={isSaving}
+                  name="size"
+                  onChange={this._onSizeChange}
+                  type="radio"
+                  value="large"
+                />
+              </label>
+            </div>
+          </section>
+        ) : (
+          ''
+        )}
         <section className="new-form-section">
           <div className="new-form-section-header new-form-section-header-types">
             <label className="new-form-radio-label">
@@ -315,6 +357,18 @@ export default class NewFoodDrink extends Component<Props, State> {
         food: {
           ...state.food,
           attributes,
+        },
+      };
+    });
+  };
+
+  _onSizeChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
+    const size = event.currentTarget.value;
+    this.setState(state => {
+      return {
+        food: {
+          ...state.food,
+          size,
         },
       };
     });
