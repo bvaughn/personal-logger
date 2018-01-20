@@ -20,11 +20,11 @@ export type Food = {
     raw: boolean,
     spicy: boolean,
   },
-  size: string,
   date: Date,
   id?: string,
   ingredients: Array<string>,
   notes: string,
+  size?: string,
   title: string,
   type: string,
 };
