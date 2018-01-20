@@ -1,10 +1,15 @@
 // @flow
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { LOCALE_DATE_OPTIONS, LOCALE_TIME_OPTIONS, ROUTES } from '../constants';
 import { EnergyIcon, StomachIcon } from '../components/SvgIcons';
 import RatingIcon from '../components/RatingIcon';
+import {
+  ListEntry,
+  ListEntryTitle,
+  ListEntryTime,
+  ListEntryDate,
+} from '../components/ListEntry';
 
 import type { Symptom } from '../types';
 
@@ -14,23 +19,22 @@ type Props = {
 };
 
 const SymptomEntry = ({ symptom, style }: Props) => (
-  <Link
-    className="list-entry"
-    params={{ id: symptom.id }}
+  <ListEntry
+    id={symptom.id}
     style={style}
     to={ROUTES.symptoms.editLink(symptom)}
   >
-    <div className="list-entry-title">
+    <ListEntryTitle>
       <TypeIcon type={symptom.type} />
       <RatingIcon className="flex-icon-left" rating={symptom.rating} />
-    </div>
-    <div className="list-entry-time">
+    </ListEntryTitle>
+    <ListEntryTime>
       {symptom.date.toLocaleTimeString('en-US', LOCALE_TIME_OPTIONS)}
-    </div>
-    <small className="list-entry-date">
+    </ListEntryTime>
+    <ListEntryDate>
       ({symptom.date.toLocaleDateString('en-US', LOCALE_DATE_OPTIONS)})
-    </small>
-  </Link>
+    </ListEntryDate>
+  </ListEntry>
 );
 
 export default SymptomEntry;

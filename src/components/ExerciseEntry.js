@@ -1,9 +1,13 @@
 // @flow
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { LOCALE_DATE_OPTIONS, ROUTES } from '../constants';
 import { HeartIcon, StrengthIcon } from '../components/SvgIcons';
+import {
+  ListEntry,
+  ListEntryTitle,
+  ListEntryDate,
+} from '../components/ListEntry';
 
 import type { Exercise } from '../types';
 
@@ -13,23 +17,23 @@ type Props = {
 };
 
 const ExerciseEntry = ({ exercise, style }: Props) => (
-  <Link
-    className="list-entry"
+  <ListEntry
+    id={exercise.id}
     style={style}
     to={ROUTES.exercise.editLink(exercise)}
   >
-    <div className="list-entry-title">
+    <ListEntryTitle>
       <TypeIcon type={exercise.type} />
       <Summary
         distance={exercise.distance}
         duration={exercise.duration}
         type={exercise.type}
       />
-    </div>
-    <small className="list-entry-date">
+    </ListEntryTitle>
+    <ListEntryDate>
       ({exercise.date.toLocaleDateString('en-US', LOCALE_DATE_OPTIONS)})
-    </small>
-  </Link>
+    </ListEntryDate>
+  </ListEntry>
 );
 
 export default ExerciseEntry;

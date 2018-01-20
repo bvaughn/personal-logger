@@ -138,26 +138,6 @@
   fill: #1da1f2;
 }
 
-.list-entry {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 2rem;
-  margin-bottom: 1rem;
-}
-.list-entry-title {
-  min-width: 0;
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-}
-.list-entry-time {
-  flex: 0 0 80px;
-  text-transform: lowercase;
-}
-.list-entry-date {
-  flex: 0 0 70px;
-}
 .flex-icon-left {
   flex: 0 0 auto;
   width: 1.5rem;

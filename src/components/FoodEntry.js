@@ -1,9 +1,14 @@
 // @flow
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { LOCALE_DATE_OPTIONS, LOCALE_TIME_OPTIONS, ROUTES } from '../constants';
 import { DrinkIcon, FoodIcon } from '../components/SvgIcons';
+import {
+  ListEntry,
+  ListEntryTitle,
+  ListEntryTime,
+  ListEntryDate,
+} from '../components/ListEntry';
 
 import type { Food } from '../types';
 
@@ -13,23 +18,18 @@ type Props = {
 };
 
 const FoodEntry = ({ food, style }: Props) => (
-  <Link
-    className="list-entry"
-    params={{ id: food.id }}
-    style={style}
-    to={ROUTES.foods.editLink(food)}
-  >
-    <div className="list-entry-title">
+  <ListEntry id={food.id} style={style} to={ROUTES.foods.editLink(food)}>
+    <ListEntryTitle>
       <TypeIcon type={food.type} />
       <div className="nowrap">{food.title}</div>
-    </div>
-    <div className="list-entry-time">
+    </ListEntryTitle>
+    <ListEntryTime>
       {food.date.toLocaleTimeString('en-US', LOCALE_TIME_OPTIONS)}
-    </div>
-    <small className="list-entry-date">
+    </ListEntryTime>
+    <ListEntryDate>
       ({food.date.toLocaleDateString('en-US', LOCALE_DATE_OPTIONS)})
-    </small>
-  </Link>
+    </ListEntryDate>
+  </ListEntry>
 );
 
 export default FoodEntry;
