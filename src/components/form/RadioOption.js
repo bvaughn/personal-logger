@@ -27,20 +27,10 @@ export default function RadioOption({
       {...css({
         flex: '0 0 auto',
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'row',
         alignItems: 'center',
       })}
     >
-      <small>{label}</small>
-      <IconComponent
-        {...css({
-          width: '3rem',
-          height: '3rem',
-          margin: '0.5rem 0',
-          transition: 'filter 500ms ease-in-out',
-          filter: isChecked ? undefined : 'grayscale(100%)',
-        })}
-      />
       <input
         checked={isChecked}
         disabled={isDisabled}
@@ -49,6 +39,26 @@ export default function RadioOption({
         type="radio"
         value={value}
       />
+      <div
+        {...css({
+          flex: '0 0 auto',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          marginLeft: '1rem',
+        })}
+      >
+        <small>{label}</small>
+        <IconComponent
+          {...css({
+            width: '3rem',
+            height: '3rem',
+            margin: '0.5rem 0',
+            transition: 'filter 500ms ease-in-out',
+            filter: isChecked ? undefined : 'grayscale(100%)',
+          })}
+        />
+      </div>
     </label>
   );
 }
