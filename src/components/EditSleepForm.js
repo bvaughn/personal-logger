@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ROUTES } from '../constants';
 import { DateIcon } from './SvgIcons';
-import RatingIcon from './RatingIcon';
 import FormSectionHeader from './form/FormSectionHeader';
 import FormButton from './form/FormButton';
 import RatingRadioOption from './form/RatingRadioOption';
