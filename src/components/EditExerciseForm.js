@@ -13,7 +13,6 @@ import {
 import FormSectionHeader from './form/FormSectionHeader';
 import FormButton from './form/FormButton';
 import RadioOption from './form/RadioOption';
-import { css } from 'glamor';
 
 import type { Exercise, History } from '../types';
 

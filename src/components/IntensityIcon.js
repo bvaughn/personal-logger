@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react';
-import { css } from 'glamor';
 
 export const IntensityLowIcon = (props: any) => (
   <svg {...props} viewBox="0 0 40 40">
