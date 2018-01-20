@@ -3,10 +3,11 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ROUTES } from '../constants';
-import { DateIcon } from '../components/SvgIcons';
-import RatingIcon from '../components/RatingIcon';
-import FormSectionHeader from '../components/form/FormSectionHeader';
-import FormButton from '../components/form/FormButton';
+import { DateIcon } from './SvgIcons';
+import RatingIcon from './RatingIcon';
+import FormSectionHeader from './form/FormSectionHeader';
+import FormButton from './form/FormButton';
+import RatingRadioOption from './form/RatingRadioOption';
 import { getDate, getDateString } from '../utils';
 
 import type { History, Sleep } from '../types';
@@ -60,31 +61,31 @@ export default class EditSleepForm extends Component<Props, State> {
         <section className="new-form-section">
           <FormSectionHeader>
             <RatingRadioOption
-              isSaving={isSaving}
+              isDisabled={isSaving}
               onChange={this._onRatingChange}
               rating={sleep.rating}
               value={0}
             />
             <RatingRadioOption
-              isSaving={isSaving}
+              isDisabled={isSaving}
               onChange={this._onRatingChange}
               rating={sleep.rating}
               value={1}
             />
             <RatingRadioOption
-              isSaving={isSaving}
+              isDisabled={isSaving}
               onChange={this._onRatingChange}
               rating={sleep.rating}
               value={2}
             />
             <RatingRadioOption
-              isSaving={isSaving}
+              isDisabled={isSaving}
               onChange={this._onRatingChange}
               rating={sleep.rating}
               value={3}
             />
             <RatingRadioOption
-              isSaving={isSaving}
+              isDisabled={isSaving}
               onChange={this._onRatingChange}
               rating={sleep.rating}
               value={4}
@@ -240,22 +241,3 @@ export default class EditSleepForm extends Component<Props, State> {
     );
   };
 }
-
-const RatingRadioOption = ({ isSaving, onChange, rating, value }) => (
-  <label className="new-form-rating-radio-label">
-    <RatingIcon
-      className={`new-form-rating-svg ${
-        rating === value ? 'new-form-rating-svg-active' : ''
-      }`}
-      rating={value}
-    />
-    <input
-      checked={rating === value}
-      disabled={isSaving}
-      name="rating"
-      onChange={onChange}
-      type="radio"
-      value={value}
-    />
-  </label>
-);

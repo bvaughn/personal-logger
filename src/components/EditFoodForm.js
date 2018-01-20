@@ -11,8 +11,9 @@ import {
   TimeIcon,
 } from '../components/SvgIcons';
 import { getDate, getDateString, getTimeString } from '../utils';
-import FormSectionHeader from '../components/form/FormSectionHeader';
-import FormButton from '../components/form/FormButton';
+import FormSectionHeader from './form/FormSectionHeader';
+import FormButton from './form/FormButton';
+import RadioOption from './form/RadioOption';
 
 import type { Food, History } from '../types';
 
@@ -77,38 +78,22 @@ export default class NewFoodDrink extends Component<Props, State> {
         </section>
         <section className="new-form-section">
           <FormSectionHeader>
-            <label className="new-form-rating-radio-label">
-              <small>Food</small>
-              <FoodIcon
-                className={`new-form-type-svg ${
-                  food.type === 'food' ? 'new-form-type-svg-active' : ''
-                }`}
-              />
-              <input
-                checked={food.type === 'food'}
-                disabled={isSaving}
-                name="type"
-                onChange={this._onTypeChange}
-                type="radio"
-                value="food"
-              />
-            </label>
-            <label className="new-form-rating-radio-label">
-              <small>Drink</small>
-              <DrinkIcon
-                className={`new-form-type-svg ${
-                  food.type === 'drink' ? 'new-form-type-svg-active' : ''
-                }`}
-              />
-              <input
-                checked={food.type === 'drink'}
-                disabled={isSaving}
-                name="type"
-                onChange={this._onTypeChange}
-                type="radio"
-                value="drink"
-              />
-            </label>
+            <RadioOption
+              IconComponent={FoodIcon}
+              isChecked={food.type === 'food'}
+              isDisabled={isSaving}
+              label="Food"
+              onChange={this._onTypeChange}
+              value="food"
+            />
+            <RadioOption
+              IconComponent={DrinkIcon}
+              isChecked={food.type === 'drink'}
+              isDisabled={isSaving}
+              label="Drink"
+              onChange={this._onTypeChange}
+              value="drink"
+            />
           </FormSectionHeader>
         </section>
         <section className="new-form-section">

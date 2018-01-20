@@ -3,15 +3,12 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ROUTES } from '../constants';
-import {
-  DateIcon,
-  EnergyIcon,
-  StomachIcon,
-  TimeIcon,
-} from '../components/SvgIcons';
-import RatingIcon from '../components/RatingIcon';
-import FormSectionHeader from '../components/form/FormSectionHeader';
-import FormButton from '../components/form/FormButton';
+import { DateIcon, EnergyIcon, StomachIcon, TimeIcon } from './SvgIcons';
+import RatingIcon from './RatingIcon';
+import FormSectionHeader from './form/FormSectionHeader';
+import FormButton from './form/FormButton';
+import RadioOption from './form/RadioOption';
+import RatingRadioOption from './form/RatingRadioOption';
 import { getDate, getDateString, getTimeString } from '../utils';
 
 import type { History, Symptom } from '../types';
@@ -75,38 +72,22 @@ export default class NewSymptom extends Component<Props, State> {
         </section>
         <section className="new-form-section">
           <FormSectionHeader>
-            <label className="new-form-rating-radio-label">
-              <small>Energy</small>
-              <EnergyIcon
-                className={`new-form-type-svg ${
-                  symptom.type === 'energy' ? 'new-form-type-svg-active' : ''
-                }`}
-              />
-              <input
-                checked={symptom.type === 'energy'}
-                disabled={isSaving}
-                name="type"
-                onChange={this._onTypeChange}
-                type="radio"
-                value="energy"
-              />
-            </label>
-            <label className="new-form-rating-radio-label">
-              <small>Stomach</small>
-              <StomachIcon
-                className={`new-form-type-svg ${
-                  symptom.type === 'stomach' ? 'new-form-type-svg-active' : ''
-                }`}
-              />
-              <input
-                checked={symptom.type === 'stomach'}
-                disabled={isSaving}
-                name="type"
-                onChange={this._onTypeChange}
-                type="radio"
-                value="stomach"
-              />
-            </label>
+            <RadioOption
+              IconComponent={EnergyIcon}
+              isChecked={symptom.type === 'energy'}
+              isDisabled={isSaving}
+              label="Energy"
+              onChange={this._onTypeChange}
+              value="energy"
+            />
+            <RadioOption
+              IconComponent={StomachIcon}
+              isChecked={symptom.type === 'stomach'}
+              isDisabled={isSaving}
+              label="Stomach"
+              onChange={this._onTypeChange}
+              value="stomach"
+            />
           </FormSectionHeader>
         </section>
         <section className="new-form-section">
@@ -115,31 +96,31 @@ export default class NewSymptom extends Component<Props, State> {
         <section className="new-form-section">
           <FormSectionHeader>
             <RatingRadioOption
-              isSaving={isSaving}
+              isDisabled={isSaving}
               onChange={this._onRatingChange}
               rating={symptom.rating}
               value={0}
             />
             <RatingRadioOption
-              isSaving={isSaving}
+              isDisabled={isSaving}
               onChange={this._onRatingChange}
               rating={symptom.rating}
               value={1}
             />
             <RatingRadioOption
-              isSaving={isSaving}
+              isDisabled={isSaving}
               onChange={this._onRatingChange}
               rating={symptom.rating}
               value={2}
             />
             <RatingRadioOption
-              isSaving={isSaving}
+              isDisabled={isSaving}
               onChange={this._onRatingChange}
               rating={symptom.rating}
               value={3}
             />
             <RatingRadioOption
-              isSaving={isSaving}
+              isDisabled={isSaving}
               onChange={this._onRatingChange}
               rating={symptom.rating}
               value={4}
@@ -263,22 +244,3 @@ export default class NewSymptom extends Component<Props, State> {
     }));
   };
 }
-
-const RatingRadioOption = ({ isSaving, onChange, rating, value }) => (
-  <label className="new-form-rating-radio-label">
-    <RatingIcon
-      className={`new-form-rating-svg ${
-        rating === value ? 'new-form-rating-svg-active' : ''
-      }`}
-      rating={value}
-    />
-    <input
-      checked={rating === value}
-      disabled={isSaving}
-      name="rating"
-      onChange={onChange}
-      type="radio"
-      value={value}
-    />
-  </label>
-);

@@ -3,16 +3,12 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ROUTES } from '../constants';
-import {
-  DateIcon,
-  HeartIcon,
-  StrengthIcon,
-  TimeIcon,
-} from '../components/SvgIcons';
+import { DateIcon, HeartIcon, StrengthIcon, TimeIcon } from './SvgIcons';
 import { getDate, getDateString, getTimeString } from '../utils';
 import IntensityIcon from './IntensityIcon';
-import FormSectionHeader from '../components/form/FormSectionHeader';
-import FormButton from '../components/form/FormButton';
+import FormSectionHeader from './form/FormSectionHeader';
+import FormButton from './form/FormButton';
+import RadioOption from './form/RadioOption';
 
 import type { Exercise, History } from '../types';
 
@@ -77,38 +73,22 @@ export default class EditExerciseForm extends Component<Props, State> {
         </section>
         <section className="new-form-section">
           <FormSectionHeader>
-            <label className="new-form-rating-radio-label">
-              <small>Cardio</small>
-              <HeartIcon
-                className={`new-form-type-svg ${
-                  exercise.type === 'cardio' ? 'new-form-type-svg-active' : ''
-                }`}
-              />
-              <input
-                checked={exercise.type === 'cardio'}
-                disabled={isSaving}
-                name="type"
-                onChange={this._onTypeChange}
-                type="radio"
-                value="cardio"
-              />
-            </label>
-            <label className="new-form-rating-radio-label">
-              <small>Strength</small>
-              <StrengthIcon
-                className={`new-form-type-svg ${
-                  exercise.type === 'strength' ? 'new-form-type-svg-active' : ''
-                }`}
-              />
-              <input
-                checked={exercise.type === 'strength'}
-                disabled={isSaving}
-                name="type"
-                onChange={this._onTypeChange}
-                type="radio"
-                value="strength"
-              />
-            </label>
+            <RadioOption
+              IconComponent={HeartIcon}
+              isChecked={exercise.type === 'cardio'}
+              isDisabled={isSaving}
+              label="Cardio"
+              onChange={this._onTypeChange}
+              value="cardio"
+            />
+            <RadioOption
+              IconComponent={StrengthIcon}
+              isChecked={exercise.type === 'strength'}
+              isDisabled={isSaving}
+              label="Strength"
+              onChange={this._onTypeChange}
+              value="strength"
+            />
           </FormSectionHeader>
         </section>
         {exercise.type === 'cardio' && (
