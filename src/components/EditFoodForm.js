@@ -207,7 +207,6 @@ export default class NewFoodDrink extends Component<Props, State> {
           </FormSectionHeader>
           {food.ingredients.map((ingredient, index) => (
             <input
-              className="new-form-input"
               disabled={isSaving}
               key={index}
               onChange={event =>
@@ -215,6 +214,10 @@ export default class NewFoodDrink extends Component<Props, State> {
               }
               type="text"
               value={ingredient}
+              {...css({
+                width: '100%',
+                marginBottom: '0.5rem',
+              })}
             />
           ))}
         </section>
