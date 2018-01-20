@@ -5,10 +5,15 @@ import { NavLink } from 'react-router-dom';
 import { ROUTES } from '../constants';
 import { DateIcon, HeartIcon, StrengthIcon, TimeIcon } from './SvgIcons';
 import { getDate, getDateString, getTimeString } from '../utils';
-import IntensityIcon from './IntensityIcon';
+import {
+  IntensityLowIcon,
+  IntensityMediumIcon,
+  IntensityHighIcon,
+} from './IntensityIcon';
 import FormSectionHeader from './form/FormSectionHeader';
 import FormButton from './form/FormButton';
 import RadioOption from './form/RadioOption';
+import { css } from 'glamor';
 
 import type { Exercise, History } from '../types';
 
@@ -271,21 +276,30 @@ export default class EditExerciseForm extends Component<Props, State> {
   };
 }
 
-const IntensityRadioOption = ({ isSaving, intensity, onChange, value }) => (
-  <label className="new-form-rating-radio-label">
-    <IntensityIcon
-      className={`new-form-rating-svg ${
-        intensity === value ? 'new-form-rating-svg-active' : ''
-      }`}
-      intensity={value}
-    />
-    <input
-      checked={intensity === value}
-      disabled={isSaving}
+const IntensityRadioOption = ({ isSaving, intensity, onChange, value }) => {
+  let IconComponent;
+  switch (value) {
+    case 1:
+      IconComponent = IntensityLowIcon;
+      break;
+    case 2:
+      IconComponent = IntensityMediumIcon;
+      break;
+    case 3:
+      IconComponent = IntensityHighIcon;
+      break;
+    default:
+      throw Error(`Invalid intensity "${intensity}" specified.`);
+  }
+
+  return (
+    <RadioOption
+      IconComponent={IconComponent}
+      isChecked={intensity === value}
+      isDisabled={isSaving}
       name="intensity"
       onChange={onChange}
-      type="radio"
       value={value}
     />
-  </label>
-);
+  );
+};

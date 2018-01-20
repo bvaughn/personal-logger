@@ -1,26 +1,9 @@
 // @flow
 
 import React from 'react';
+import { css } from 'glamor';
 
-type Props = {
-  className?: string,
-  intensity: number,
-};
-
-export default function IntensityIcon({ className, intensity }: Props) {
-  switch (intensity) {
-    case 1:
-      return <IntensityLowIcon className={className} />;
-    case 2:
-      return <IntensityMediumIcon className={className} />;
-    case 3:
-      return <IntensityHighIcon className={className} />;
-    default:
-      throw Error(`Invalid intensity "${intensity}" specified.`);
-  }
-}
-
-const IntensityLowIcon = props => (
+export const IntensityLowIcon = (props: any) => (
   <svg {...props} viewBox="0 0 40 40">
     <rect
       style={{ fill: '#00c853' }}
@@ -50,7 +33,7 @@ const IntensityLowIcon = props => (
   </svg>
 );
 
-const IntensityMediumIcon = props => (
+export const IntensityMediumIcon = (props: any) => (
   <svg {...props} viewBox="0 0 40 40">
     <rect
       style={{ fill: '#00c853' }}
@@ -80,7 +63,7 @@ const IntensityMediumIcon = props => (
   </svg>
 );
 
-const IntensityHighIcon = props => (
+export const IntensityHighIcon = (props: any) => (
   <svg {...props} viewBox="0 0 40 40">
     <rect
       style={{ fill: '#00c853' }}
