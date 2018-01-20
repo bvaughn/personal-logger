@@ -54,18 +54,6 @@
   }
 }
 
-.nav-list-item {
-  flex: 1 0 1px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  white-space: nowrap;
-}
-.nav-list-item:last-of-type {
-  border-right: none;
-}
-
 .header-user-avatar {
   flex: 0 0 2rem;
   display: flex;
