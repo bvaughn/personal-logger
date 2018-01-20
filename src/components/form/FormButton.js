@@ -1,28 +1,45 @@
-import React from 'react';
+/* @flow */
+
+import * as React from 'react';
 import { css } from 'glamor';
 
-export default function FormButton({ children, ...props }) {
+type Props = {
+  children: React.Node,
+  onClick?: Function,
+  type: 'cancel' | 'delete' | 'save',
+};
+
+export default function FormButton({ children, onClick, type }: Props) {
+  let backgroundColor, color;
+  switch (type) {
+    case 'cancel':
+      backgroundColor = '#ddd';
+      color = '#333';
+      break;
+    case 'delete':
+      backgroundColor = '#dd2c00';
+      color = '#fff';
+      break;
+    case 'save':
+      backgroundColor = '#00c853';
+      color = '#fff';
+      break;
+    default:
+      console.warn(`Invalid FormButton type "${type}" specified.`);
+      break;
+  }
+
   return (
     <button
-      {...props}
       {...css({
         width: '100%',
         appearance: 'none',
         border: 'none',
         padding: '0.5rem 1rem',
-        '&.new-form-save-button': {
-          backgroundColor: '#00c853',
-          color: '#fff',
-        },
-        '&.new-form-delete-button': {
-          backgroundColor: '#dd2c00',
-          color: '#fff',
-        },
-        '&.new-form-cancel-button': {
-          backgroundColor: '#ddd',
-          color: '#333',
-        },
+        backgroundColor,
+        color,
       })}
+      onClick={onClick}
     >
       {children}
     </button>

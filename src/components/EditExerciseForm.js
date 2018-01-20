@@ -76,7 +76,7 @@ export default class EditExerciseForm extends Component<Props, State> {
           </FormSectionHeader>
         </section>
         <section className="new-form-section">
-          <FormSectionHeader className="new-form-section-header-types">
+          <FormSectionHeader>
             <label className="new-form-rating-radio-label">
               <small>Cardio</small>
               <HeartIcon
@@ -167,14 +167,14 @@ export default class EditExerciseForm extends Component<Props, State> {
           </FormSectionHeader>
         </section>
         <section className="new-form-section">
-          <FormButton className="new-form-save-button">Save</FormButton>
+          <FormButton type="save">Save</FormButton>
         </section>
         {!!deleteFn && (
           <section className="new-form-section">
             <FormButton
-              className="new-form-delete-button"
               disabled={isSaving}
               onClick={this._onDelete}
+              type="delete"
             >
               {hasConfirmed ? 'Are you sure?' : 'Delete'}
             </FormButton>
@@ -182,7 +182,7 @@ export default class EditExerciseForm extends Component<Props, State> {
         )}
         <section className="new-form-section">
           <NavLink to={ROUTES.exercise.list}>
-            <FormButton className="new-form-cancel-button" disabled={isSaving}>
+            <FormButton disabled={isSaving} type="cancel">
               Cancel
             </FormButton>
           </NavLink>

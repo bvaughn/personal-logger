@@ -131,16 +131,16 @@ export default class EditSleepForm extends Component<Props, State> {
           </FormSectionHeader>
         </section>
         <section className="new-form-section">
-          <FormButton className="new-form-save-button" disabled={isSaving}>
+          <FormButton disabled={isSaving} type="save">
             Save
           </FormButton>
         </section>
         {!!deleteFn && (
           <section className="new-form-section">
             <FormButton
-              className="new-form-delete-button"
               disabled={isSaving}
               onClick={this._onDelete}
+              type="delete"
             >
               {hasConfirmed ? 'Are you sure?' : 'Delete'}
             </FormButton>
@@ -148,7 +148,7 @@ export default class EditSleepForm extends Component<Props, State> {
         )}
         <section className="new-form-section">
           <NavLink to={ROUTES.sleep.list}>
-            <FormButton className="new-form-cancel-button" disabled={isSaving}>
+            <FormButton disabled={isSaving} type="cancel">
               Cancel
             </FormButton>
           </NavLink>

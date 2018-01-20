@@ -1,7 +1,13 @@
-import React from 'react';
+/* @flow */
+
+import * as React from 'react';
 import { css } from 'glamor';
 
-export default function FormSectionHeader({ className, children, ...props }) {
+type Props = {
+  children: React.Node,
+};
+
+export default function FormSectionHeader({ children }: Props) {
   return (
     <div
       {...css({

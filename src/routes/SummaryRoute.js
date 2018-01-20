@@ -119,7 +119,7 @@ export default class Summary extends Component<Props, State> {
           </FormSectionHeader>
         </section>
         <section className="new-form-section">
-          <FormSectionHeader className="new-form-section-header-types">
+          <FormSectionHeader>
             <label className="new-form-rating-radio-label">
               <SleepIcon
                 className={`new-form-type-svg ${
@@ -179,7 +179,7 @@ export default class Summary extends Component<Props, State> {
           </FormSectionHeader>
         </section>
         <section className="new-form-section">
-          <FormButton className="new-form-save-button">Show Summary</FormButton>
+          <FormButton type="save">Show Summary</FormButton>
         </section>
       </form>
     );
@@ -211,10 +211,7 @@ export default class Summary extends Component<Props, State> {
             </AutoSizer>
           </div>
           <hr />
-          <FormButton
-            className="new-form-save-button"
-            onClick={this._onDownload}
-          >
+          <FormButton onClick={this._onDownload} type="save">
             Download
           </FormButton>
         </div>
