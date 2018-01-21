@@ -1,7 +1,13 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import { css } from 'glamor';
 
-export default function ListEntryTitle({ children }) {
+type Props = {
+  children: React.Node,
+};
+
+export default function ListEntryTitle({ children }: Props) {
   return (
     <div
       {...css({

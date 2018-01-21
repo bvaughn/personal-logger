@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import { css } from 'glamor';
 import { NotFoundIcon } from '../components/SvgIcons';

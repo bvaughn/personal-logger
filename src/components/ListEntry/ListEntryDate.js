@@ -1,6 +1,12 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import { css } from 'glamor';
 
-export default function ListEntryDate({ children }) {
+type Props = {
+  children: React.Node,
+};
+
+export default function ListEntryDate({ children }: Props) {
   return <small {...css({ flex: '0 0 70px' })}>{children}</small>;
 }

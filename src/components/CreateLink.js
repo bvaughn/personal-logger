@@ -1,9 +1,15 @@
+// @flow
+
 import React from 'react';
 import { css } from 'glamor';
 import { Link } from 'react-router-dom';
 import { CreateIcon } from './SvgIcons';
 
-const CreateLink = ({ to }) => (
+type Props = {
+  to: string,
+};
+
+const CreateLink = ({ to }: Props) => (
   <Link
     to={to}
     {...css({

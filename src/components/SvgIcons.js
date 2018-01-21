@@ -1,6 +1,8 @@
+// @flow
+
 import React from 'react';
 
-export const CreateIcon = props => (
+export const CreateIcon = (props: any) => (
   <svg {...props} viewBox="0 0 325 325">
     <polygon
       style={{ fill: '#ffe57f' }}
@@ -53,7 +55,7 @@ export const CreateIcon = props => (
   </svg>
 );
 
-export const DateIcon = props => (
+export const DateIcon = (props: any) => (
   <svg {...props} viewBox="0 0 168 176">
     <circle style={{ fill: '#dd2c00' }} cx="20" cy="36" r="20" />
     <circle style={{ fill: '#dd2c00' }} cx="148" cy="36" r="20" />
@@ -82,7 +84,7 @@ export const DateIcon = props => (
   </svg>
 );
 
-export const DateStartIcon = props => (
+export const DateStartIcon = (props: any) => (
   <svg {...props} viewBox="0 0 168 176">
     <circle style={{ fill: '#dd2c00' }} cx="20" cy="36" r="20" />
     <circle style={{ fill: '#dd2c00' }} cx="148" cy="36" r="20" />
@@ -103,7 +105,7 @@ export const DateStartIcon = props => (
   </svg>
 );
 
-export const DateStopIcon = props => (
+export const DateStopIcon = (props: any) => (
   <svg {...props} viewBox="0 0 168 176">
     <circle style={{ fill: '#dd2c00' }} cx="20" cy="36" r="20" />
     <circle style={{ fill: '#dd2c00' }} cx="148" cy="36" r="20" />
@@ -124,7 +126,7 @@ export const DateStopIcon = props => (
   </svg>
 );
 
-export const DrinkIcon = props => (
+export const DrinkIcon = (props: any) => (
   <svg {...props} viewBox="0 0 97 107">
     <polygon
       style={{ fill: '#cfd8dc' }}
@@ -150,7 +152,7 @@ export const DrinkIcon = props => (
   </svg>
 );
 
-export const EatIcon = props => (
+export const EatIcon = (props: any) => (
   <svg {...props} viewBox="0 0 115 158">
     <path style={{ fill: '#00c853' }} d="M21,92v57s0,9,11,9,11-9,11-9V92" />
     <path
@@ -168,7 +170,7 @@ export const EatIcon = props => (
   </svg>
 );
 
-export const EnergyIcon = props => (
+export const EnergyIcon = (props: any) => (
   <svg {...props} viewBox="0 0 58 114">
     <ellipse style={{ fill: '#37474f' }} cx="29" cy="97" rx="29" ry="17" />
     <rect style={{ fill: '#37474f' }} y="17" width="58" height="80.76" />
@@ -184,7 +186,7 @@ export const EnergyIcon = props => (
   </svg>
 );
 
-export const FoodIcon = props => (
+export const FoodIcon = (props: any) => (
   <svg {...props} viewBox="0 0 172 93">
     <circle style={{ fill: '#b21500' }} cx="25" cy="42" r="18" />
     <circle style={{ fill: '#b21500' }} cx="122" cy="24" r="20" />
@@ -210,7 +212,7 @@ export const FoodIcon = props => (
   </svg>
 );
 
-export const HeartIcon = props => (
+export const HeartIcon = (props: any) => (
   <svg {...props} viewBox="0 0 107 91">
     <circle style={{ fill: '#ff5131' }} cx="28" cy="28" r="28" />
     <circle style={{ fill: '#ff5131' }} cx="78" cy="28" r="28" />
@@ -317,7 +319,7 @@ export const HeartIcon = props => (
   </svg>
 );
 
-export const LoadingIcon = props => (
+export const LoadingIcon = (props: any) => (
   <svg {...props} viewBox="0 0 126 167">
     <ellipse style={{ fill: '#37474f' }} cx="63" cy="146" rx="63" ry="21" />
     <rect style={{ fill: '#37474f' }} y="137" width="126" height="9" />
@@ -341,7 +343,7 @@ export const LoadingIcon = props => (
   </svg>
 );
 
-export const LogoutIcon = props => (
+export const LogoutIcon = (props: any) => (
   <svg {...props} viewBox="0 0 139 139">
     <path
       style={{ fill: '#4f5b62' }}
@@ -354,7 +356,7 @@ export const LogoutIcon = props => (
   </svg>
 );
 
-export const NotFoundIcon = props => (
+export const NotFoundIcon = (props: any) => (
   <svg {...props} viewBox="0 0 144 176">
     <rect style={{ fill: '#eceff1' }} width="144" height="176" rx="5" ry="5" />
     <rect
@@ -407,7 +409,7 @@ export const NotFoundIcon = props => (
   </svg>
 );
 
-export const SleepIcon = props => (
+export const SleepIcon = (props: any) => (
   <svg {...props} viewBox="0 0 241 233">
     <path
       style={{ fill: '#e0be54' }}
@@ -429,7 +431,7 @@ export const SleepIcon = props => (
   </svg>
 );
 
-export const SleepingIcon = props => (
+export const SleepingIcon = (props: any) => (
   <svg {...props} viewBox="0 0 55 55">
     <circle style={{ fill: '#ffdd56' }} cx="27" cy="27" r="27" />
     <path
@@ -447,7 +449,7 @@ export const SleepingIcon = props => (
   </svg>
 );
 
-export const StomachIcon = props => (
+export const StomachIcon = (props: any) => (
   <svg {...props} viewBox="0 0 87 88">
     <path
       style={{ fill: '#dd2c00' }}
@@ -465,7 +467,7 @@ export const StomachIcon = props => (
   </svg>
 );
 
-export const StrengthIcon = props => (
+export const StrengthIcon = (props: any) => (
   <svg {...props} viewBox="0 0 400 200">
     <rect style={{ fill: '#6d6d6d' }} y="85" width="400" height="30" />
     <rect
@@ -505,7 +507,7 @@ export const StrengthIcon = props => (
   </svg>
 );
 
-export const SymptomIcon = props => (
+export const SymptomIcon = (props: any) => (
   <svg {...props} viewBox="0 0 535 583">
     <path
       style={{ fill: '#00c853' }}
@@ -518,7 +520,7 @@ export const SymptomIcon = props => (
   </svg>
 );
 
-export const TimeIcon = props => (
+export const TimeIcon = (props: any) => (
   <svg {...props} viewBox="0 0 120 120">
     <circle style={{ fill: '#ffffff' }} cx="60" cy="60" r="55" />
     <path

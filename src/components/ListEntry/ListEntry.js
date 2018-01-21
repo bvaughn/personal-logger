@@ -1,11 +1,17 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import { css } from 'glamor';
 import { Link } from 'react-router-dom';
 
-export default function ListEntry({ children, ...props }) {
+type Props = {
+  children: React.Node,
+};
+
+export default function ListEntry({ children, ...rest }: Props) {
   return (
     <Link
-      {...props}
+      {...rest}
       {...css({
         display: 'flex',
         flexDirection: 'row',
