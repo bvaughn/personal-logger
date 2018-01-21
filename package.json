@@ -27,6 +27,7 @@
   },
   "scripts": {
     "build": "react-scripts build",
+    "deploy": "cd build && now --public && now alias --local-config=../now.json",
     "eject": "react-scripts eject",
     "flow": "flow",
     "postbuild": "cd build && rm ./static/js/*.js.map && rm ./static/css/*.css.map",
