@@ -336,9 +336,14 @@ export default class Summary extends Component<Props, State> {
   _onDownload = (event: Event) => {
     event.preventDefault();
 
-    downloadData(
-      'personal-logger-export.txt',
-      JSON.stringify(this.state.entries)
-    );
+    if (this.state.entries !== null) {
+      const entries = this.state.entries.map(entry => {
+        // Filter Firespace-specific info from the export
+        const { id, user, ...rest } = (entry: any);
+        return rest;
+      });
+
+      downloadData('personal-logger-export.txt', JSON.stringify(entries));
+    }
   };
 }
