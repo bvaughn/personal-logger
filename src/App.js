@@ -170,7 +170,7 @@ class App extends Component<Props, State> {
             <Route
               exact
               path="/"
-              render={({ history }) => <Redirect to={ROUTES.summary} />}
+              render={({ history }) => <Redirect to={ROUTES.foods.list} />}
             />
 
             <Route
